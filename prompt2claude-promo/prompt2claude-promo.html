@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<title>Prompt2Claude Promo</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+:root{--y:#FFDE59;--p:#FF91E9;--b:#5CE1E6;--g:#C1FF72;--bg:#FDFBF7;--ink:#000;--mute:#4a4a4a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:'Space Grotesk','DejaVu Sans','Noto Color Emoji',sans-serif;color:var(--ink);
+  background-color:var(--bg);background-image:radial-gradient(#000 2px,transparent 2px);background-size:40px 40px}
+.scene{position:absolute;inset:0;padding:180px 80px 330px;display:flex;flex-direction:column;opacity:0}
+.c{justify-content:center}
+.nb{border:6px solid #000}
+.sh{box-shadow:10px 10px 0 #000}
+.shs{box-shadow:6px 6px 0 #000}
+.r{border-radius:28px}
+.tag{display:inline-block;font-weight:700;font-size:38px;padding:10px 26px;text-transform:uppercase;letter-spacing:2px}
+h1{font-size:150px;line-height:.95;font-weight:700;letter-spacing:-4px;text-transform:uppercase}
+h2{font-size:88px;line-height:1;font-weight:700;letter-spacing:-2px;text-transform:uppercase}
+.u{color:var(--p);text-decoration:underline;text-decoration-thickness:16px;text-underline-offset:12px;-webkit-text-stroke:3px #000}
+.big{font-size:56px;font-weight:700;line-height:1.2}
+.med{font-size:44px;font-weight:600;line-height:1.3}
+.num{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:700;flex:none}
+.row{display:flex;align-items:center;gap:26px}
+.try{position:relative;display:inline-block;font-weight:700;font-size:36px;padding:16px 30px;border:5px solid #000;border-radius:16px;box-shadow:6px 6px 0 #000;background:#fff;white-space:nowrap}
+.cur{position:absolute;left:84%;top:58%;width:92px;height:92px;z-index:5}
+.ring{position:absolute;left:86%;top:62%;width:120px;height:120px;margin:-60px 0 0 -60px;border:6px solid #000;border-radius:50%;opacity:0;z-index:4}
+.modal{position:absolute;left:70px;right:70px;top:590px;height:1000px;background:var(--bg);overflow:hidden;display:flex;flex-direction:column}
+.mh{display:flex;justify-content:space-between;align-items:center;padding:20px 26px;background:var(--y);border-bottom:6px solid #000;flex:none}
+.mh b{font-size:38px;text-transform:uppercase;letter-spacing:1px}
+.back{background:#000;color:#fff;font-weight:700;font-size:28px;padding:12px 22px;border-radius:14px}
+.mb{position:relative;flex:1;overflow:hidden;background:#fff}
+.shot{position:absolute;left:0;top:0;width:820px;transform-origin:0 0}
+.shot img{display:block;width:820px}
+.cap{margin-top:auto;font-size:36px;font-weight:600;text-align:center}
+.card{background:#fff}
+.ch{display:flex;justify-content:space-between;align-items:center;padding:22px 30px;border-bottom:6px solid #000}
+.ch b{font-size:56px}
+.day{background:#fff;border:5px solid #000;font-weight:700;font-size:34px;padding:6px 18px;box-shadow:4px 4px 0 #000}
+.cb{padding:26px 30px;display:flex;flex-direction:column;gap:14px}
+.ic{width:44px;height:44px;flex:none}
+.li{display:flex;align-items:center;gap:20px;font-size:40px;font-weight:700}
+.bar{position:absolute;left:0;bottom:0;height:14px;background:#000;transform-origin:left;width:100%}
+.poll{display:flex;flex-direction:column;gap:22px;margin-top:30px}
+.pl{position:relative;height:84px;border:5px solid #000;border-radius:16px;overflow:hidden;background:#fff}
+.pf{position:absolute;left:0;top:0;bottom:0;transform-origin:left}
+.pl span{position:absolute;left:24px;top:50%;transform:translateY(-50%);font-size:36px;font-weight:700}
+.pl i{position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:36px;font-weight:700;font-style:normal}
+@keyframes up{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.5) rotate(var(--rot,0deg))}70%{opacity:1;transform:scale(1.08) rotate(var(--rot,0deg))}100%{opacity:1;transform:scale(1) rotate(var(--rot,0deg))}}
+@keyframes left{from{opacity:0;transform:translateX(-120px)}to{opacity:1;transform:none}}
+@keyframes right{from{opacity:0;transform:translateX(120px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes fadeout{from{opacity:1}to{opacity:0}}
+@keyframes modal{from{transform:translateY(1400px)}to{transform:none}}
+@keyframes curin{0%{opacity:0;transform:translate(260px,320px)}25%{opacity:1}80%{transform:none}90%{transform:scale(.82)}100%{opacity:1;transform:scale(1)}}
+@keyframes ring{0%{opacity:0;transform:scale(.3)}10%{opacity:.9}100%{opacity:0;transform:scale(1.8)}}
+@keyframes press{0%,100%{transform:none;box-shadow:6px 6px 0 #000}30%,70%{transform:translate(6px,6px);box-shadow:0 0 0 #000}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(var(--w))}}
+@keyframes scroll{from{transform:translateY(0)}to{transform:translateY(var(--dy))}}
+@keyframes wob{0%,100%{transform:rotate(var(--rot,0deg))}50%{transform:rotate(calc(var(--rot,0deg) * -1))}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+</style></head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="hand"><path d="M30 8c-4 0-7 3-7 7v34l-6-6c-3-3-8-3-11 0s-3 8 0 11l20 22c4 4 9 6 15 6h12c11 0 19-8 19-19V44c0-4-3-7-7-7s-7 3-7 7v-3c0-4-3-7-7-7s-7 3-7 7v-2c0-4-3-7-7-7-2 0-4 1-5 2V15c0-4-3-7-7-7z" fill="#fff" stroke="#000" stroke-width="5" stroke-linejoin="round"/></g>
+  </defs>
+</svg>
+
+<!-- S1 HOOK -->
+<section class="scene c" data-s="0" data-d="3.1" style="align-items:flex-start">
+  <div class="tag nb shs" data-a="pop" data-at=".05" style="background:var(--y);--rot:3deg;align-self:flex-end;font-size:40px">KELAS AI · 2 SESI · 4 JAM</div>
+  <p class="big" data-a="left" data-at=".25" style="margin-top:60px;font-size:64px">Nak belajar AI…<br>tapi <span style="background:var(--p);padding:0 12px" class="nb">tak reti coding?</span></p>
+  <div class="tag nb shs" data-a="pop" data-at=".9" style="background:var(--b);margin-top:80px;font-size:46px">Pemula</div>
+  <h1 data-a="up" data-at="1.05" style="margin-top:34px">PROMPT2<br><span class="u">CLAUDE</span></h1>
+  <div data-a="pop" data-at="1.5" style="position:absolute;right:90px;bottom:300px;width:300px;height:300px">
+    <div class="nb sh" style="width:100%;height:100%;border-radius:50%;background:var(--p);overflow:hidden;animation:bob 2.4s ease-in-out infinite">
+      <img src="shots/trainer.jpg" style="width:100%;height:120%;object-fit:cover;object-position:top">
+    </div>
+  </div>
+</section>
+
+<!-- S2 PROMISE -->
+<section class="scene c" data-s="3.1" data-d="2.8">
+  <p class="big" data-a="up" data-at=".05" style="background:#fff;padding:20px 26px" class2="">Belajar AI secara <u>praktikal</u> dan terus hasilkan <span style="background:var(--g)">output sebenar</span>, bukan sekadar nota.</p>
+  <div class="nb sh" data-a="pop" data-at=".5" style="--rot:-2deg;background:var(--g);padding:34px 36px;margin-top:60px">
+    <p style="font-size:70px;font-weight:700;line-height:1.1">“4 jam. Balik dengan <u>empat</u> benda siap.”</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:60px">
+    <div class="row nb shs r" data-a="pop" data-at="1.0" style="background:#fff;padding:18px 22px"><div class="num nb" style="background:var(--b)">1</div><b style="font-size:38px">Nota Digital</b></div>
+    <div class="row nb shs r" data-a="pop" data-at="1.15" style="background:#fff;padding:18px 22px"><div class="num nb" style="background:var(--p)">2</div><b style="font-size:38px">Game</b></div>
+    <div class="row nb shs r" data-a="pop" data-at="1.3" style="background:#fff;padding:18px 22px"><div class="num nb" style="background:var(--g)">3</div><b style="font-size:38px">Bina Sistem</b></div>
+    <div class="row nb shs r" data-a="pop" data-at="1.45" style="background:#fff;padding:18px 22px"><div class="num nb" style="background:var(--y)">4</div><b style="font-size:38px">Video & Animasi</b></div>
+  </div>
+</section>
+
+<!-- S3 NOTA DIGITAL -->
+<section class="scene" data-s="5.9" data-d="3.6">
+  <div class="tag nb shs" data-a="left" data-at="0" style="background:var(--y);align-self:flex-start;font-size:34px">Output 1/4 · Sesi 1 · Sabtu</div>
+  <div class="row nb sh r card" data-a="up" data-at=".1" style="margin-top:34px;padding:26px 30px;justify-content:space-between">
+    <div class="row"><div class="num nb" style="background:var(--b)">1</div><b style="font-size:50px;line-height:1.05">Nota Digital<br>Interaktif</b></div>
+    <div class="try" data-a="press" data-at=".75" data-dur=".35" data-ease="linear">Click Untuk Try <svg viewBox="0 0 24 24" style="width:30px;height:30px;vertical-align:-4px;margin-left:4px" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      <div class="ring" data-a="ring" data-at=".8" data-dur=".5"></div>
+      <svg class="cur" viewBox="0 0 80 96" data-a="curin" data-at=".25" data-dur=".7"><use href="#hand"/></svg>
+    </div>
+  </div>
+  <div class="modal nb sh r" data-a="modal" data-at="1.0" data-dur=".45" data-ease="cubic-bezier(.2,.9,.3,1.1)">
+    <div class="mh"><b>📝 Contoh Nota Digital</b><span class="back">← Kembali</span></div>
+    <div class="mb"><div class="shot" style="transform:scale(1.115)"><img src="shots/nota.jpg" data-a="scroll" data-at="1.6" data-dur="1.9" data-ease="ease-in-out" style="--dy:-1700px"></div></div>
+  </div>
+</section>
+
+<!-- S4 GAME -->
+<section class="scene" data-s="9.5" data-d="3.6">
+  <div class="tag nb shs" data-a="left" data-at="0" style="background:var(--y);align-self:flex-start;font-size:34px">Output 2/4 · Sesi 1 · Sabtu</div>
+  <div class="row nb sh r card" data-a="up" data-at=".1" style="margin-top:34px;padding:26px 30px;justify-content:space-between">
+    <div class="row"><div class="num nb" style="background:var(--p)">2</div><b style="font-size:50px;line-height:1.05">Game<br>(Permainan)</b></div>
+    <div class="try" data-a="press" data-at=".75" data-dur=".35" data-ease="linear" style="background:var(--y)">Click Untuk Try <svg viewBox="0 0 24 24" style="width:30px;height:30px;vertical-align:-4px;margin-left:4px" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      <div class="ring" data-a="ring" data-at=".8" data-dur=".5"></div>
+      <svg class="cur" viewBox="0 0 80 96" data-a="curin" data-at=".25" data-dur=".7"><use href="#hand"/></svg>
+    </div>
+  </div>
+  <div class="modal nb sh r" data-a="modal" data-at="1.0" data-dur=".45" data-ease="cubic-bezier(.2,.9,.3,1.1)">
+    <div class="mh"><b>🎮 Game (Permainan)</b><span class="back">← Kembali</span></div>
+    <div class="mb" style="background:#FFF1DF">
+      <div class="shot" style="transform:translateX(146px) scale(.77)"><img src="shots/game2.jpg"></div>
+      <div class="shot" style="transform:translateX(146px) scale(.77)" data-a="fade" data-at="1.9" data-dur=".2"><img src="shots/game3.jpg"></div>
+      <div class="shot" style="transform:translateX(146px) scale(.77)" data-a="fade" data-at="2.6" data-dur=".2"><img src="shots/game5.jpg">
+        <div data-a="fade" data-at="3.1" data-dur=".15" style="position:absolute;left:104px;top:922px;width:612px;height:64px;border-radius:16px;border:6px solid #2fa84f;background:rgba(193,255,114,.55)"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S5 BINA SISTEM -->
+<section class="scene" data-s="13.1" data-d="2.9">
+  <div class="tag nb shs" data-a="left" data-at="0" style="background:var(--b);align-self:flex-start;font-size:34px">Output 3/4 · Sesi 2 · Ahad</div>
+  <div class="row nb sh r card" data-a="up" data-at=".1" style="margin-top:34px;padding:26px 30px;justify-content:space-between">
+    <div class="row"><div class="num nb" style="background:var(--g)">3</div><b style="font-size:50px;line-height:1.05">Bina<br>Sistem</b></div>
+    <div class="try" data-a="press" data-at=".65" data-dur=".35" data-ease="linear" style="background:var(--g)">Click Untuk Try <svg viewBox="0 0 24 24" style="width:30px;height:30px;vertical-align:-4px;margin-left:4px" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      <div class="ring" data-a="ring" data-at=".7" data-dur=".5"></div>
+      <svg class="cur" viewBox="0 0 80 96" data-a="curin" data-at=".15" data-dur=".7"><use href="#hand"/></svg>
+    </div>
+  </div>
+  <div class="modal nb sh r" data-a="modal" data-at=".9" data-dur=".45" data-ease="cubic-bezier(.2,.9,.3,1.1)">
+    <div class="mh"><b>💻 Bina Sistem</b><span class="back">← Kembali</span></div>
+    <div class="mb" style="padding:44px 44px;background:var(--bg)">
+      <p style="font-size:44px;font-weight:600;line-height:1.35">Pemilihan sistem untuk dibina adalah <b style="background:var(--g);padding:0 8px">fleksibel</b>.</p>
+      <p style="font-size:36px;font-weight:500;line-height:1.4;margin-top:22px">Kita akan bincang dan buat <b>undian bersama peserta</b> dalam grup sokongan (selepas pendaftaran) untuk tentukan sistem apa yang majoriti nak belajar dalam kelas.</p>
+      <p style="font-size:28px;font-weight:700;margin-top:34px;color:var(--mute);letter-spacing:2px">CONTOH UNDIAN</p>
+      <div class="poll">
+        <div class="pl"><div class="pf" data-a="grow" data-at="1.5" data-dur=".9" style="--w:.62;width:100%;background:var(--g)"></div><span>Sistem Kehadiran</span><i>?</i></div>
+        <div class="pl"><div class="pf" data-a="grow" data-at="1.6" data-dur=".9" style="--w:.45;width:100%;background:var(--b)"></div><span>Sistem Tempahan</span><i>?</i></div>
+        <div class="pl"><div class="pf" data-a="grow" data-at="1.7" data-dur=".9" style="--w:.33;width:100%;background:var(--p)"></div><span>Sistem Inventori</span><i>?</i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S6 VIDEO & ANIMASI -->
+<section class="scene" data-s="16.0" data-d="3.3">
+  <div class="tag nb shs" data-a="left" data-at="0" style="background:var(--b);align-self:flex-start;font-size:34px">Output 4/4 · Sesi 2 · Ahad</div>
+  <div class="row nb sh r card" data-a="up" data-at=".1" style="margin-top:34px;padding:26px 30px;justify-content:space-between">
+    <div class="row"><div class="num nb" style="background:var(--y)">4</div><b style="font-size:50px;line-height:1.05">Video &amp;<br>Animasi</b></div>
+    <div class="try" data-a="press" data-at=".65" data-dur=".35" data-ease="linear" style="background:var(--p)">Click Untuk Try <svg viewBox="0 0 24 24" style="width:30px;height:30px;vertical-align:-4px;margin-left:4px" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      <div class="ring" data-a="ring" data-at=".7" data-dur=".5"></div>
+      <svg class="cur" viewBox="0 0 80 96" data-a="curin" data-at=".15" data-dur=".7"><use href="#hand"/></svg>
+    </div>
+  </div>
+  <div class="modal nb sh r" data-a="modal" data-at=".9" data-dur=".45" data-ease="cubic-bezier(.2,.9,.3,1.1)">
+    <div class="mh"><b>🎬 Video &amp; Animasi</b><span class="back">← Kembali</span></div>
+    <div class="mb" style="background:#0f0e1f">
+      <div class="shot" style="transform:translateX(96px) scale(.88)"><img src="shots/uivideo.jpg">
+        <div style="position:absolute;left:16px;top:235px;width:420px;height:746px;border-radius:24px;overflow:hidden">
+          <img src="shots/ui_6.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <img src="shots/ui_28.jpg" data-a="fade" data-at="1.7" data-dur=".2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <img src="shots/ui_50.jpg" data-a="fade" data-at="2.3" data-dur=".2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+          <img src="shots/ui_95.jpg" data-a="fade" data-at="2.8" data-dur=".2" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S7 JADUAL -->
+<section class="scene c" data-s="19.3" data-d="3.6">
+  <h2 data-a="up" data-at="0" style="text-align:center">Modul &amp; Jadual</h2>
+  <div class="nb sh r card" data-a="left" data-at=".25" style="margin-top:44px;overflow:hidden">
+    <div class="ch" style="background:var(--y)"><b>SESI 1</b><span class="day">SABTU</span></div>
+    <div class="cb">
+      <div class="li"><svg class="ic" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>17 Oktober 2026</div>
+      <div class="li"><svg class="ic" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>9.00 – 11.00 malam</div>
+      <div style="border-top:4px dashed #000;margin-top:6px;padding-top:16px;font-size:36px;font-weight:600">① Nota Digital Interaktif &nbsp;② Game</div>
+    </div>
+  </div>
+  <div class="nb sh r card" data-a="right" data-at=".55" style="margin-top:40px;overflow:hidden">
+    <div class="ch" style="background:var(--b)"><b>SESI 2</b><span class="day">AHAD</span></div>
+    <div class="cb">
+      <div class="li"><svg class="ic" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>18 Oktober 2026</div>
+      <div class="li"><svg class="ic" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>9.00 – 11.00 pagi</div>
+      <div style="border-top:4px dashed #000;margin-top:6px;padding-top:16px;font-size:36px;font-weight:600">③ Bina Sistem &nbsp;④ Video &amp; Animasi</div>
+    </div>
+  </div>
+  <div class="tag nb shs" data-a="pop" data-at="1.0" style="--rot:-2deg;background:var(--p);align-self:center;margin-top:44px;font-size:40px">2 sesi × 2 jam = 4 jam</div>
+</section>
+
+<!-- S8 APA DAPAT + PENGAJAR -->
+<section class="scene c" data-s="22.9" data-d="3.4">
+  <div data-a="pop" data-at="0" style="align-self:center;background:#000;color:#fff;font-weight:700;font-size:40px;letter-spacing:3px;padding:16px 40px;border-radius:999px">APA YANG ANDA DAPAT?</div>
+  <div style="display:flex;flex-direction:column;gap:22px;margin-top:40px">
+    <div class="row nb shs r card" data-a="left" data-at=".15" style="padding:20px 26px"><div class="num nb r" style="background:var(--p);border-radius:18px;width:90px;height:90px"><svg class="ic" style="width:50px;height:50px" fill="none" stroke="#000" stroke-width="2.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div><div><b style="font-size:44px">Rakaman Disediakan</b><p style="font-size:30px;color:var(--mute)">Boleh ulang tonton bila-bila</p></div></div>
+    <div class="row nb shs r card" data-a="left" data-at=".3" style="padding:20px 26px"><div class="num nb r" style="background:var(--b);border-radius:18px;width:90px;height:90px"><svg class="ic" style="width:50px;height:50px" fill="none" stroke="#000" stroke-width="2.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><div><b style="font-size:44px">Google Meet Live</b><p style="font-size:30px;color:var(--mute)">Interaktif, boleh tanya terus</p></div></div>
+    <div class="row nb shs r card" data-a="left" data-at=".45" style="padding:20px 26px"><div class="num nb r" style="background:var(--g);border-radius:18px;width:90px;height:90px"><svg class="ic" style="width:50px;height:50px" fill="none" stroke="#000" stroke-width="2.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></div><div><b style="font-size:44px">Zero Coding</b><p style="font-size:30px;color:var(--mute)">Sesuai untuk semua tahap</p></div></div>
+    <div class="row nb shs r card" data-a="left" data-at=".6" style="padding:20px 26px"><div class="num nb r" style="background:var(--y);border-radius:18px;width:90px;height:90px"><svg class="ic" style="width:50px;height:50px" fill="none" stroke="#000" stroke-width="2.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div><div><b style="font-size:44px">Claude Pro (Saranan)</b><p style="font-size:30px;color:var(--mute)">Untuk hasil maksima tanpa had</p></div></div>
+  </div>
+  <div class="row nb sh r card" data-a="up" data-at="1.1" style="margin-top:40px;padding:22px 28px;background:var(--b)">
+    <div class="nb" style="width:150px;height:150px;border-radius:50%;overflow:hidden;background:#fff;flex:none"><img src="shots/trainer.jpg" style="width:100%;height:120%;object-fit:cover;object-position:top"></div>
+    <div><p style="font-size:26px;font-weight:700;letter-spacing:3px">TENAGA PENGAJAR</p><b style="font-size:50px">Ts. Ruzbihan Bakhtiar</b>
+      <p style="display:inline-block;margin-top:8px;background:#000;color:#fff;font-size:24px;font-weight:700;padding:6px 16px;border-radius:999px">RuzPrompt · AnnurPro Solutions</p></div>
+  </div>
+</section>
+
+<!-- S9 HARGA + CTA -->
+<section class="scene c" data-s="26.3" data-d="3.7" style="align-items:center;text-align:center">
+  <div class="nb sh r" data-a="pop" data-at="0" style="background:var(--g);padding:44px 40px 50px;width:100%;display:flex;flex-direction:column;align-items:center">
+    <div class="tag nb shs" style="--rot:-2deg;background:var(--y);border-style:dashed;transform:rotate(-2deg);font-size:38px">🔥 Dua Sesi / Satu Bayaran</div>
+    <p style="font-size:40px;font-weight:700;margin-top:30px">Yuran Pendaftaran (Promo)</p>
+    <p data-a="pop" data-at=".35" style="font-size:210px;font-weight:700;letter-spacing:-8px;line-height:1;text-shadow:8px 8px 0 #fff">RM50<span style="font-size:60px;letter-spacing:0;margin-left:14px">Sahaja</span></p>
+    <div class="try" data-a="press" data-at="1.1" data-dur=".35" data-ease="linear" style="background:#000;color:#fff;border-color:#fff;box-shadow:8px 8px 0 var(--p);font-size:52px;padding:24px 50px;margin-top:30px;border-radius:22px">DAFTAR SEKARANG →
+      <div class="ring" data-a="ring" data-at="1.15" data-dur=".5" style="border-color:#fff"></div>
+      <svg class="cur" viewBox="0 0 80 96" data-a="curin" data-at=".55" data-dur=".7"><use href="#hand"/></svg>
+    </div>
+  </div>
+  <div data-a="up" data-at="1.5" style="margin-top:56px">
+    <p style="font-size:70px;font-weight:700;line-height:1.1">Click <span style="background:var(--p);padding:0 14px" class="nb">link di bio</span></p>
+    <p style="font-size:70px;font-weight:700;line-height:1.1;margin-top:18px">ambil <span class="u">Prompt2Claude</span></p>
+    <p style="font-size:30px;font-weight:600;margin-top:26px;color:var(--mute)">17 &amp; 18 Okt 2026 · Google Meet · AnnurPro Solutions</p>
+  </div>
+</section>
+
+<div class="bar" id="bar"></div>
+
+<script>
+const scenes=[...document.querySelectorAll('.scene')].map(el=>({el,s:+el.dataset.s,d:+el.dataset.d}));
+const TOTAL=30;
+// convert data-a/data-at into absolute-time CSS animations
+scenes.forEach(sc=>sc.el.querySelectorAll('[data-a]').forEach(e=>{
+  const n=e.dataset.a, at=sc.s+(+e.dataset.at||0), dur=+(e.dataset.dur||.55), ease=e.dataset.ease||'cubic-bezier(.2,.8,.2,1)';
+  const extra=e.style.animation?', '+e.style.animation:'';
+  e.style.animation=`${n} ${dur}s ${ease} ${at}s both`+extra;
+}));
+document.getAnimations().forEach(a=>a.pause());
+const cl=x=>Math.max(0,Math.min(1,x));
+window.setT=t=>{
+  scenes.forEach((sc,i)=>{
+    const lt=t-sc.s, inn=i===0?1:cl(lt/.2), out=i===scenes.length-1?1:cl((sc.d-lt)/.2);
+    const v=lt>=0&&lt<sc.d+(i===scenes.length-1?1:0);
+    sc.el.style.opacity=v?Math.min(inn,out):0;
+    sc.el.style.transform=v?`scale(${1+.03*(1-inn)})`:'none';
+  });
+  document.getElementById('bar').style.transform=`scaleX(${t/TOTAL})`;
+  document.getAnimations().forEach(a=>a.currentTime=t*1000);
+};
+setT(+(location.hash.slice(1))||0);
+</script>
+</body></html>
