@@ -1,0 +1,906 @@
+{
+ "title": "Sekadar Kehilangan",
+ "duration": 163.68,
+ "lines": [
+  {
+   "t0": 5.34,
+   "t1": 9.52,
+   "text": "Bila ku rasa hati ini kosong",
+   "kind": "v",
+   "words": [
+    {
+     "w": "Bila",
+     "t": 5.39
+    },
+    {
+     "w": "ku",
+     "t": 6.28
+    },
+    {
+     "w": "rasa",
+     "t": 6.74
+    },
+    {
+     "w": "hati",
+     "t": 7.5
+    },
+    {
+     "w": "ini",
+     "t": 8.24
+    },
+    {
+     "w": "kosong",
+     "t": 8.86
+    }
+   ]
+  },
+  {
+   "t0": 10.98,
+   "t1": 15.36,
+   "text": "Bila dia pergi tanpa alasan",
+   "kind": "v",
+   "words": [
+    {
+     "w": "Bila",
+     "t": 11.03
+    },
+    {
+     "w": "dia",
+     "t": 12.16
+    },
+    {
+     "w": "pergi",
+     "t": 12.64
+    },
+    {
+     "w": "tanpa",
+     "t": 13.7
+    },
+    {
+     "w": "alasan",
+     "t": 14.28
+    }
+   ]
+  },
+  {
+   "t0": 16.72,
+   "t1": 21.04,
+   "text": "Ku fikir aku kehilangan",
+   "kind": "v",
+   "words": [
+    {
+     "w": "Ku",
+     "t": 16.77
+    },
+    {
+     "w": "fikir",
+     "t": 17.42
+    },
+    {
+     "w": "aku",
+     "t": 19.06
+    },
+    {
+     "w": "kehilangan",
+     "t": 19.62
+    }
+   ]
+  },
+  {
+   "t0": 22.46,
+   "t1": 27.62,
+   "text": "Rupanya hanya terlepas genggaman",
+   "kind": "v",
+   "words": [
+    {
+     "w": "Rupanya",
+     "t": 22.51
+    },
+    {
+     "w": "hanya",
+     "t": 23.92
+    },
+    {
+     "w": "terlepas",
+     "t": 24.56
+    },
+    {
+     "w": "genggaman",
+     "t": 25.6
+    }
+   ]
+  },
+  {
+   "t0": 28.02,
+   "t1": 33.02,
+   "text": "Ku lupa segalanya milik Tuhan",
+   "kind": "v",
+   "words": [
+    {
+     "w": "Ku",
+     "t": 28.07
+    },
+    {
+     "w": "lupa",
+     "t": 28.6
+    },
+    {
+     "w": "segalanya",
+     "t": 29.54
+    },
+    {
+     "w": "milik",
+     "t": 31.02
+    },
+    {
+     "w": "Tuhan",
+     "t": 31.46
+    }
+   ]
+  },
+  {
+   "t0": 33.83,
+   "t1": 38.42,
+   "text": "Tiada yang kekal dalam genggaman",
+   "kind": "v",
+   "words": [
+    {
+     "w": "Tiada",
+     "t": 33.88
+    },
+    {
+     "w": "yang",
+     "t": 34.8
+    },
+    {
+     "w": "kekal",
+     "t": 35.2
+    },
+    {
+     "w": "dalam",
+     "t": 36.28
+    },
+    {
+     "w": "genggaman",
+     "t": 36.64
+    }
+   ]
+  },
+  {
+   "t0": 38.76,
+   "t1": 42.68,
+   "text": "Sekadar kehilangan",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Sekadar",
+     "t": 38.81
+    },
+    {
+     "w": "kehilangan",
+     "t": 39.56
+    }
+   ]
+  },
+  {
+   "t0": 42.87,
+   "t1": 47.86,
+   "text": "Kerana tak pernah aku miliki",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Kerana",
+     "t": 42.92
+    },
+    {
+     "w": "tak",
+     "t": 43.8
+    },
+    {
+     "w": "pernah",
+     "t": 44.26
+    },
+    {
+     "w": "aku",
+     "t": 44.68
+    },
+    {
+     "w": "miliki",
+     "t": 45.2
+    }
+   ]
+  },
+  {
+   "t0": 48.49,
+   "t1": 53.0,
+   "text": "Hanya titipan sementara untuk kusyukuri",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Hanya",
+     "t": 48.54
+    },
+    {
+     "w": "titipan",
+     "t": 49.16
+    },
+    {
+     "w": "sementara",
+     "t": 50.28
+    },
+    {
+     "w": "untuk",
+     "t": 51.64
+    },
+    {
+     "w": "kusyukuri",
+     "t": 52.04
+    }
+   ]
+  },
+  {
+   "t0": 54.29,
+   "t1": 59.0,
+   "text": "Bukan miliki, sekadar kehilangan",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Bukan",
+     "t": 54.34
+    },
+    {
+     "w": "miliki,",
+     "t": 55.08
+    },
+    {
+     "w": "sekadar",
+     "t": 56
+    },
+    {
+     "w": "kehilangan",
+     "t": 56.78
+    }
+   ]
+  },
+  {
+   "t0": 60.06,
+   "t1": 63.98,
+   "text": "Itulah hakikat dunia ini",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Itulah",
+     "t": 60.1
+    },
+    {
+     "w": "hakikat",
+     "t": 60.8
+    },
+    {
+     "w": "dunia",
+     "t": 61.7
+    },
+    {
+     "w": "ini",
+     "t": 62.96
+    }
+   ]
+  },
+  {
+   "t0": 64.15,
+   "t1": 66.58,
+   "text": "Yang benar-benar milik",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Yang",
+     "t": 64.2
+    },
+    {
+     "w": "benar-benar",
+     "t": 64.78
+    },
+    {
+     "w": "milik",
+     "t": 65.96
+    }
+   ]
+  },
+  {
+   "t0": 66.99,
+   "t1": 70.0,
+   "text": "Hanya cinta Ilahi",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Hanya",
+     "t": 67.04
+    },
+    {
+     "w": "cinta",
+     "t": 67.62
+    },
+    {
+     "w": "Ilahi",
+     "t": 68.54
+    }
+   ]
+  },
+  {
+   "t0": 73.96,
+   "t1": 79.0,
+   "text": "Tangisan tak ubah apa pun jalan",
+   "kind": "v",
+   "words": [
+    {
+     "w": "Tangisan",
+     "t": 74.01
+    },
+    {
+     "w": "tak",
+     "t": 75.28
+    },
+    {
+     "w": "ubah",
+     "t": 75.5
+    },
+    {
+     "w": "apa",
+     "t": 76.32
+    },
+    {
+     "w": "pun",
+     "t": 76.9
+    },
+    {
+     "w": "jalan",
+     "t": 77.24
+    }
+   ]
+  },
+  {
+   "t0": 79.9,
+   "t1": 84.0,
+   "text": "Tapi sujud buat aku tenang",
+   "kind": "v",
+   "words": [
+    {
+     "w": "Tapi",
+     "t": 79.95
+    },
+    {
+     "w": "sujud",
+     "t": 80.46
+    },
+    {
+     "w": "buat",
+     "t": 81.88
+    },
+    {
+     "w": "aku",
+     "t": 82.46
+    },
+    {
+     "w": "tenang",
+     "t": 83.14
+    }
+   ]
+  },
+  {
+   "t0": 85.02,
+   "t1": 90.52,
+   "text": "Yang ku kira ujian paling pedih",
+   "kind": "v",
+   "words": [
+    {
+     "w": "Yang",
+     "t": 85.07
+    },
+    {
+     "w": "ku",
+     "t": 85.48
+    },
+    {
+     "w": "kira",
+     "t": 86.64
+    },
+    {
+     "w": "ujian",
+     "t": 87.24
+    },
+    {
+     "w": "paling",
+     "t": 87.92
+    },
+    {
+     "w": "pedih",
+     "t": 88.3
+    }
+   ]
+  },
+  {
+   "t0": 90.59,
+   "t1": 96.0,
+   "text": "Sebenarnya rahmat dalam bentuk lain",
+   "kind": "v",
+   "words": [
+    {
+     "w": "Sebenarnya",
+     "t": 90.64
+    },
+    {
+     "w": "rahmat",
+     "t": 92.36
+    },
+    {
+     "w": "dalam",
+     "t": 93.24
+    },
+    {
+     "w": "bentuk",
+     "t": 93.84
+    },
+    {
+     "w": "lain",
+     "t": 94.58
+    }
+   ]
+  },
+  {
+   "t0": 96.31,
+   "t1": 99.0,
+   "text": "Bila aku redha",
+   "kind": "b",
+   "words": [
+    {
+     "w": "Bila",
+     "t": 96.36
+    },
+    {
+     "w": "aku",
+     "t": 97.12
+    },
+    {
+     "w": "redha",
+     "t": 97.36
+    }
+   ]
+  },
+  {
+   "t0": 99.63,
+   "t1": 104.44,
+   "text": "Aku faham yang hilang bukan milikku",
+   "kind": "b",
+   "words": [
+    {
+     "w": "Aku",
+     "t": 99.68
+    },
+    {
+     "w": "faham",
+     "t": 100.32
+    },
+    {
+     "w": "yang",
+     "t": 101.5
+    },
+    {
+     "w": "hilang",
+     "t": 101.78
+    },
+    {
+     "w": "bukan",
+     "t": 102.36
+    },
+    {
+     "w": "milikku",
+     "t": 102.82
+    }
+   ]
+  },
+  {
+   "t0": 105.03,
+   "t1": 109.05,
+   "text": "Dan yang tinggal adalah ujian",
+   "kind": "b",
+   "words": [
+    {
+     "w": "Dan",
+     "t": 105.08
+    },
+    {
+     "w": "yang",
+     "t": 105.58
+    },
+    {
+     "w": "tinggal",
+     "t": 105.92
+    },
+    {
+     "w": "adalah",
+     "t": 107.36
+    },
+    {
+     "w": "ujian",
+     "t": 107.94
+    }
+   ]
+  },
+  {
+   "t0": 109.17,
+   "t1": 112.85,
+   "text": "untuk aku kembali padaMu",
+   "kind": "b",
+   "words": [
+    {
+     "w": "untuk",
+     "t": 109.22
+    },
+    {
+     "w": "aku",
+     "t": 110.36
+    },
+    {
+     "w": "kembali",
+     "t": 110.76
+    },
+    {
+     "w": "padaMu",
+     "t": 112.24
+    }
+   ]
+  },
+  {
+   "t0": 113.06,
+   "t1": 115.75,
+   "text": "Sekadar kehilangan",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Sekadar",
+     "t": 113.08
+    },
+    {
+     "w": "kehilangan",
+     "t": 113.92
+    }
+   ]
+  },
+  {
+   "t0": 115.9,
+   "t1": 118.44,
+   "text": "Bukan kehilangan sebenar",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Bukan",
+     "t": 115.95
+    },
+    {
+     "w": "kehilangan",
+     "t": 116.52
+    },
+    {
+     "w": "sebenar",
+     "t": 117.5
+    }
+   ]
+  },
+  {
+   "t0": 118.59,
+   "t1": 120.7,
+   "text": "Jika tiada milik dari mula",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Jika",
+     "t": 118.64
+    },
+    {
+     "w": "tiada",
+     "t": 119.02
+    },
+    {
+     "w": "milik",
+     "t": 119.54
+    },
+    {
+     "w": "dari",
+     "t": 119.9
+    },
+    {
+     "w": "mula",
+     "t": 120.24
+    }
+   ]
+  },
+  {
+   "t0": 121.47,
+   "t1": 123.76,
+   "text": "Apa yang patut aku susahkan?",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Apa",
+     "t": 121.52
+    },
+    {
+     "w": "yang",
+     "t": 121.78
+    },
+    {
+     "w": "patut",
+     "t": 122.02
+    },
+    {
+     "w": "aku",
+     "t": 122.46
+    },
+    {
+     "w": "susahkan?",
+     "t": 122.78
+    }
+   ]
+  },
+  {
+   "t0": 124.47,
+   "t1": 126.76,
+   "text": "Sekadar kehilangan",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Sekadar",
+     "t": 124.52
+    },
+    {
+     "w": "kehilangan",
+     "t": 125.34
+    }
+   ]
+  },
+  {
+   "t0": 127.17,
+   "t1": 129.95,
+   "text": "Bukan noktah dalam hidup ini",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Bukan",
+     "t": 127.22
+    },
+    {
+     "w": "noktah",
+     "t": 127.72
+    },
+    {
+     "w": "dalam",
+     "t": 128.2
+    },
+    {
+     "w": "hidup",
+     "t": 128.5
+    },
+    {
+     "w": "ini",
+     "t": 129
+    }
+   ]
+  },
+  {
+   "t0": 129.95,
+   "t1": 132.02,
+   "text": "Cuma ingatan dari Ilahi",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Cuma",
+     "t": 130.0
+    },
+    {
+     "w": "ingatan",
+     "t": 130.62
+    },
+    {
+     "w": "dari",
+     "t": 131.32
+    },
+    {
+     "w": "Ilahi",
+     "t": 131.66
+    }
+   ]
+  },
+  {
+   "t0": 132.52,
+   "t1": 137.95,
+   "text": "Agar aku tak terlalu mencintai dunia ini",
+   "kind": "c",
+   "words": [
+    {
+     "w": "Agar",
+     "t": 132.57
+    },
+    {
+     "w": "aku",
+     "t": 133.32
+    },
+    {
+     "w": "tak",
+     "t": 133.66
+    },
+    {
+     "w": "terlalu",
+     "t": 134.02
+    },
+    {
+     "w": "mencintai",
+     "t": 135.1
+    },
+    {
+     "w": "dunia",
+     "t": 136.54
+    },
+    {
+     "w": "ini",
+     "t": 137.5
+    }
+   ]
+  },
+  {
+   "t0": 138.0,
+   "t1": 141.25,
+   "text": "Lā ilāha illā anta",
+   "kind": "a",
+   "words": [
+    {
+     "w": "Lā",
+     "t": 138.14
+    },
+    {
+     "w": "ilāha",
+     "t": 138.74
+    },
+    {
+     "w": "illā",
+     "t": 139.72
+    },
+    {
+     "w": "anta",
+     "t": 140.56
+    }
+   ],
+   "ar": "لَا إِلَٰهَ إِلَّا أَنْتَ"
+  },
+  {
+   "t0": 141.1,
+   "t1": 143.75,
+   "text": "Subḥānaka innī kuntu minaẓ-ẓālimīn",
+   "kind": "a",
+   "words": [
+    {
+     "w": "Subḥānaka",
+     "t": 141.42
+    },
+    {
+     "w": "innī",
+     "t": 142.2
+    },
+    {
+     "w": "kuntu",
+     "t": 142.6
+    },
+    {
+     "w": "minaẓ-ẓālimīn",
+     "t": 143.1
+    }
+   ],
+   "ar": "سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ"
+  },
+  {
+   "t0": 143.92,
+   "t1": 146.95,
+   "text": "Lā ilāha illā anta",
+   "kind": "a",
+   "words": [
+    {
+     "w": "Lā",
+     "t": 143.92
+    },
+    {
+     "w": "ilāha",
+     "t": 144.52
+    },
+    {
+     "w": "illā",
+     "t": 145.56
+    },
+    {
+     "w": "anta",
+     "t": 146.36
+    }
+   ],
+   "ar": "لَا إِلَٰهَ إِلَّا أَنْتَ"
+  },
+  {
+   "t0": 146.83,
+   "t1": 150.05,
+   "text": "Subḥānaka innī kuntu minaẓ-ẓālimīn",
+   "kind": "a",
+   "words": [
+    {
+     "w": "Subḥānaka",
+     "t": 147.12
+    },
+    {
+     "w": "innī",
+     "t": 147.9
+    },
+    {
+     "w": "kuntu",
+     "t": 148.3
+    },
+    {
+     "w": "minaẓ-ẓālimīn",
+     "t": 148.84
+    }
+   ],
+   "ar": "سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ"
+  },
+  {
+   "t0": 150.25,
+   "t1": 152.95,
+   "text": "Hatiku redha",
+   "kind": "o",
+   "words": [
+    {
+     "w": "Hatiku",
+     "t": 150.28
+    },
+    {
+     "w": "redha",
+     "t": 151.56
+    }
+   ]
+  },
+  {
+   "t0": 153.1,
+   "t1": 155.55,
+   "text": "Hatiku kembali",
+   "kind": "o",
+   "words": [
+    {
+     "w": "Hatiku",
+     "t": 153.15
+    },
+    {
+     "w": "kembali",
+     "t": 153.96
+    }
+   ]
+  },
+  {
+   "t0": 155.76,
+   "t1": 159.0,
+   "text": "KepadaMu ya Rabbul Izzati",
+   "kind": "o",
+   "words": [
+    {
+     "w": "KepadaMu",
+     "t": 155.81
+    },
+    {
+     "w": "ya",
+     "t": 156.54
+    },
+    {
+     "w": "Rabbul",
+     "t": 156.78
+    },
+    {
+     "w": "Izzati",
+     "t": 157.34
+    }
+   ]
+  }
+ ]
+}

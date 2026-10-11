@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<title>Sekadar Kehilangan — Video Lirik</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#gl{position:absolute;left:0;top:0;width:1080px;height:1920px}
+</style></head>
+<body>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<script src="js/gl.js"></script>
+<script src="js/glsl.js"></script>
+<script src="js/atmo.js"></script>
+<script src="js/figures.js"></script>
+<script src="js/lyrics.js"></script>
+<script src="js/main.js"></script>
+<script src="js/props.js"></script>
+<script src="js/landscape.js"></script>
+<script src="js/scenes-a.js"></script>
+<script src="js/scenes-b.js"></script>
+<script src="js/scenes-c.js"></script>
+<script src="js/timeline.js"></script>
+<script>
+window.boot = async (data) => {
+  await Lyrics.loadFonts();
+  Lyrics.build(data);
+  Engine.init();
+  return Engine.scenes.map(s => [s.id, +s.t0.toFixed(2), +s.t1.toFixed(2)]);
+};
+</script>
+</body></html>
