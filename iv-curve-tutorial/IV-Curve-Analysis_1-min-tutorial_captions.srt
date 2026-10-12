@@ -1,0 +1,44 @@
+1
+00:00:05,261 --> 00:00:09,531
+Upload your inspection reports
+Export the IV curve CSV from each SUN2000 inverter, then drag and drop the files here, or press Upload.
+
+2
+00:00:09,731 --> 00:00:14,752
+Drag and drop the CSV files
+Select one or more inverter reports and drop them anywhere on the page. Files are read locally.
+
+3
+00:00:14,952 --> 00:00:19,770
+Read the summary at a glance
+Active strings, open circuits, abnormal Voc, low fill factor and insulation status across all inverters.
+
+4
+00:00:19,970 --> 00:00:25,065
+Work through the prioritised checklist
+Issues are ranked by severity, with the evidence and the recommended field action. Click a string to open its curve.
+
+5
+00:00:25,265 --> 00:00:35,923
+Spot weak strings on the string map
+Every cell is a string. Switch views to compare status, fill factor, Voc against the inverter median, or lifetime energy.
+
+6
+00:00:36,123 --> 00:00:45,603
+Inspect the I–V and P–V curves
+The selected string (blue) is compared with the other active strings (grey). Pmax is marked, hover for exact points.
+
+7
+00:00:45,803 --> 00:00:49,213
+Built-in data logic checks
+Ten rule-based checks (R1 to R10) warn you when a scan looks unreliable, so you do not chase a false alarm.
+
+8
+00:00:49,413 --> 00:00:52,727
+Check inverter health
+Insulation resistance against its minimum limit, fault and grid-fault hours, and the estimated unharvested energy.
+
+9
+00:00:52,927 --> 00:00:56,810
+Copy the checklist into your report
+One click copies every finding and recommended action as plain text, ready for your inspection report or email.
