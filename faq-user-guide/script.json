@@ -1,0 +1,31 @@
+{
+  "intro": [
+    {"id": "i1", "text": "Nak tanya soalan, atau bagi cadangan sistem untuk kelas 18 Oktober?"},
+    {"id": "i2", "text": "Senang je. Ikut empat langkah ni."}
+  ],
+  "s1": [
+    {"id": "a1", "text": "Langkah satu. Buka tab Soalan."},
+    {"id": "a2", "text": "Taip soalan anda dalam kotak biru."},
+    {"id": "a3", "text": "Lepas tu tekan, Hantar Soalan."},
+    {"id": "a4", "text": "Soalan anda akan keluar dalam senarai, dengan status belum dijawab."}
+  ],
+  "s2": [
+    {"id": "b1", "text": "Langkah dua. Bila admin dah jawab, tekan Refresh."},
+    {"id": "b2", "text": "Jawapan akan keluar dalam kotak hijau."},
+    {"id": "b3", "text": "Butang Jawab Admin tu bukan untuk anda. Jangan tekan ya."}
+  ],
+  "s3": [
+    {"id": "c1", "text": "Langkah tiga. Tukar ke tab Cadangan Sistem."},
+    {"id": "c2", "text": "Isi nama sistem. Ini wajib."},
+    {"id": "c3", "text": "Penerangan tu pilihan sahaja."},
+    {"id": "c4", "text": "Kemudian tekan, Hantar Cadangan."}
+  ],
+  "s4": [
+    {"id": "d1", "text": "Langkah empat. Nak sokong cadangan orang lain? Tekan butang Undi."},
+    {"id": "d2", "text": "Masukkan e-mel anda, dan tekan Teruskan Undian."},
+    {"id": "d3", "text": "Ingat, satu e-mel boleh undi sekali sahaja untuk satu cadangan."}
+  ],
+  "outro": [
+    {"id": "o1", "text": "Itu je. Hantar soalan dan cadangan anda, jumpa di kelas!"}
+  ]
+}

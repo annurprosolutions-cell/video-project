@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<title>Panduan Pengguna FAQ Prompt2Claude</title>
+<style>
+@font-face{font-family:'Space Grotesk';font-weight:400;src:url(fonts/space-grotesk-latin-400-normal.woff2)}
+@font-face{font-family:'Space Grotesk';font-weight:600;src:url(fonts/space-grotesk-latin-600-normal.woff2)}
+@font-face{font-family:'Space Grotesk';font-weight:700;src:url(fonts/space-grotesk-latin-700-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:'Space Grotesk',DejaVu Sans,sans-serif;color:#000;
+ background-color:#bbf7d0;background-image:radial-gradient(#000 1.6px,transparent 1.6px);background-size:36px 36px;word-spacing:3px}
+.abs{position:absolute}
+.bb{border:6px solid #000}
+.bs{box-shadow:10px 10px 0 #000}
+
+/* ===== top: tracker + title ===== */
+#top{position:absolute;left:0;top:0;width:1080px;height:430px}
+#tracker{position:absolute;left:90px;right:90px;top:62px;height:130px}
+#tracker .line{position:absolute;left:60px;right:60px;top:42px;height:8px;background:#000}
+#tracker .stp{position:absolute;top:0;width:120px;text-align:center;transform:translateX(-50%)}
+#tracker .dot{width:90px;height:90px;border-radius:50%;border:6px solid #000;background:#fff;margin:0 auto;font-weight:700;font-size:44px;line-height:78px;box-shadow:6px 6px 0 #000}
+#tracker .lab{margin-top:14px;font-size:27px;font-weight:700;letter-spacing:.5px}
+.ttl{position:absolute;left:0;width:1080px;top:215px;text-align:center}
+.ttl .chip{display:inline-block;background:#000;color:#fff;font-weight:700;font-size:28px;letter-spacing:4px;padding:8px 22px;margin-bottom:12px}
+.ttl h1{font-size:88px;line-height:1;font-weight:700;letter-spacing:-1.5px}
+.ttl p{font-size:38px;font-weight:600;margin-top:14px}
+
+/* ===== phone ===== */
+#phone{position:absolute;left:50px;top:445px;width:980px;height:1060px;border:10px solid #000;border-radius:56px;background:#fff;box-shadow:16px 16px 0 #000;overflow:hidden}
+#screen{position:absolute;left:0;top:0;width:520px;height:560px;transform-origin:0 0;transform:scale(1.8462);overflow:hidden;background-color:#bbf7d0;background-image:radial-gradient(#000 1px,transparent 1px);background-size:20px 20px}
+#scroll{position:absolute;left:0;top:0;width:520px;padding:28px 16px 80px}
+#tag{position:absolute;right:34px;top:-3px;background:#000;color:#fff;font-size:22px;font-weight:700;letter-spacing:3px;padding:6px 18px;border-radius:0 0 14px 14px;z-index:5}
+#overlay{position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:20}
+
+/* app (css px, di-scale 1.846x) */
+.bborder{border:4px solid #000}.bshadow{box-shadow:6px 6px 0 #000}
+.hdr{background:#ff90e8;padding:24px;margin-bottom:28px;text-align:center}
+.hdr h1{font-size:34px;font-weight:700;text-transform:uppercase;letter-spacing:-.5px;line-height:1.1}
+.hdr span{display:inline-block;margin-top:8px;font-size:15px;font-weight:600;background:#fff;padding:3px 10px;border:3px solid #000}
+.tabs{display:flex;gap:14px;margin-bottom:28px}
+.tab{flex:1;font-size:19px;font-weight:700;text-align:center;padding:11px 6px;background:#fff;opacity:.7;display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.tab.on{background:#ffc900;opacity:1}
+.tab svg{width:24px;height:24px;flex:none}
+.box{padding:22px;margin-bottom:34px}
+.box h2{font-size:23px;font-weight:700;margin-bottom:14px}
+.inp{display:block;width:100%;border:4px solid #000;padding:11px 12px;font:inherit;font-size:18px;background:#fff;box-shadow:inset 2px 2px 0 rgba(0,0,0,.1);min-height:54px;line-height:1.3;overflow:hidden;position:relative}
+.inp.f{background:#fef08a}
+.inp .ph{color:#757575}
+.inp .caret{display:inline-block;width:2px;height:22px;background:#000;vertical-align:-4px;margin-left:1px}
+.inp.ta{min-height:92px}
+.btn{display:block;font-weight:700;font-size:18px;text-align:center;background:#fff;padding:11px 18px;white-space:nowrap;position:relative}
+.btn.press{transform:translate(4px,4px);box-shadow:2px 2px 0 #000}
+.lbl{font-weight:700;font-size:17px;margin-bottom:5px;width:fit-content;display:flex;align-items:center;gap:10px}
+.rowh{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px}
+.rowh h2{font-size:25px;font-weight:700;background:#fff;padding:2px 10px}
+.rowh .btn{font-size:13px;padding:3px 10px;display:flex;align-items:center;gap:5px}
+.rowh .btn svg{width:15px;height:15px}
+.card{background:#fff;padding:16px;margin-bottom:20px}
+.card h3{font-size:19px;font-weight:700;line-height:1.25}
+.card .nb{color:#6b7280;font-style:italic;margin-top:8px;font-size:17px}
+.ans{background:#bbf7d0;padding:12px;margin-top:10px}
+.ans strong{display:block;font-size:12px;text-transform:uppercase;margin-bottom:3px}
+.ans p{font-size:17px;line-height:1.3}
+.adm{display:inline-block;background:#ff90e8;font-weight:700;font-size:14px;padding:6px 12px;margin-top:10px}
+.sg{background:#fff;margin-bottom:16px}
+.sg .sm{display:flex;justify-content:space-between;align-items:center;padding:12px 12px}
+.sg .l{display:flex;align-items:center;gap:10px}
+.sg .pl{background:#000;color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;flex:none}
+.sg .nm{font-size:19px;font-weight:700;line-height:1.15}
+.sg .vb{background:#80d8ff;border:4px solid #000;padding:6px 10px;font-weight:700;font-size:16px;display:flex;align-items:center;gap:7px;white-space:nowrap;position:relative}
+.sg .vb i{font-style:normal;background:#fff;border:2px solid #000;border-radius:999px;padding:0 8px;font-size:15px}
+.sg .ds{border-top:4px solid #000;background:#f9fafb;padding:12px;font-size:16px;line-height:1.4}
+
+#modal{position:absolute;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:8}
+#modal .m{background:#fff;padding:22px;width:440px}
+#modal h3{font-size:24px;font-weight:700;margin-bottom:10px}
+#modal p{font-size:16px;font-weight:600;color:#374151;line-height:1.35;margin-bottom:14px}
+#modal p u{color:#000}
+#modal .bt{display:flex;gap:12px;margin-top:14px}
+#modal .bt .btn{flex:1;font-size:16px;padding:9px 6px}
+#toast{position:absolute;right:14px;bottom:14px;z-index:9;max-width:300px;font-size:17px;font-weight:700;padding:12px 14px;background:#bbf7d0;display:none}
+
+/* ===== bottom caption + progress ===== */
+#cap{position:absolute;left:50px;top:1560px;width:980px;height:250px;background:#fff;display:flex;align-items:center;padding:0 44px}
+#cap .t{font-size:56px;line-height:1.2;font-weight:700;letter-spacing:-.5px}
+#cap mark{background:#ffc900;padding:0 8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+#prog{position:absolute;left:0;bottom:0;height:18px;width:1080px;background:#000;transform-origin:0 0}
+
+/* ===== intro / outro ===== */
+#intro,#outro{position:absolute;left:0;top:0;width:1080px;height:1560px}
+.bigcard{position:absolute;left:90px;width:900px;text-align:center}
+.cardy{background:#ff90e8;padding:36px 30px}
+.cardy h1{font-size:104px;line-height:.98;font-weight:700;text-transform:uppercase;letter-spacing:-3px}
+.pill{display:inline-block;font-weight:700;font-size:40px;padding:10px 28px;background:#fff;border:6px solid #000}
+.steps4{position:absolute;left:90px;width:900px;top:860px}
+.s4{display:flex;align-items:center;gap:34px;padding:18px 34px;margin-bottom:24px;font-size:50px;font-weight:700}
+.s4 b{width:84px;height:84px;border-radius:50%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-size:46px;flex:none}
+.s4 small{display:block;font-size:30px;font-weight:600;color:#374151;margin-top:2px}
+.chk{display:flex;align-items:center;gap:30px;font-size:56px;font-weight:700;margin:20px 0}
+.chk svg{width:76px;height:76px;flex:none;background:#bbf7d0;border:5px solid #000;padding:6px}
+
+/* ===== cursor / rings ===== */
+#cursor{position:absolute;left:0;top:0;width:90px;height:90px;z-index:60;pointer-events:none;filter:drop-shadow(4px 5px 0 rgba(0,0,0,.35))}
+#ripple{position:absolute;width:30px;height:30px;border-radius:50%;border:8px solid #ff2d75;z-index:59;pointer-events:none;opacity:0}
+.ring{position:absolute;border:8px solid #ff2d75;border-radius:14px;box-shadow:0 0 0 6px rgba(255,255,255,.75);opacity:0}
+.rlab{position:absolute;white-space:nowrap;background:#ff2d75;color:#fff;font-weight:700;font-size:34px;padding:8px 20px;border:5px solid #000;box-shadow:6px 6px 0 #000;opacity:0}
+.rlab.dark{background:#000}
+#note{position:absolute;left:90px;width:900px;top:1050px;background:#ff90e8;padding:34px 40px;text-align:center;opacity:0;z-index:30}
+#note b{display:block;font-size:76px;line-height:1.05;letter-spacing:-1.5px}
+#note span{display:block;font-size:40px;font-weight:600;margin-top:14px}
+</style></head><body>
+
+<!-- ===== TOP ===== -->
+<div id="top">
+ <div id="tracker"><div class="line"></div></div>
+ <div class="ttl" id="ttl"></div>
+</div>
+
+<!-- ===== INTRO ===== -->
+<div id="intro">
+ <div class="bigcard cardy bb bs" id="in-title" style="top:100px">
+  <div class="pill" style="margin-bottom:26px">Panduan Pengguna</div>
+  <h1>FAQ<br>Prompt2<br>Claude</h1>
+  <div class="pill" style="margin-top:30px;background:#ffc900">Kelas 18 Okt 2026</div>
+ </div>
+ <div class="bigcard" id="in-sub" style="top:740px"><div class="pill" style="background:#000;color:#fff;border-color:#000;font-size:38px;white-space:nowrap">Untuk pengguna sahaja (bukan admin)</div></div>
+ <div class="steps4" id="in-steps">
+  <div class="s4 bb bs" style="background:#80d8ff"><b>1</b><div>Tanya soalan</div></div>
+  <div class="s4 bb bs" style="background:#fff"><b>2</b><div>Lihat jawapan</div></div>
+  <div class="s4 bb bs" style="background:#ffc900"><b>3</b><div>Bagi cadangan</div></div>
+  <div class="s4 bb bs" style="background:#ff90e8"><b>4</b><div>Undi cadangan</div></div>
+ </div>
+</div>
+
+<!-- ===== PHONE ===== -->
+<div id="phone">
+ <div id="screen">
+  <div id="scroll">
+   <div class="hdr bborder bshadow"><h1>FAQ Prompt2Claude</h1><span>Sistem Interaktif &amp; Cadangan Kelas 18 Okt 2026</span></div>
+   <div class="tabs">
+    <div class="tab bborder bshadow on" id="tab-faq"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M9.2 9.2a2.9 2.9 0 1 1 4.2 2.6c-.9.5-1.4 1-1.4 2"/><circle cx="12" cy="17.2" r=".6" fill="#000"/></svg>Soalan (FAQ)</div>
+    <div class="tab bborder bshadow" id="tab-cad"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>Cadangan Sistem</div>
+   </div>
+
+   <!-- FAQ -->
+   <div id="sec-faq">
+    <div class="box bborder bshadow" style="background:#80d8ff">
+     <h2>Tanya Soalan Baru</h2>
+     <div class="inp" id="q-input"><span class="txt"></span></div>
+     <div class="btn bborder bshadow" id="btn-q" style="margin-top:14px">Hantar Soalan</div>
+    </div>
+    <div class="rowh"><h2 class="bborder">Senarai Soalan</h2>
+     <div class="btn bborder bshadow" id="btn-refresh"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.5-3.5M4 4v4.5h4.5M4 13a8 8 0 0 0 14.5 3.5M20 20v-4.5h-4.5"/></svg>Refresh</div></div>
+    <div id="faq-load" class="card bborder" style="display:none;text-align:center;font-weight:700;font-size:19px;padding:30px 10px">Sedang memuat turun dari Google Sheets...</div>
+    <div id="faq-list">
+     <div class="card bborder bshadow" id="card-user" style="display:none">
+      <h3>Q: Boleh saya bawa laptop sendiri ke kelas?</h3>
+      <div class="nb" id="u-nb">Belum dijawab...</div>
+      <div class="ans bborder" id="u-ans" style="display:none"><strong>Jawapan Admin:</strong><p>Boleh. Bawa laptop sendiri dan pastikan bateri penuh.</p></div>
+      <div class="adm bborder bshadow" id="u-adm">Jawab (Admin)</div>
+     </div>
+     <div class="card bborder bshadow" id="card-q2">
+      <h3>Q: Berapa lama durasi kelas 18 Oktober?</h3>
+      <div class="nb">Belum dijawab...</div>
+      <div class="adm bborder bshadow" id="q2-adm">Jawab (Admin)</div>
+     </div>
+     <div class="card bborder bshadow" id="card-q1">
+      <h3>Q: Adakah kelas ini dirakam?</h3>
+      <div class="ans bborder"><strong>Jawapan Admin:</strong><p>Ya, semua sesi kelas akan dirakam dan diberikan pautan selepas tamat.</p></div>
+     </div>
+    </div>
+   </div>
+
+   <!-- CADANGAN -->
+   <div id="sec-cad" style="display:none">
+    <div class="box bborder bshadow" style="background:#ffc900">
+     <h2>Beri Cadangan Sistem (Kelas 18 Okt)</h2>
+     <div class="lbl" id="lbl-name">Nama Sistem:</div>
+     <div class="inp" id="s-name" style="margin-bottom:14px"><span class="txt"></span></div>
+     <div class="lbl" id="lbl-desc">Penerangan Sedikit (Pilihan):</div>
+     <div class="inp ta" id="s-desc" style="margin-bottom:14px"><span class="txt"></span></div>
+     <div class="btn bborder bshadow" id="btn-s">Hantar Cadangan</div>
+    </div>
+    <div class="rowh"><h2 class="bborder">Undian Cadangan</h2>
+     <div class="btn bborder bshadow"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.5-3.5M4 4v4.5h4.5M4 13a8 8 0 0 0 14.5 3.5M20 20v-4.5h-4.5"/></svg>Refresh</div></div>
+    <div id="sg-list">
+     <div class="sg bborder bshadow" id="sg-1"><div class="sm"><div class="l"><div class="pl">+</div><div class="nm">Sistem Dashboard</div></div><div class="vb">&#9650; Undi <i>12</i></div></div></div>
+     <div class="sg bborder bshadow" id="sg-2"><div class="sm"><div class="l"><div class="pl">+</div><div class="nm">Sistem Kehadiran QR</div></div><div class="vb" id="vote-qr">&#9650; Undi <i id="vc">8</i></div></div></div>
+     <div class="sg bborder bshadow" id="sg-new" style="display:none"><div class="sm"><div class="l"><div class="pl">+</div><div class="nm">Sistem Tempahan Kelas</div></div><div class="vb">&#9650; Undi <i>0</i></div></div></div>
+    </div>
+   </div>
+  </div>
+
+  <div id="modal"><div class="m bborder bshadow">
+   <h3>Pengesahan Undian</h3>
+   <p>Sila masukkan e-mel anda. Anda hanya dibenarkan mengundi <u>sekali sahaja</u> bagi setiap cadangan.</p>
+   <div class="inp" id="m-email"><span class="txt"></span></div>
+   <div class="bt"><div class="btn bborder bshadow" id="btn-go" style="background:#ffc900">Teruskan Undian</div><div class="btn bborder bshadow" style="background:#e5e7eb">Batal</div></div>
+  </div></div>
+  <div id="toast" class="bborder bshadow"></div>
+ </div>
+ <div id="tag">PAPARAN CONTOH</div>
+ <div id="overlay"></div>
+</div>
+
+<!-- ===== OUTRO ===== -->
+<div id="outro">
+ <div class="bigcard bb bs" style="top:455px;background:#fff;padding:46px 60px;text-align:left" id="out-card">
+  <div class="chk" id="ck1"></div><div class="chk" id="ck2"></div><div class="chk" id="ck3"></div><div class="chk" id="ck4"></div>
+ </div>
+ <div class="bigcard cardy bb bs" id="out-cta" style="top:1090px;padding:40px 30px">
+  <div style="font-size:50px;font-weight:700">Jumpa di kelas</div>
+  <h1 style="font-size:92px;margin-top:6px">18 Okt 2026</h1>
+ </div>
+</div>
+
+<div id="note" class="bb bs"></div>
+<div id="cap" class="bb bs"><div class="t" id="cap-t"></div></div>
+<div id="prog"></div>
+<div id="ripple"></div>
+<svg id="cursor" viewBox="0 0 90 90"><path d="M10 6 L10 66 L26 52 L37 78 L50 72 L39 47 L61 47 Z" fill="#000" stroke="#fff" stroke-width="6" stroke-linejoin="round"/></svg>
+
+<script src="build/timeline.js"></script>
+<script>
+const S = TIMELINE.seg, TOTAL = TIMELINE.total;
+const $ = s => document.querySelector(s);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = x => { x = clamp(x); return x < .5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2 };
+const easeOut = x => 1 - Math.pow(1 - clamp(x), 3);
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const between = (t, a, b) => t >= a && t < b;
+const typed = (str, t, a, b) => str.slice(0, Math.round(str.length * prog(t, a, b)));
+
+/* ---------- masa utama (ikut suara) ---------- */
+const I1 = S.i1.t, I2 = S.i2.t, A1 = S.a1.t, A2 = S.a2.t, A3 = S.a3.t, A4 = S.a4.t,
+      B1 = S.b1.t, B2 = S.b2.t, B3 = S.b3.t, C1 = S.c1.t, C2 = S.c2.t, C3 = S.c3.t, C4 = S.c4.t,
+      D1 = S.d1.t, D2 = S.d2.t, D3 = S.d3.t, O1 = S.o1.t;
+const end = id => S[id].t + S[id].d;
+
+const PHONE_IN = A1 - 0.9, PHONE_OUT = O1 - 0.8;
+
+/* klik: [masa, selector] */
+const CLICK = {
+  tabFaq: A1 + 1.15, qInput: A2 + 0.45, sendQ: A3 + 1.2, refresh: B1 + 2.35,
+  tabCad: C1 + 1.9, sName: C2 + 0.3, sDesc: C3 + 0.2, sendS: C4 + 1.25,
+  vote: D1 + 3.05, email: D2 + 0.0, go: D2 + 2.3
+};
+const TXT = {
+  q: 'Boleh saya bawa laptop sendiri ke kelas?',
+  name: 'Sistem Tempahan Kelas',
+  desc: 'Tempah slot kelas dan dapat peringatan.',
+  email: 'nama@gmail.com'
+};
+const TYPE = {
+  q: [CLICK.qInput + 0.25, A3 + 0.15],
+  name: [CLICK.sName + 0.25, end('c2') + 0.05],
+  desc: [CLICK.sDesc + 0.25, C4 + 0.2],
+  email: [D2 + 0.25, D2 + 1.65]
+};
+
+/* kursor: t = masa sampai, leave = masa bertolak, vis = nampak/tak */
+const KF = [
+  { t: A1 - 0.6, x: 960, y: 1330, vis: 0 },
+  { t: CLICK.tabFaq, sel: '#tab-faq', ax: .5, ay: .6, vis: 1, leave: CLICK.tabFaq + 0.35 },
+  { t: CLICK.qInput, sel: '#q-input', ax: .35, ay: .5, vis: 1, leave: TYPE.q[1] },
+  { t: CLICK.sendQ, sel: '#btn-q', ax: .7, ay: .55, vis: 1, leave: CLICK.sendQ + 0.4 },
+  { t: A4 + 1.3, x: 930, y: 1300, vis: 0, leave: B1 + 0.2 },
+  { t: CLICK.refresh, sel: '#btn-refresh', ax: .5, ay: .6, vis: 1, leave: CLICK.refresh + 0.4 },
+  { t: B2 + 1.0, x: 930, y: 1250, vis: 0, leave: C1 + 0.4 },
+  { t: CLICK.tabCad, sel: '#tab-cad', ax: .6, ay: .6, vis: 1, leave: CLICK.tabCad + 0.35 },
+  { t: CLICK.sName, sel: '#s-name', ax: .3, ay: .5, vis: 1, leave: TYPE.name[1] },
+  { t: CLICK.sDesc, sel: '#s-desc', ax: .3, ay: .4, vis: 1, leave: TYPE.desc[1] },
+  { t: CLICK.sendS, sel: '#btn-s', ax: .7, ay: .55, vis: 1, leave: CLICK.sendS + 0.4 },
+  { t: C4 + 2.4, x: 930, y: 1300, vis: 0, leave: D1 + 1.3 },
+  { t: CLICK.vote, sel: '#vote-qr', ax: .35, ay: .55, vis: 1, leave: CLICK.vote + 0.3 },
+  { t: CLICK.email, sel: '#m-email', ax: .3, ay: .5, vis: 1, leave: TYPE.email[1] },
+  { t: CLICK.go, sel: '#btn-go', ax: .6, ay: .55, vis: 1, leave: CLICK.go + 0.35 },
+  { t: CLICK.go + 1.4, x: 930, y: 1300, vis: 0 }
+];
+const CLICKS = [CLICK.tabFaq, CLICK.qInput, CLICK.sendQ, CLICK.refresh, CLICK.tabCad, CLICK.sName, CLICK.sDesc, CLICK.sendS, CLICK.vote, CLICK.email, CLICK.go];
+
+/* skrol (css px) */
+const SCROLL = [
+  [0, 0], [A4 - 0.1, 0], [A4 + 0.9, 395], [C1 - 1.5, 395], [C1 - 0.6, 0], [C1 + 0.5, 0],
+  [C2 - 0.3, 0], [C2 + 0.4, 150], [C4 + 1.9, 150], [C4 + 2.9, 612], [D3 + 1, 612]
+];
+const scrollAt = t => {
+  for (let i = 0; i < SCROLL.length - 1; i++) {
+    const [t0, y0] = SCROLL[i], [t1, y1] = SCROLL[i + 1];
+    if (t < t1) return y0 + (y1 - y0) * ease(prog(t, t0, t1));
+  }
+  return SCROLL[SCROLL.length - 1][1];
+};
+
+/* gelung (ring) & label */
+const RINGS = [
+  { sel: '#tab-faq', t0: A1 + 0.1, t1: CLICK.tabFaq + 0.6, pad: 8 },
+  { sel: '#q-input', t0: A2 + 0.05, t1: A3 + 0.3, pad: 8 },
+  { sel: '#btn-q', t0: A3 + 0.2, t1: CLICK.sendQ + 0.5, pad: 8 },
+  { sel: '#card-user', t0: A4 + 1.0, t1: end('a4') + 1.0, pad: 8, lab: 'Belum dijawab', pos: 'bottom' },
+  { sel: '#card-user', t0: end('a4') + 1.0, t1: B1 + 1.5, pad: 8, lab: 'Tunggu admin jawab', pos: 'bottom', dark: 1 },
+  { sel: '#btn-refresh', t0: B1 + 1.5, t1: CLICK.refresh + 0.8, pad: 8 },
+  { sel: '#u-ans', t0: B2 - 0.1, t1: B3 - 0.3, pad: 8, lab: 'Jawapan Admin', pos: 'bottom' },
+  { sel: '#q2-adm', t0: B3 + 0.1, t1: end('b3') + 0.5, pad: 8, lab: 'Untuk admin sahaja', pos: 'right', dark: 1 },
+  { sel: '#tab-cad', t0: C1 + 0.2, t1: CLICK.tabCad + 0.6, pad: 8 },
+  { sel: '#lbl-name', t0: C2 + 0.0, t1: C3 - 0.1, pad: 8, lab: 'WAJIB', pos: 'rowend' },
+  { sel: '#lbl-desc', t0: C3 + 0.0, t1: C4 - 0.1, pad: 8, lab: 'PILIHAN', pos: 'rowend', dark: 1 },
+  { sel: '#btn-s', t0: C4 + 0.1, t1: CLICK.sendS + 0.5, pad: 8 },
+  { sel: '#sg-new', t0: C4 + 2.5, t1: D1 - 0.2, pad: 8, lab: 'Cadangan anda', pos: 'bottom' },
+  { sel: '#vote-qr', t0: D1 + 1.5, t1: CLICK.vote + 0.5, pad: 8 },
+  { sel: '#m-email', t0: D2 - 0.0, t1: CLICK.go - 0.2, pad: 8 },
+  { sel: '#btn-go', t0: CLICK.go - 0.4, t1: CLICK.go + 0.4, pad: 8 },
+  { sel: '#vc', t0: CLICK.go + 0.3, t1: D3 + 1.6, pad: 8 }
+];
+const TOASTS = [
+  { t0: CLICK.sendQ + 0.05, t1: CLICK.sendQ + 2.4, txt: 'Soalan berjaya dihantar!' },
+  { t0: CLICK.refresh + 0.8, t1: CLICK.refresh + 1.6, txt: 'Jawapan baru dimuat turun' , skip: 1 },
+  { t0: CLICK.sendS + 0.05, t1: CLICK.sendS + 2.4, txt: 'Cadangan berjaya dihantar!' },
+  { t0: CLICK.go + 0.05, t1: CLICK.go + 2.4, txt: 'Undian berjaya direkod!' }
+];
+
+/* tajuk setiap langkah */
+const STEPS = [
+  { g: 's1', n: 1, t: 'Tanya soalan', p: 'Tab Soalan → taip → Hantar Soalan', c: '#80d8ff', lab: 'Tanya' },
+  { g: 's2', n: 2, t: 'Lihat jawapan', p: 'Tekan Refresh bila admin dah jawab', c: '#bbf7d0', lab: 'Jawapan' },
+  { g: 's3', n: 3, t: 'Bagi cadangan', p: 'Tab Cadangan Sistem → isi → Hantar', c: '#ffc900', lab: 'Cadangan' },
+  { g: 's4', n: 4, t: 'Undi cadangan', p: 'Tekan ▲ Undi → masukkan e-mel', c: '#ff90e8', lab: 'Undi' }
+];
+const stepStart = [A1 - 0.2, B1 - 0.3, C1 - 0.3, D1 - 0.3];
+
+/* kesan bunyi (dihantar ke mix.py) */
+const SFX = [];
+SFX.push({ t: PHONE_IN, k: 'whoosh' }, { t: PHONE_OUT, k: 'whoosh' });
+stepStart.forEach((t, i) => i && SFX.push({ t, k: 'swipe' }));
+CLICKS.forEach(t => SFX.push({ t, k: 'click' }));
+TOASTS.filter(x => !x.skip).forEach(x => SFX.push({ t: x.t0, k: 'ding' }));
+SFX.push({ t: CLICK.refresh + 0.75, k: 'pop' }, { t: CLICK.vote + 0.05, k: 'pop' }, { t: CLICK.sendQ + 0.2, k: 'pop' }, { t: CLICK.sendS + 0.2, k: 'pop' });
+SFX.push({ t: I2 + 0.0, k: 'pop' }, { t: I2 + 0.35, k: 'pop' }, { t: I2 + 0.7, k: 'pop' }, { t: I2 + 1.05, k: 'pop' });
+SFX.push({ t: D3, k: 'pop' }, { t: O1 - 0.6, k: 'swipe' });
+Object.entries(TYPE).forEach(([k, [a, b]]) => {
+  const n = Math.round((b - a) / 0.07);
+  for (let i = 0; i < n; i++) SFX.push({ t: a + (b - a) * i / n, k: 'type' });
+});
+window.SFX = SFX;
+
+/* ---------- DOM bantuan ---------- */
+const overlay = $('#overlay');
+const ringEls = RINGS.map(r => {
+  const d = document.createElement('div'); d.className = 'ring'; overlay.appendChild(d);
+  let l = null;
+  if (r.lab) { l = document.createElement('div'); l.className = 'rlab' + (r.dark ? ' dark' : ''); l.textContent = r.lab; overlay.appendChild(l); }
+  return { d, l };
+});
+// tracker
+const tracker = $('#tracker');
+const stepEls = STEPS.map((s, i) => {
+  const e = document.createElement('div'); e.className = 'stp'; e.style.left = (60 + i * (900 - 120) / 3) + 'px';
+  e.innerHTML = `<div class="dot">${s.n}</div><div class="lab">${s.lab}</div>`; tracker.appendChild(e); return e;
+});
+// tajuk
+const ttl = $('#ttl');
+const ttlEls = STEPS.map(s => {
+  const e = document.createElement('div'); e.style.cssText = 'position:absolute;left:0;right:0;top:0;opacity:0';
+  e.innerHTML = `<div class="chip">LANGKAH ${s.n}</div><h1>${s.t}</h1><p>${s.p}</p>`; ttl.appendChild(e); return e;
+});
+const outTtl = document.createElement('div'); outTtl.style.cssText = 'position:absolute;left:0;right:0;top:0;opacity:0';
+outTtl.innerHTML = '<div class="chip">SIAP</div><h1>Senang kan?</h1><p>Hantar soalan &amp; cadangan anda sekarang</p>'; ttl.appendChild(outTtl);
+// outro checklist
+const CK = ['Tanya soalan', 'Lihat jawapan', 'Bagi cadangan', 'Undi cadangan'];
+CK.forEach((c, i) => $('#ck' + (i + 1)).innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg><span>${c}</span>`);
+
+const setTxt = (sel, s, caret) => {
+  const el = $(sel), tx = el.querySelector('.txt');
+  tx.innerHTML = s ? s.replace(/&/g, '&amp;') + (caret ? '<span class="caret"></span>' : '') : (caret ? '<span class="caret"></span>' : '');
+};
+const show = (el, on, disp = 'block') => { el.style.display = on ? disp : 'none'; };
+const capText = id => {
+  let s = TIMELINE.text[id].replace(/tekan, /g, 'tekan ');
+  const re = /(Hantar Soalan|Hantar Cadangan|Teruskan Undian|Cadangan Sistem|Refresh|Jawab Admin|kotak biru|kotak hijau|butang Undi|tab Soalan|nama sistem|wajib|pilihan|belum dijawab)/g;
+  return s.replace(re, '<mark>$1</mark>');
+};
+const order = Object.keys(S);
+
+function rectIn(el, ref) { const r = el.getBoundingClientRect(), p = ref.getBoundingClientRect(); return { x: r.left - p.left, y: r.top - p.top, w: r.width, h: r.height }; }
+
+/* ---------- render(t) ---------- */
+window.setT = function (t) {
+  // ----- intro / outro / phone visibility
+  const introA = 1 - prog(t, PHONE_IN - 0.3, PHONE_IN + 0.4);
+  const intro = $('#intro'); intro.style.opacity = introA; intro.style.display = introA > 0 ? 'block' : 'none';
+  const tp = easeOut(prog(t, 0.05, 0.75));
+  $('#in-title').style.transform = `translateY(${(1 - tp) * -80}px) scale(${.9 + .1 * tp})`; $('#in-title').style.opacity = tp;
+  const sp = easeOut(prog(t, I1 + 1.5, I1 + 2.2)); $('#in-sub').style.opacity = sp; $('#in-sub').style.transform = `translateY(${(1 - sp) * 40}px)`;
+  [...$('#in-steps').children].forEach((c, i) => {
+    const p = easeOut(prog(t, I2 + i * .35, I2 + i * .35 + .45));
+    c.style.opacity = p; c.style.transform = `translateX(${(1 - p) * -140}px)`;
+  });
+  const pin = easeOut(prog(t, PHONE_IN, PHONE_IN + 0.7)), pout = ease(prog(t, PHONE_OUT, PHONE_OUT + 0.7));
+  const ph = $('#phone');
+  ph.style.display = (pin > 0 && pout < 1) ? 'block' : 'none';
+  ph.style.opacity = pin * (1 - pout);
+  ph.style.transform = `translateY(${(1 - pin) * 260 + pout * 260}px)`;
+  const outA = easeOut(prog(t, PHONE_OUT + 0.3, PHONE_OUT + 1.0));
+  const out = $('#outro'); out.style.display = outA > 0 ? 'block' : 'none'; out.style.opacity = outA;
+  $('#out-card').style.transform = `translateY(${(1 - outA) * 80}px)`;
+  $('#out-cta').style.transform = `scale(${.9 + .1 * outA})`;
+  [1, 2, 3, 4].forEach(i => { const p = easeOut(prog(t, PHONE_OUT + 0.7 + i * .25, PHONE_OUT + 1.1 + i * .25)); $('#ck' + i).style.opacity = p; $('#ck' + i).style.transform = `translateX(${(1 - p) * -60}px)`; });
+
+  // ----- top: tracker + tajuk
+  let cur = -1; stepStart.forEach((s, i) => { if (t >= s) cur = i; });
+  const done = t >= PHONE_OUT + 0.3;
+  stepEls.forEach((e, i) => {
+    const d = e.querySelector('.dot'), on = i === cur && !done, fin = i < cur || done;
+    d.style.background = on ? STEPS[i].c : (fin ? '#000' : '#fff');
+    d.style.color = fin ? '#fff' : '#000';
+    d.textContent = fin ? '✓' : STEPS[i].n;
+    d.style.transform = on ? `scale(${1.12 + .04 * Math.sin(t * 6)})` : 'scale(1)';
+    e.style.opacity = cur < 0 && !done ? 0 : 1;
+  });
+  tracker.style.opacity = prog(t, PHONE_IN - 0.5, PHONE_IN) ;
+  ttlEls.forEach((e, i) => {
+    const a = stepStart[i], b = i < 3 ? stepStart[i + 1] : PHONE_OUT + 0.3;
+    const op = clamp(Math.min(prog(t, a, a + .35), 1 - prog(t, b - .25, b)));
+    e.style.opacity = op; e.style.transform = `translateY(${(1 - op) * 24}px)`;
+  });
+  const oo = prog(t, PHONE_OUT + 0.3, PHONE_OUT + 0.7); outTtl.style.opacity = oo; outTtl.style.transform = `translateY(${(1 - oo) * 24}px)`;
+
+  // ----- keadaan app
+  const tabCad = t >= CLICK.tabCad;
+  show($('#sec-faq'), !tabCad); show($('#sec-cad'), tabCad);
+  $('#tab-faq').classList.toggle('on', !tabCad); $('#tab-cad').classList.toggle('on', tabCad);
+  const pressed = id => CLICKS_BY[id] !== undefined && between(t, CLICKS_BY[id], CLICKS_BY[id] + 0.2);
+  const CLICKS_BY = { 'btn-q': CLICK.sendQ, 'btn-refresh': CLICK.refresh, 'btn-s': CLICK.sendS, 'btn-go': CLICK.go };
+  Object.keys(CLICKS_BY).forEach(id => $('#' + id).classList.toggle('press', pressed(id)));
+  $('#tab-faq').classList.toggle('press', between(t, CLICK.tabFaq, CLICK.tabFaq + .2));
+  $('#tab-cad').classList.toggle('press', between(t, CLICK.tabCad, CLICK.tabCad + .2));
+  $('#vote-qr').classList.toggle('press', between(t, CLICK.vote, CLICK.vote + .2));
+
+  // input
+  const qOn = between(t, CLICK.qInput, CLICK.sendQ);
+  $('#q-input').classList.toggle('f', qOn);
+  const qt = t < CLICK.sendQ ? typed(TXT.q, t, TYPE.q[0], TYPE.q[1]) : '';
+  const qHas = qt.length > 0;
+  $('#q-input .txt').innerHTML = qHas ? qt + (qOn ? '<span class="caret"></span>' : '') : (qOn ? '<span class="caret"></span>' : '<span class="ph">Taip soalan anda di sini...</span>');
+  // senarai soalan
+  const added = t >= CLICK.sendQ + 0.15;
+  const cu = $('#card-user'); show(cu, added);
+  const ap = easeOut(prog(t, CLICK.sendQ + 0.15, CLICK.sendQ + 0.6)); cu.style.opacity = ap; cu.style.transform = `scale(${.92 + .08 * ap})`;
+  const loading = between(t, CLICK.refresh + 0.05, CLICK.refresh + 0.8);
+  show($('#faq-load'), loading); show($('#faq-list'), !loading);
+  const answered = t >= CLICK.refresh + 0.8;
+  show($('#u-nb'), !answered); show($('#u-adm'), !answered, 'inline-block'); show($('#u-ans'), answered);
+  $('#btn-refresh svg').style.transform = `rotate(${loading ? (t - CLICK.refresh) * 900 : 0}deg)`;
+
+  // cadangan
+  const nOn = between(t, CLICK.sName, CLICK.sDesc), dOn = between(t, CLICK.sDesc, CLICK.sendS);
+  $('#s-name').classList.toggle('f', nOn); $('#s-desc').classList.toggle('f', dOn);
+  const nt = t < CLICK.sendS ? typed(TXT.name, t, TYPE.name[0], TYPE.name[1]) : '';
+  const dt = t < CLICK.sendS ? typed(TXT.desc, t, TYPE.desc[0], TYPE.desc[1]) : '';
+  $('#s-name .txt').innerHTML = nt ? nt + (nOn ? '<span class="caret"></span>' : '') : (nOn ? '<span class="caret"></span>' : '<span class="ph">Contoh: Sistem Dashboard</span>');
+  $('#s-desc .txt').innerHTML = dt ? dt + (dOn ? '<span class="caret"></span>' : '') : (dOn ? '<span class="caret"></span>' : '<span class="ph">Sistem untuk memantau data jualan...</span>');
+  const sn = $('#sg-new'); show(sn, t >= CLICK.sendS + 0.15);
+  const sp2 = easeOut(prog(t, CLICK.sendS + 0.15, CLICK.sendS + 0.6)); sn.style.opacity = sp2; sn.style.transform = `scale(${.92 + .08 * sp2})`;
+  $('#vc').textContent = t >= CLICK.go + 0.1 ? '9' : '8';
+
+  // modal e-mel
+  const mOn = between(t, CLICK.vote + 0.1, CLICK.go + 0.1);
+  $('#modal').style.display = mOn ? 'flex' : 'none';
+  const eOn = between(t, CLICK.email, CLICK.go);
+  $('#m-email').classList.toggle('f', eOn);
+  const et = typed(TXT.email, t, TYPE.email[0], TYPE.email[1]);
+  $('#m-email .txt').innerHTML = et ? et + (eOn ? '<span class="caret"></span>' : '') : (eOn ? '<span class="caret"></span>' : '<span class="ph">Contoh: user@gmail.com</span>');
+  // toast
+  const tt = TOASTS.find(x => !x.skip && between(t, x.t0, x.t1));
+  const toast = $('#toast');
+  if (tt) { toast.style.display = 'block'; toast.textContent = tt.txt; const p = easeOut(prog(t, tt.t0, tt.t0 + .25)) * (1 - prog(t, tt.t1 - .25, tt.t1)); toast.style.opacity = p; toast.style.transform = `translateY(${(1 - p) * 40}px)`; }
+  else toast.style.display = 'none';
+
+  // skrol
+  $('#scroll').style.transform = `translateY(${-scrollAt(t)}px)`;
+
+  // ----- ring & label (koordinat relatif pada #phone)
+  const phoneRect = ph.getBoundingClientRect();
+  RINGS.forEach((r, i) => {
+    const { d, l } = ringEls[i];
+    const el = $(r.sel); const vis = between(t, r.t0, r.t1) && el.offsetParent !== null && ph.style.display !== 'none';
+    const a = vis ? Math.min(prog(t, r.t0, r.t0 + .2), 1 - prog(t, r.t1 - .2, r.t1)) : 0;
+    d.style.opacity = a; if (l) l.style.opacity = a;
+    if (!vis) return;
+    const q = rectIn(el, ph), pad = r.pad + 3 * Math.sin(t * 9);
+    const bw = 10; // border phone
+    const x = q.x - bw - pad, y = q.y - bw - pad, w = q.w + pad * 2, h = q.h + pad * 2;
+    d.style.left = x + 'px'; d.style.top = y + 'px'; d.style.width = w + 'px'; d.style.height = h + 'px';
+    if (l) {
+      const lw = l.offsetWidth, lh = l.offsetHeight;
+      let lx = x + w / 2 - lw / 2, ly = y - lh - 14;
+      if (r.pos === 'bottom') { lx = x + w - lw - 8; ly = y + h - 6; }
+      else if (r.pos === 'rowend') { lx = 880 - lw; ly = y + h / 2 - lh / 2; }
+      else if (r.pos === 'right') { lx = x + w + 18; ly = y + h / 2 - lh / 2; }
+      lx = clamp(lx, 14, 960 - 14 - lw);
+      l.style.left = lx + 'px'; l.style.top = ly + 'px';
+      l.style.transform = `translateY(${(1 - a) * 12}px)`;
+    }
+  });
+
+  // ----- kursor
+  const cur2 = $('#cursor'), rip = $('#ripple');
+  const pos = k => { if (k.sel) { const r = $(k.sel).getBoundingClientRect(); return { x: r.left + r.width * k.ax, y: r.top + r.height * k.ay }; } return { x: k.x, y: k.y }; };
+  let cx = 960, cy = 1400, cv = 0;
+  if (t >= KF[0].t) {
+    let i = 0; while (i < KF.length - 1 && t >= KF[i + 1].t) i++;
+    const a = KF[i], b = KF[i + 1];
+    if (!b) { const p = pos(a); cx = p.x; cy = p.y; cv = a.vis; }
+    else {
+      const leave = a.leave !== undefined ? a.leave : a.t + .25;
+      const k = ease(prog(t, leave, b.t));
+      const pa = pos(a), pb = pos(b);
+      // lengkung kecil supaya tak lurus
+      cx = pa.x + (pb.x - pa.x) * k + Math.sin(k * Math.PI) * 28; cy = pa.y + (pb.y - pa.y) * k - Math.sin(k * Math.PI) * 22;
+      cv = a.vis + (b.vis - a.vis) * k;
+    }
+  }
+  const phoneVisible = ph.style.display !== 'none';
+  cur2.style.opacity = phoneVisible ? cv : 0;
+  cur2.style.transform = `translate(${cx - 12}px,${cy - 8}px) scale(${between(t, ...[0, 0]) ? 1 : 1})`;
+  let rp = 0, rx = 0, ry = 0;
+  CLICKS.forEach(ct => { if (between(t, ct, ct + .55)) { rp = (t - ct) / .55; } });
+  rip.style.opacity = rp > 0 ? (1 - rp) * .9 : 0;
+  rip.style.left = (cx - 15 + 8) + 'px'; rip.style.top = (cy - 15 + 6) + 'px';
+  rip.style.transform = `scale(${1 + rp * 2.6})`;
+
+  // ----- nota besar (1 e-mel = 1 undi)
+  const nt2 = $('#note');
+  const n0 = D3 + 0.05, n1 = O1 - 0.5;
+  const na = Math.min(prog(t, n0, n0 + .35), 1 - prog(t, n1 - .3, n1));
+  nt2.style.opacity = na; nt2.style.transform = `translateY(${(1 - na) * 50}px) scale(${.94 + .06 * na})`;
+  nt2.innerHTML = '<b>1 e-mel = 1 undi</b><span>bagi setiap cadangan</span>';
+  nt2.style.top = '1235px';
+
+  // ----- sari kata
+  let sid = null;
+  order.forEach(id => { if (t >= S[id].t - 0.05) sid = id; });
+  const capEl = $('#cap-t');
+  if (sid && t < S[sid].t + S[sid].d + 0.7) {
+    const p = prog(t, S[sid].t - .05, S[sid].t + .2);
+    if (capEl.dataset.id !== sid) { capEl.innerHTML = capText(sid); capEl.dataset.id = sid; }
+    capEl.style.opacity = p; capEl.style.transform = `translateY(${(1 - p) * 14}px)`;
+    $('#cap').style.opacity = 1;
+  } else { $('#cap').style.opacity = 0; capEl.dataset.id = ''; }
+  $('#cap').style.display = t < TOTAL - 0.4 ? 'flex' : 'none';
+
+  // ----- progress
+  $('#prog').style.transform = `scaleX(${t / TOTAL})`;
+  $('#tag').style.display = 'block';
+};
+setT(0);
+</script>
+</body></html>
