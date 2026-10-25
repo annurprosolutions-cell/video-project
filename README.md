@@ -16,3 +16,7 @@ node render.mjs stills                  # snapshot ke stills/ untuk semak layout
 ```
 
 Edit teks, warna atau timing dalam `claude-modes.html` (atribut `data-s` = masa mula babak, `data-d` = tempoh).
+
+## Jadual Sekolah
+
+Projek berasingan, bukan video: penjana jadual waktu sekolah dengan modul relief guru ganti. Buka `jadual-sekolah/index.html` dalam pelayar. Lihat [jadual-sekolah/README.md](jadual-sekolah/README.md).
