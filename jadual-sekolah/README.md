@@ -1,84 +1,105 @@
 # Jadual Sekolah
 
-Penjana jadual waktu sekolah (macam Winjaws / aSc TimeTables) dengan modul guru ganti (relief) harian. Web app biasa, tiada server dan tiada dependency. Data disimpan dalam pelayar.
+Penjana jadual waktu sekolah (macam Winjaws / aSc TimeTables) dengan modul guru ganti (relief), dashboard ikut peranan, dan pilihan simpan data dalam Google Sheets milik sekolah. Web app statik: tiada server, tiada dependency.
 
 ## Cara guna
 
-Buka `index.html` terus dalam Chrome, Edge atau Firefox. Tak perlu install apa-apa.
+- **Cuba terus**: buka `index.html` dalam Chrome, Edge atau Firefox. Data disimpan dalam pelayar.
+- **Guna sebenar**: hos folder ini di GitHub Pages atau Cloudflare Pages. Ini wajib kalau nak guna Google Sheets, sebab Google tak benarkan log masuk dari fail `file://`.
 
-1. **Utama**: tekan "Muat data contoh" untuk cuba (18 guru, 9 kelas, 243 waktu), atau "Mula kosong".
-2. **Tetapan**: Isnin-Jumaat atau Ahad-Khamis, waktu dan rehat, bilangan waktu Jumaat.
-3. **Data**: subjek, guru, kelas, bilik, kemudian pelajaran. Tambah ramai sekaligus dengan tampal dari Excel.
-4. **Jadual**: tekan "Jana jadual". Lepas tu laras dengan seret-dan-lepas, kunci waktu yang tak boleh berubah, dan cetak.
-5. **Relief**: tandakan guru tidak hadir, sistem cadangkan guru ganti.
+Aliran kerja pentadbir:
 
-Eksport JSON (halaman Utama) untuk backup atau pindah ke komputer lain.
+1. **Tetapan**: Isnin-Jumaat atau Ahad-Khamis, waktu dan rehat, bilangan waktu hari Jumaat.
+2. **Data**: subjek, guru (termasuk waktu tidak boleh mengajar), kelas, bilik, kemudian pelajaran.
+3. **Jadual**: tekan "Jana jadual", laras dengan seret-dan-lepas, kunci waktu yang tak boleh berubah, cetak.
+4. **Relief**: rekod guru tidak hadir, tekan "Agih automatik", cetak slip atau salin mesej WhatsApp.
+
+**PERANAN** (menu kanan atas) menukar paparan antara Pentadbir dan Guru. Guru pilih nama sendiri dan nampak kelas hari ini, tugas relief, slip dan perbandingan kesaksamaan. Ini paparan sahaja, bukan kawalan akses.
 
 ## Ciri
 
+**Dashboard (Utama)**
+- Ringkasan: bilangan perkara yang perlu tindakan, peratus waktu diletak tanpa konflik, diletak / belum / konflik, guru, kelas, relief bulan ini.
+- Kad "Hari ini": blok relief hari ini dengan status (Siap / Agih / Kendiri) dan ketidakhadiran minggu ini. Untuk guru: kelas sendiri ikut masa, tugas relief diserlahkan, cip "Sekarang".
+- Banner merah untuk perkara paling mendesak, contohnya relief hari ini atau hari persekolahan seterusnya yang belum diagih, atau konflik jadual.
+- "Perlu tindakan" dan loceng notifikasi: konflik, waktu belum diletak, relief belum diagih untuk 7 hari akan datang, guru melebihi had, data belum dibackup.
+- Heatmap aktiviti relief sebulan. Klik satu hari untuk terus ke relief tarikh itu.
+
 **Penjana jadual**
-- Peraturan tetap: guru, kelas dan bilik tak bertindih; guru tak diletak pada slot "tidak boleh mengajar"; waktu berganda tak melintasi rehat; had waktu sehari guru; had pelajaran sama sehari setiap kelas.
-- Peraturan lembut (dioptimumkan): kurangkan waktu kosong guru dan kelas, sebar pelajaran merentas hari, subjek berat di waktu pagi, imbang beban harian guru.
-- Pelajaran gabungan serentak, contoh Pendidikan Islam / Moral: satu pelajaran, beberapa kelas, beberapa guru mengajar pada masa sama.
-- Kunci waktu, jana semula selebihnya. Mod "kekalkan susunan semasa" untuk isi yang belum diletak sahaja.
-- Waktu yang tak dapat diletak dilaporkan dengan sebab (cth "guru kosong 1 slot, kelas kosong 0 slot, tiada yang sama").
-- Semakan awal sebelum jana: guru yang bebannya melebihi kapasiti sebenar (termasuk had harian dan slot tak boleh), kelas atau bilik yang melebihi slot.
+- Peraturan tetap: guru, kelas dan bilik tak bertindih; slot "tidak boleh" dihormati; waktu berganda tak melintasi rehat; had waktu sehari guru; had pelajaran sama sehari.
+- Peraturan lembut (dioptimumkan): kurangkan waktu kosong guru dan kelas, sebar pelajaran merentas hari, subjek berat di waktu pagi, imbang beban harian.
+- Pelajaran gabungan serentak (contoh Pendidikan Islam / Moral): satu pelajaran, beberapa kelas, beberapa guru.
+- Berjalan dalam **Web Worker**, jadi skrin tak beku. Kalau Worker tak dibenarkan, ia jatuh balik ke main thread secara automatik.
+- Waktu yang tak dapat diletak dilaporkan dengan sebab. Semakan awal mengesan data mustahil, contohnya beban guru melebihi kapasiti sebenar.
 
-**Edit manual**
-- Seret waktu ke petak lain. Petak sah ditunjuk hijau. Kalau petak diduduki satu waktu lain, sistem cuba tukar tempat.
-- Paparan: kelas, guru, bilik, induk semua kelas, induk semua guru.
-- Konflik ditunjuk merah dan disenaraikan di halaman Laporan.
+**Relief**
+- Harian: calon diskor dengan sebab yang jelas (subjek sama, panitia, kenal kelas, beban, relief bulan ini). Agih automatik bermula dengan blok paling sukar dahulu.
+- Kalendar bulanan: SELESAI / BELUM bagi setiap hari, dengan nama guru tidak hadir.
+- Statistik kesaksamaan (purata, sisihan piawai, siapa melebihi purata) dan sejarah, dengan eksport CSV.
+- Slip cetak (ringkasan harian + slip setiap guru), slip peribadi untuk guru, dan mesej WhatsApp.
 
-**Relief (guru ganti)**
-- Catat guru tidak hadir: sehari penuh, waktu tertentu, atau julat tarikh (hujung minggu dilangkau).
-- Sistem kira waktu yang terjejas daripada jadual guru itu pada hari berkenaan. Waktu berganda dikendalikan sebagai satu blok supaya seorang guru ganti pegang kedua-duanya.
-- Calon mesti kosong pada waktu itu, tidak turut tidak hadir, tidak sudah ada relief lain waktu yang sama, dan belum melebihi had relief sehari.
-- Calon diskor: bonus subjek sama, panitia sama, mengajar kelas itu, guru kelas, sambung kelas yang sama; penalti untuk relief bulan ini, relief keseluruhan, relief hari ini dan beban mengajar. Semua pemberat boleh diubah di Tetapan.
-- "Agih automatik" mula dengan blok yang calonnya paling sedikit. Anda boleh tukar mana-mana pilihan secara manual, atau pilih "kelas kendiri" / "gabung kelas".
-- Cetak slip guru ganti (ringkasan harian + slip setiap guru), salin mesej WhatsApp, statistik kesaksamaan (purata, sisihan piawai, siapa lebih daripada purata), sejarah dan eksport CSV.
-- Guru tertentu (cth pentadbir) boleh dikecualikan daripada relief.
+**Storan**
+- Pelayar (localStorage), sentiasa aktif.
+- Backup JSON: eksport dan import. Dashboard mengingatkan kalau belum backup lebih 7 hari.
+- **Google Sheets (beta)**: lihat bahagian di bawah.
 
-**Cetak**: satu jadual, semua kelas, semua guru, semua bilik, atau induk. Guna "Save as PDF" dalam dialog cetak untuk dapatkan PDF.
+## Google Sheets (beta)
+
+Bila disambung, setiap perubahan disimpan secara automatik (selepas 2.5 saat) ke satu Google Sheet dalam Drive akaun pengguna sendiri. Data tidak melalui server pembekal.
+
+- Skop OAuth: `drive.file`. App hanya boleh membuka fail yang ia cipta sendiri, bukan fail lain dalam Drive pengguna.
+- Satu tab bagi setiap jenis data (Guru, Kelas, Pelajaran, Jadual, TidakHadir, Relief dan lain-lain). Lajur bertanda "(rujukan)" hanya untuk dibaca manusia.
+- Kalau Sheet dikemas kini dari peranti lain, app berhenti menyimpan dan minta pengguna pilih sama ada mahu muat dari Sheet atau tulis ganti. Data tidak ditulis ganti secara senyap.
+
+Penyediaan (sekali sahaja, oleh pembekal atau IT sekolah):
+
+1. Hos app di https (GitHub Pages / Cloudflare Pages / domain sendiri).
+2. Google Cloud Console: cipta projek, aktifkan **Google Sheets API**.
+3. OAuth consent screen: jenis External, isi nama app dan e-mel sokongan, tambah skop `drive.file`, `openid` dan `email`. Dalam mod "Testing", hanya akaun ujian yang didaftarkan boleh log masuk. Untuk semua sekolah, terbitkan ke "In production". Dari ingatan, `drive.file` tergolong skop bukan sensitif, jadi verifikasi penuh tidak diperlukan, tetapi sahkan dalam console.
+4. Credentials > OAuth client ID > Web application. Tambah alamat app (contoh `https://namaanda.github.io`) dalam *Authorized JavaScript origins*.
+5. Salin Client ID ke `config.js` (medan `googleClientId`).
+
+Status ujian: aliran penuh (log masuk, cipta Sheet, autosave, konflik, muat semula) diuji dengan Google yang dimock. **Belum diuji dengan akaun Google sebenar.** Admin DELIMa mungkin menyekat app pihak ketiga, jadi uji dengan 2-3 sekolah dahulu.
 
 ## Susunan kod
 
 ```
-index.html
-css/app.css
-js/core.js         model data, semakan (validate / precheck), alih waktu (applyMove)
-js/engine.js       penjana jadual
-js/relief.js       logik relief: keperluan, calon, agihan, statistik, mesej
-js/sample.js       data contoh SMK
-js/ui-*.js, app.js antara muka
-tests/             ujian unit (Node) dan e2e (Playwright)
+index.html, config.js     halaman dan tetapan pemasangan (nama app, Client ID Google)
+css/app.css               reka bentuk
+js/core.js                model data, semakan (validate / precheck), alih waktu (applyMove)
+js/engine.js              penjana jadual
+js/runner.js              jalankan penjana dalam Web Worker (fallback main thread)
+js/relief.js              keperluan relief, calon, agihan, statistik, mesej
+js/insights.js            data dashboard: perlu tindakan, kalendar, hari guru
+js/sheets.js              format Google Sheets, akses API, log masuk Google
+js/sample.js              data contoh SMK
+js/icons.js, ui-*.js, app.js   antara muka
+tests/                    ujian unit (Node) dan e2e (Playwright)
 ```
 
 ### Cara penjana berfungsi
 
-Fasa 1 meletakkan setiap unit (satu waktu, atau satu pasang waktu berganda) pada slot terbaik. Kalau semua slot sah sudah diduduki, ia menolak keluar unit yang menghalang, letak unit baharu, dan letak semula unit yang ditolak kemudian. Had waktu sehari guru pun diselesaikan dengan cara sama. Fasa 2 ialah simulated annealing: alih satu unit atau tukar dua unit, terima kalau kos lembut turun (atau naik sedikit pada awal), dan tak pernah melanggar peraturan tetap. Pengoptimuman 2, 6 atau 20 saat boleh dipilih.
+Fasa 1 meletakkan setiap unit (satu waktu, atau sepasang waktu berganda) pada slot terbaik. Kalau semua slot sah sudah diduduki, ia menolak keluar unit yang menghalang, meletakkan unit baharu, kemudian meletakkan semula unit yang ditolak. Had waktu sehari guru diselesaikan dengan cara sama. Fasa 2 ialah simulated annealing: alih satu unit atau tukar dua unit, terima kalau kos lembut turun, dan tak pernah melanggar peraturan tetap.
 
-Untuk data contoh, 6 saat mengurangkan waktu kosong guru dari 120 ke sekitar 30.
+Untuk data contoh, pengoptimuman 6 saat mengurangkan waktu kosong guru dari sekitar 120 ke sekitar 30.
 
 ## Ujian
 
 ```bash
-npm test                          # 20 ujian unit, tanpa dependency
+npm test                               # 40 ujian unit, tanpa dependency
 npm i playwright && npm run test:e2e   # klik seluruh aliran dalam Chromium
 ```
 
-Ujian unit merangkumi: jadual sah merentas beberapa seed, waktu dikunci dikekalkan, slot tak boleh dihormati, data mustahil dilapor dengan sebab, seret-dan-lepas rawak tak merosakkan jadual, calon relief tak pernah bertindih, dan simulasi relief sebulan (20 hari, 241 waktu) yang tersebar dengan sisihan piawai di bawah 2.5.
-
-Penjana juga diuji secara manual dengan sekolah 24 kelas / 30 guru yang setiap kelas penuh 38/38 waktu dan guru dimuatkan sehingga 33 waktu. Semua waktu diletak.
+- **Ujian unit**: penjana (beberapa seed, waktu dikunci, slot tak boleh, data mustahil, seret rawak), relief (tiada bertindih, had harian, simulasi sebulan dengan sisihan piawai bawah 2.5), dashboard (perlu tindakan, kalendar Isnin-Jumaat dan Ahad-Khamis), Worker, dan Google Sheets (pergi-balik data, suntingan manual dalam Sheets, ralat API) dengan pelayan Sheets palsu.
+- **Ujian e2e**: jam pelayar ditetapkan pada Isnin 26/10/2026 waktu Malaysia. Merangkumi aliran pentadbir atas `file://` (jana dalam Worker, seret, relief, kalendar, cetak), peranan guru (dashboard, slip, susunan telefon), dan aliran Google Sheets atas localhost dengan Google dimock.
 
 ## Had semasa
 
-Jujur, ini belum menyamai Winjaws atau aSc dari segi ciri:
-
-- Data dalam pelayar sahaja (localStorage). Tiada pelayan, tiada akaun, tiada penyuntingan serentak oleh ramai orang. Kongsi dengan eksport / import JSON.
+- Google Sheets: satu Sheet diurus oleh satu akaun pentadbir. Dengan `drive.file`, akaun lain perlu membuka fail melalui Google Picker, dan itu belum dibina. Guru belum boleh membuka data sekolah dari telefon sendiri melalui app.
+- Peranan bukan kawalan akses. Sesiapa yang ada fail data boleh tukar ke Pentadbir.
 - Setiap pelajaran guna satu bilik tetap. Tiada "mana-mana makmal yang kosong".
 - Tiada kumpulan murid atau blok pilihan (elective) selain pelajaran gabungan serentak.
-- Tiada import terus daripada fail Winjaws atau aSc. Tambah ramai hanya melalui tampal teks.
-- Sekolah dua sesi (pagi / petang): buat satu fail JSON bagi setiap sesi.
-- Penjana ialah heuristik, bukan bukti optimum. Data yang sangat ketat boleh tinggalkan beberapa waktu belum diletak (dilaporkan dengan sebab, dan boleh disiapkan dengan seret manual).
-- Relief tidak menghantar mesej sendiri. Mesej WhatsApp disalin dan ditampal secara manual.
-- Hanya satu jadual aktif. Tiada versi jadual berasingan (cth penggal 1 dan penggal 2) selain eksport JSON berasingan.
+- Tiada import terus daripada fail aSc atau Winjaws. Tambah ramai hanya melalui tampal teks.
+- Sekolah dua sesi: buat satu fail data bagi setiap sesi.
+- Penjana ialah heuristik, bukan bukti optimum. Data yang terlalu ketat mungkin tinggalkan beberapa waktu belum diletak; sebabnya dilaporkan.
+- Tiada semakan lesen. Sesiapa yang ada salinan app boleh menggunakannya.

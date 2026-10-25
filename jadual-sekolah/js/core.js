@@ -1,4 +1,10 @@
-(function (root) {
+// Modul dibungkus sebagai factory supaya sumbernya boleh dihantar ke Web Worker (lihat runner.js)
+(function (factory) {
+  const root = typeof window !== 'undefined' ? window : globalThis;
+  factory(root);
+  (root.TT.__mods || (root.TT.__mods = {})).core = factory;
+  if (typeof module !== 'undefined' && module.exports) module.exports = root.TT;
+})(function (root) {
   'use strict';
   const TT = root.TT || (root.TT = {});
 
@@ -328,5 +334,4 @@
   };
   TT.toggleLock = (s, unitId) => { const p = placementOf(s, unitId); if (p) p.locked = !p.locked; };
 
-  if (typeof module !== 'undefined' && module.exports) module.exports = TT;
-})(typeof window !== 'undefined' ? window : globalThis);
+});
