@@ -6,6 +6,7 @@ Koleksi video explainer. Setiap video ada folder sendiri: fail MP4 siap, source 
 |---|---|---|
 | [claude-modes-explainer](claude-modes-explainer/) — beza Chat, Cowork, Artifact, Design, Claude Code, Schedule | 60s | 1080x1920 (Reels/TikTok) |
 | [ruzprompt-setahun](ruzprompt-setahun/) — Setahun Vibe Coding: 20 projek + RuzPrompt (video jualan) | 60s | 1080x1920 (TikTok) |
+| [ruzprompt-showcase](ruzprompt-showcase/) — Setahun Vibe Coding v2: kamera 3D terbang melepasi screenshot 20 sistem sebenar + RuzPrompt | 60s | 1080x1920 (TikTok) |
 
 ## Render semula
 

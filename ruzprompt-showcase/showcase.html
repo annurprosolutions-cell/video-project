@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<title>RuzPrompt - Setahun Vibe Coding (Showcase)</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+:root{--bg:#EEF1F5;--ink:#0B1630;--mute:#5B6B86;--teal:#0E9AAE;--gold:#C99A2E;--line:rgba(11,22,48,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:'Plus Jakarta Sans',DejaVu Sans,sans-serif;color:var(--ink);word-spacing:3px}
+#stage{position:absolute;inset:0;background:radial-gradient(900px 760px at 50% 18%,#fff,transparent 72%),linear-gradient(180deg,#F5F7FA,#E3E8EF)}
+.in{animation:in .7s cubic-bezier(.2,.85,.25,1) both paused;animation-delay:calc(var(--t)*1s)}
+.pop{animation:pop .6s cubic-bezier(.3,1.4,.5,1) both paused;animation-delay:calc(var(--t)*1s)}
+@keyframes in{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes sin{from{opacity:0}to{opacity:1}}
+@keyframes sout{from{opacity:1}to{opacity:0}}
+.sc{position:absolute;inset:0;opacity:0;animation:sin .45s ease both paused,sout .45s ease forwards paused;animation-delay:calc(var(--t)*1s),calc((var(--t) + var(--d) - .45)*1s)}
+
+/* hook */
+.hook{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.hook .k{font-size:32px;letter-spacing:10px;font-weight:800;color:var(--teal);margin-bottom:30px}
+.hook h1{font-size:200px;line-height:.92;font-weight:800;letter-spacing:-8px}
+.hook h1 span{display:block}
+.hook h1 .g{font-size:168px;background:linear-gradient(90deg,var(--teal),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:12px}
+.hook .s{font-family:'Instrument Serif',serif;font-style:italic;font-size:76px;color:var(--mute);margin-top:34px;line-height:1.1}
+
+/* 3D world */
+#world{position:absolute;inset:0;perspective:1400px;perspective-origin:50% 36%;overflow:hidden;opacity:0;animation:sin .3s ease both paused,sout .6s ease forwards paused;animation-delay:3.1s,41.3s}
+#strip{position:absolute;left:50%;top:0;width:960px;margin-left:-480px;transform-origin:50% 0;transform-style:preserve-3d;will-change:transform}
+.it{margin-bottom:170px}
+.lb{max-width:960px;display:flex;align-items:baseline;gap:18px;margin-bottom:20px;white-space:nowrap}
+.lb b{font-size:34px;font-weight:800;color:var(--gold);letter-spacing:2px}
+.lb span{font-size:52px;font-weight:800;letter-spacing:-1px}
+.lb i{font-style:normal;font-size:28px;color:var(--mute);font-weight:600;overflow:hidden;text-overflow:ellipsis}
+.cd{border-radius:30px;overflow:hidden;background:#fff;box-shadow:0 50px 90px rgba(11,22,48,.28),0 0 0 2px rgba(11,22,48,.08)}
+.ch{height:44px;background:#E7EBF1;display:flex;align-items:center;gap:10px;padding:0 20px}
+.ch u{width:14px;height:14px;border-radius:50%;background:#C7CEDA}
+.ch u:nth-child(1){background:#F0715F}.ch u:nth-child(2){background:#F2BF4E}.ch u:nth-child(3){background:#5CC878}
+.cd img{display:block;width:960px;height:600px;object-fit:cover;object-position:top}
+.cd.ph img{height:720px;object-position:var(--op,50% 50%)}
+.fadetop{position:absolute;left:0;right:0;top:0;height:420px;background:linear-gradient(180deg,#EEF1F5 8%,rgba(238,241,245,0));opacity:0;animation:sin .3s ease both paused,sout .6s ease forwards paused;animation-delay:3.1s,41.3s}
+.fog{position:absolute;left:0;right:0;bottom:0;height:860px;background:linear-gradient(0deg,#E6EBF1 66%,rgba(230,235,241,0));opacity:0;animation:sin .3s ease both paused,sout .6s ease forwards paused;animation-delay:3.1s,41.3s}
+.dof{position:absolute;left:0;right:0;bottom:0;height:760px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);-webkit-mask-image:linear-gradient(0deg,#000 30%,transparent);mask-image:linear-gradient(0deg,#000 30%,transparent);opacity:0;animation:sin .3s ease both paused,sout .6s ease forwards paused;animation-delay:3.1s,41.3s}
+
+/* HUD */
+#hud{position:absolute;left:70px;right:70px;top:110px;opacity:0;animation:sin .5s ease both paused,sout .5s ease forwards paused;animation-delay:4s,41s}
+.hrow{display:flex;justify-content:space-between;align-items:center}
+.pill{display:flex;align-items:center;gap:14px;font-weight:800;font-size:26px;letter-spacing:4px}
+.dot{width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px rgba(201,154,46,.7)}
+#cnt{font-size:30px;font-weight:800;color:var(--teal);letter-spacing:2px}
+.dbar{height:10px;border-radius:5px;background:var(--line);margin-top:20px;overflow:hidden}
+#dfill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:5px}
+#day{font-size:22px;color:var(--mute);letter-spacing:3px;font-weight:700;margin-top:12px}
+
+/* captions */
+.cap{position:absolute;left:60px;right:60px;top:1370px;font-size:74px;line-height:1.1;font-weight:800;letter-spacing:-2px;text-align:center}
+.cap em,.fin .line em{font-style:normal;background:linear-gradient(90deg,var(--teal),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* thin strip text */
+.thin{position:absolute;left:600px;right:30px;top:640px;text-align:left}
+.thin .n{font-size:300px;font-weight:800;letter-spacing:-12px;line-height:1}
+.thin small{display:block;font-family:'Instrument Serif',serif;font-style:italic;font-size:78px;line-height:1.05;color:var(--mute)}
+
+/* pitch */
+.ph-h{position:absolute;left:70px;right:70px;top:240px;font-size:88px;line-height:1.05;font-weight:800;letter-spacing:-3px}
+.ph-s{position:absolute;left:70px;right:70px;top:560px;font-family:'Instrument Serif',serif;font-style:italic;font-size:84px;line-height:1.05;color:var(--mute)}
+.pcard{position:absolute;left:100px;right:100px;top:760px;border-radius:30px;overflow:hidden;background:#fff;box-shadow:0 40px 80px rgba(11,22,48,.25),0 0 0 2px rgba(11,22,48,.08)}
+.pcard img{display:block;width:880px;height:530px;object-fit:cover;object-position:top}
+.ben{position:absolute;left:100px;right:100px;display:flex;align-items:center;gap:22px;font-size:38px;font-weight:700}
+.ben i{font-style:normal;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--gold));color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;flex:none}
+
+/* finale */
+.fin{position:absolute;inset:0;text-align:center}
+.face{position:absolute;left:50%;top:160px;width:540px;height:570px;margin-left:-270px;border-radius:56px;overflow:hidden;border:6px solid var(--gold);box-shadow:0 40px 90px rgba(11,22,48,.3),0 0 0 14px rgba(201,154,46,.15)}
+.face img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+.logo{position:absolute;left:50%;top:610px;margin-left:130px;width:150px;height:150px;border-radius:34px;background:#fff;border:5px solid var(--gold);overflow:hidden;box-shadow:0 14px 40px rgba(11,22,48,.3)}
+.logo img{width:100%;height:100%;object-fit:cover;transform:scale(1.15)}
+.word{position:absolute;left:0;right:0;top:770px;font-size:166px;line-height:1.05;font-weight:800;letter-spacing:-7px;background:linear-gradient(90deg,var(--teal) 10%,var(--gold) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nm{position:absolute;left:0;right:0;top:965px;font-size:46px;font-weight:800}
+.rl{position:absolute;left:0;right:0;top:1028px;font-size:30px;color:var(--mute);font-weight:600}
+.fin .line{position:absolute;left:60px;right:60px;top:1110px;font-size:60px;line-height:1.1;font-weight:800;letter-spacing:-1.5px}
+.cta{position:absolute;left:90px;right:90px;top:1340px;padding:28px 0;border-radius:999px;background:var(--ink);color:#fff;font-size:48px;font-weight:800;letter-spacing:-.5px;box-shadow:0 16px 40px rgba(11,22,48,.35)}
+.wa{position:absolute;left:0;right:0;top:1455px;font-size:34px;font-weight:700;color:var(--mute)}
+</style></head>
+<body>
+<div id="stage"></div>
+<div id="world"><div id="strip"></div></div>
+<div class="fadetop"></div><div class="dof"></div><div class="fog"></div>
+<div id="hud">
+  <div class="hrow"><div class="pill"><span class="dot"></span>SETAHUN VIBE CODING</div><div id="cnt">PROJEK 00/20</div></div>
+  <div class="dbar"><div id="dfill"></div></div><div id="day">HARI 001</div>
+</div>
+<div id="root"></div>
+
+<script>
+/* [fail, nama, sub, jenis] */
+const IT=[
+ ['erph','eRPH','Rancangan Pengajaran Harian'],['jadual','Jadual Sekolah','Jana jadual + guru ganti'],
+ ['kembara','Kembara Matematik','RPG 3D · Tahun 1 hingga Tingkatan 5'],['celik','Celik Minda Quest','Game PASTI 5 & 6 tahun'],
+ ['eaduan','E-Aduan','Hantar & jejak aduan'],
+ ['@training-kelas','Training fizikal','Bina sistem bersama guru','50% 50%'],
+ ['karadi','Template KARA-Di','1 template, banyak klien'],['mcm','Bantuan MCM','Permohonan bantuan kebajikan'],
+ ['zakat','e-Muzakki','Rekod & semakan zakat'],['azn','AZN Invoice','Jana invoice dalam seminit'],['ams','Pengurusan Aset','Daftar, lokasi & servis'],
+ ['@training-sesi','Kongsi ilmu','Satu sesi, satu masa','25% 40%'],
+ ['homestay','Tempahan Homestay','Kalendar & tempahan tetamu'],['edudash','EduDash Pro','Analitik pendidikan'],
+ ['prosaff','Prosaff','Direktori & papan pemuka'],['p2d','Prompt2Dashboard','Dashboard dari prompt'],
+ ['jalanpulang','JALANPULANG','Ramadan tracker'],
+ ['@training-dashboard','Dashboard besar','Bermula dari satu prompt','50% 50%'],
+ ['mengaji','Kelas Mengaji Hafsah','Portal kelas & jadual'],['ammar','Ammar Travel','Laman takaful + semak harga'],
+ ['profil','Profil RuzPrompt','Portfolio & testimoni'],['videoexp','Video Explainer','Video 9:16 untuk TikTok & Reels'],['p2v','Prompt → Video','Voiceover jadi video siap'],
+ ['@training-travel','Bawa ilmu','Ke mana-mana','80% 40%']
+];
+const GROUPS=[[0,1,'Masalah kecil pun <em>layak ada sistem.</em>'],[2,3,'Belajar patut <em>seronok.</em>'],[4,7,'Rakyat perlukan saluran yang <em>jelas.</em>'],[8,10,'Amanah mesti <em>kemas.</em>'],[11,13,'Kemas hari ini, <em>tenang esok.</em>'],[14,15,'Data yang jelas bantu <em>buat keputusan.</em>'],[16,19,'Teknologi patut <em>mesra,</em> bukan rumit.'],[20,23,'Kongsi apa yang <em>anda bina.</em>']];
+const T0=5.0, DS=1.2, DP=2.0, FLY_END=T0+IT.reduce((a,x)=>a+(x[0][0]=='@'?DP:DS),0); // 37.0
+let sysN=0, strip='';
+IT.forEach((x,i)=>{
+  const ph=x[0][0]=='@', src=ph?`assets/${x[0].slice(1)}.jpg`:`assets/shots/${x[0]}.jpg`;
+  if(!ph) sysN++;
+  strip+=`<div class="it"><div class=lb><b>${ph?'—':String(sysN).padStart(2,'0')}</b><span>${x[1]}</span><i>${x[2]}</i></div><div class="cd${ph?' ph':''}" ${ph?`style="--op:${x[3]}"`:''}>${ph?'':'<div class=ch><u></u><u></u><u></u></div>'}<img src="${src}"></div></div>`;
+});
+document.getElementById('strip').innerHTML=strip;
+
+let html='';
+html+=`<div class="sc hook" style="--t:0;--d:3.4"><div class="k in" style="--t:.2">AKU BINA</div><h1><span class="in" style="--t:.4">Setahun</span><span class="g in" style="--t:.75">Vibe Coding</span></h1><div class="s in" style="--t:1.5">20 projek. 1 AI.<br>Mula dulu, pandai kemudian.</div></div>`;
+/* masa slot */
+const A=[];let tt=T0;IT.forEach(x=>{const d=x[0][0]=='@'?DP:DS;A.push([tt,d]);tt+=d});
+GROUPS.forEach(g=>{const s=A[g[0]][0],e=A[g[1]][0]+A[g[1]][1];html+=`<div class="sc" style="--t:${s+.15};--d:${e-s-.1}"><div class="cap in" style="--t:${s+.3}">${g[2]}</div></div>`});
+const TC=FLY_END+2.8;           // strip nipis mula
+html+=`<div class="sc" style="--t:${FLY_END+1.9};--d:3.6"><div class="thin"><div class="n in" style="--t:${FLY_END+2.1}">20</div><small class="in" style="--t:${FLY_END+2.4}">projek dalam setahun</small></div></div>`;
+const P=41.8;
+html+=`<div class="sc" style="--t:${P};--d:7.6"><div class="ph-h"><span class="v"></span><span class="r" style="visibility:hidden"></span></div><div class="ph-s in" style="--t:${P+2.9}">satu prompt pada satu masa.</div>
+<div class="pcard in" style="--t:${P+1.2}"><div class=ch><u></u><u></u><u></u></div><img src="assets/shots/erph.jpg"></div>
+<div class="ben in" style="--t:${P+3.6};top:1360px"><i>✓</i>Web app ikut keperluan anda</div>
+<div class="ben in" style="--t:${P+4.4};top:1440px"><i>✓</i>Guna di telefon, boleh offline</div>
+<div class="ben in" style="--t:${P+5.2};top:1520px"><i>✓</i>Dashboard & laporan sekali</div></div>`;
+const F=49.2;
+html+=`<div class="sc" style="--t:${F};--d:10.8"><div class=fin>
+<div class="face pop" style="--t:${F+.2}"><img src="assets/muka.jpg"></div><div class="logo pop" style="--t:${F+.9}"><img src="assets/logo-annurpro.jpg"></div>
+<div class="word in" style="--t:${F+1}">RuzPrompt</div><div class="nm in" style="--t:${F+1.5}">Ts. Ruzbihan Bakhtiar</div><div class="rl in" style="--t:${F+1.7}">Lite Web Apps Vibe Coder · Dashboard Developer</div>
+<div class="line in" style="--t:${F+2.4}">Setahun lagi, anda nak jadi siapa?<br><em>Mula hari ini.</em></div>
+<div class="cta in" style="--t:${F+3.6}">ruzprompt.my/demo</div><div class="wa in" style="--t:${F+3.9}">WhatsApp: 011-2087 9149</div></div></div>`;
+document.getElementById('root').innerHTML=html;
+
+/* ---- kamera ---- */
+const S=document.getElementById('strip'),imgs=[...S.querySelectorAll('img')];
+let C=[],H=0;
+function measure(){const its=[...S.querySelectorAll('.it')];C=its.map(e=>e.offsetTop+e.querySelector('.lb').offsetHeight+20+e.querySelector('.cd').offsetHeight/2);H=S.offsetHeight;}
+const K=()=>A.map(a=>a[0]+a[1]/2);
+const sm=u=>u*u*(3-2*u), eo=u=>1-Math.pow(1-u,3), cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)), lerp=(a,b,u)=>a+(b-a)*u;
+function camS(t){const k=K();if(t<=k[0])return C[0];if(t>=k[k.length-1])return C[C.length-1];let i=0;while(t>=k[i+1])i++;const u=(t-k[i])/(k[i+1]-k[i]);return lerp(C[i],C[i+1],.5*u+.5*sm(u))}
+const HUDI=A.map((a,i)=>[a[0]+a[1]/2,IT[i][0][0]!='@']).filter(x=>x[1]).map(x=>x[0]);
+const cnt=document.getElementById('cnt'),df=document.getElementById('dfill'),day=document.getElementById('day');
+const TY=[...document.querySelectorAll('.ph-h')][0];const TYPE='Dari idea ke sistem yang betul-betul jalan.';
+function setT(t){
+  document.getAnimations().forEach(a=>{a.pause();a.currentTime=t*1000});
+  if(!C.length)measure();
+  let rx=0,k=1.12,Y=960,s=C[0],tx=0;
+  if(t<3.1){Y=2400}
+  else if(t<4.3){Y=lerp(2400,960,eo((t-3.1)/1.2))}
+  else if(t<5.8){const v=sm((t-4.3)/1.5);rx=50*v;k=lerp(1.12,1,v);Y=lerp(960,800,v)}
+  else if(t<FLY_END){rx=50;k=1;Y=800;s=camS(t);tx=Math.sin(t*.5)*26}
+  else{const u=sm(cl((t-FLY_END)/2.6));const kE=1560/H;rx=50*(1-u);tx=-300*sm(cl((t-FLY_END-1.2)/1.2));k=Math.exp(lerp(0,Math.log(kE),u));s=lerp(C[C.length-1],H/2,u);Y=lerp(800,960,u)}
+  if(t>=5.8&&t<FLY_END)s=camS(t);
+  S.style.transform=`translate(${tx}px,${Y}px) rotateX(${rx}deg) scale(${k}) translateY(${-s}px)`;
+  const n=HUDI.filter(x=>t>=x-.4).length;cnt.textContent='PROJEK '+String(n).padStart(2,'0')+'/20';
+  const p=cl((t-4)/(FLY_END-4));df.style.width=(p*100)+'%';day.textContent='HARI '+String(Math.max(1,Math.round(p*365))).padStart(3,'0');
+  const nc=cl(Math.floor((t-(P+.3))*24),0,TYPE.length);
+  const v=TY.querySelector('.v'),r=TY.querySelector('.r');v.textContent=TYPE.slice(0,nc);r.textContent=TYPE.slice(nc);
+}
+Promise.all(imgs.map(i=>i.decode().catch(()=>{}))).then(()=>{measure();window.READY=true;setT(0)});
+</script></body></html>
