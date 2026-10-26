@@ -15,19 +15,23 @@ for i in range(int(D/beat)+1):
 # kick + hat mulai 4.5s
 for i in range(int(D/beat)):
     ts=i*beat
-    if ts<4.5 or ts>59: continue
+    if ts<4.0 or ts>59: continue
     s=int(ts*SR);L=int(.25*SR);tt=np.arange(L)/SR
     out[s:s+L]+=0.38*np.sin(2*np.pi*(120*np.exp(-tt*22)+45)*tt)*np.exp(-tt*9)
     h=int((ts+beat/2)*SR);Lh=int(.05*SR)
     out[h:h+Lh]+=0.05*rng.standard_normal(Lh)*np.exp(-np.arange(Lh)/SR*90)
 # whoosh pada tukar scene
-cuts=[0.0,4.5]+[4.5+3.75*i for i in range(1,9)]+[43.5,50.5]
+cuts=[];tt0=4.0
+for k in range(8):
+    cuts.append(tt0);tt0+=3.3
+    if k%2==1: cuts.append(tt0);tt0+=2.4
+cuts+= [tt0,tt0+6.4,tt0+12.0]; cuts=[0.0]+cuts
 for c in cuts[1:]:
     s=int((c-.35)*SR);L=int(.5*SR);tt=np.arange(L)/SR
     nz=rng.standard_normal(L);k=np.convolve(nz,np.ones(40)/40,'same')
     out[s:s+L]+=0.16*k*np.sin(np.pi*tt/.5)**2
 # letupan akhir
-s=int(50.6*SR);L=int(1.2*SR);tt=np.arange(L)/SR
+s=int((cuts[-1]+.1)*SR);L=int(1.2*SR);tt=np.arange(L)/SR
 out[s:s+L]+=0.3*np.sin(2*np.pi*(80*np.exp(-tt*3)+40)*tt)*np.exp(-tt*3)
 out*=np.minimum(1,(D-t)/1.5)  # fade out
 out=out/np.max(np.abs(out))*.8

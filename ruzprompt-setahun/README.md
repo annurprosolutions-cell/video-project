@@ -13,4 +13,4 @@ ffmpeg -i silent.mp4 -i assets/bed.wav -c:v copy -c:a aac -shortest ruzprompt-se
 node render.cjs stills   # snapshot semak layout
 ```
 
-Data dalam kad (RM 3,480, 482 aset, 124 staf dll), link `ruzprompt.my/demo` dan nombor WhatsApp ialah **dummy**. Tukar sebelum siar.
+Data dalam kad (RM 3,480, 482 aset, 124 staf dll), link `ruzprompt.my/demo` ialah **dummy** (nombor WhatsApp 011-2087 9149 ialah nombor sebenar). Tukar sebelum siar.

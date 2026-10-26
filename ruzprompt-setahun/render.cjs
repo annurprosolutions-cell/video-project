@@ -9,7 +9,7 @@ await page.goto('file://' + process.cwd() + '/ruzprompt.html', { waitUntil: 'net
 await page.evaluate(() => document.fonts.ready);
 if (mode === 'stills') {
   mkdirSync('stills', { recursive: true });
-  for (const t of [46, 49, 52, 55, 59.5]) {
+  for (const t of [2.5, 9, 12.5, 19, 22, 27, 31, 33.5, 38, 43, 49, 56, 59.5]) {
     await page.evaluate(t => setT(t), t);
     await page.screenshot({ path: `stills/s_${t}.png` });
   }
