@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:384px;height:864px;overflow:hidden;background:#000;font-family:Roboto,Inter,"Noto Sans",sans-serif;color:#1f2937}
+#ph{position:relative;width:384px;height:864px;overflow:hidden;background:#fff}
+#sb{position:absolute;top:0;left:0;width:384px;height:38px;background:#0d0d0f;color:#fff;font-size:12px;font-weight:500;padding:11px 14px;display:flex;justify-content:space-between}
+#cb{position:absolute;top:38px;left:0;width:384px;height:48px;background:#0d0d0f;color:#fff}
+#url{position:absolute;left:44px;top:3px;width:200px;height:40px;border-radius:20px;background:#2b2b30;font-size:14px;line-height:40px;padding-left:34px;white-space:nowrap;overflow:hidden}
+#cb i{position:absolute;top:8px;font-style:normal;font-size:24px}
+#nav{position:absolute;bottom:0;left:0;width:384px;height:46px;background:#fff;display:flex;justify-content:space-around;align-items:center;color:#222;font-size:18px;padding:0 70px}
+#vp{position:absolute;top:86px;left:0;width:384px;height:732px;overflow:hidden;background:linear-gradient(180deg,#eef0fb,#e4e9fa)}
+#doc{position:absolute;top:0;left:0;width:384px;padding:12px 10px 11px}
+.card{background:#fff;border-radius:16px;box-shadow:0 10px 25px rgba(60,70,140,.18);padding:18px}
+#intro{height:333px;text-align:center;padding-top:26px}
+.logos{display:flex;justify-content:space-around;align-items:center;height:60px;padding:0 60px;margin-bottom:18px}
+#intro h1{font-size:17px;font-weight:500;line-height:24px;color:#1f2937}
+#intro .y{color:#2563eb;font-weight:700;font-size:14px;margin-top:18px}
+#intro .s{font-size:13px;margin-top:11px}
+.btn{display:inline-block;margin-top:24px;padding:0 25px;height:46px;line-height:46px;border-radius:10px;color:#fff;font-weight:600;font-size:14px;background:linear-gradient(90deg,#2563eb,#4f46e5);box-shadow:0 6px 12px rgba(79,70,229,.35)}
+#lc{height:460px;position:absolute;left:10px;top:12px;width:364px}
+#lc h2{text-align:center;font-size:18px;font-weight:500;margin-top:-1px}
+#lc label{display:block;font-size:11px;margin-top:21px}
+#inp{height:41px;border:1px solid #d1d5db;border-radius:8px;margin-top:7px;font-size:13px;line-height:39px;padding-left:13px;color:#9ca3af}
+#lst{height:298px;margin-top:19px;overflow:hidden;position:relative}
+#lstin{position:absolute;top:0;left:0;right:0}
+.it{height:60px;margin-bottom:10px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:8px;padding:12px 12px;position:relative}
+.it b{font-weight:400;font-size:12px;display:block;color:#111}
+.it span{font-size:10px;color:#6b7280;display:block;margin-top:3px}
+.it em{position:absolute;right:13px;top:20px;font-style:normal;font-weight:700;font-size:12px;color:#2563eb}
+.it.sel{background:#e8eefc;border-color:#93a8ee}
+#sc{position:absolute;left:10px;top:492px;width:364px;height:306px;text-align:center;padding-top:20px;opacity:0}
+#sc h3{font-size:15px;font-weight:500}
+#pick{margin-top:11px;height:65px;background:#eef2ff;border-radius:6px;padding-top:15px}
+#pick b{display:block;color:#1e3a8a;font-size:13px;font-weight:600}
+#pick span{font-size:11px;color:#444;display:block;margin-top:5px}
+#sc p{font-size:14px;margin-top:20px}
+.pb{height:37px;border-radius:8px;color:#fff;font-size:12px;font-weight:600;line-height:37px;margin-top:12px;box-shadow:0 4px 8px rgba(0,0,0,.12)}
+.g{background:linear-gradient(90deg,#16a34a,#059669);margin-top:15px}
+.p{background:linear-gradient(90deg,#9333ea,#7c3aed)}
+.tk{font-size:12px;text-decoration:underline;color:#555;margin-top:15px}
+.ov{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none}
+.md{position:absolute;left:20px;width:345px;background:#fff;border-radius:12px;text-align:center;opacity:0}
+#ld{top:288px;height:157px}
+.spin{width:40px;height:40px;border-radius:50%;border:3px solid transparent;border-top-color:#2563eb;border-left-color:#2563eb;margin:32px auto 0}
+#ld h4{font-size:14.5px;font-weight:500;margin-top:23px}
+#ld p{font-size:12px;color:#6b7280;margin-top:13px}
+#ok{top:220px;height:293px;padding-top:34px}
+#ok .ck{color:#16a34a;font-size:38px;line-height:38px}
+#ok .bj{color:#16a34a;font-weight:700;font-size:14px;margin-top:12px}
+#ok .n{font-size:12px;margin-top:20px;color:#374151}
+#ok .c{font-size:12px;margin-top:12px;color:#374151}
+#ok .j{font-size:12px;margin-top:14px;color:#2563eb;font-weight:500}
+#ok .d{font-size:10px;color:#6b7280;margin-top:21px}
+#ok .bs{margin-top:20px;display:flex;justify-content:center;gap:9px}
+#ok .bs div{height:31px;line-height:31px;border-radius:6px;color:#fff;font-size:12px;font-weight:500;padding:0 18px}
+/* terma */
+#tm{top:150px;height:408px;padding:22px 20px 0;text-align:left}
+#tm h4{font-size:16px;font-weight:600;text-align:center}
+#tm .bx{margin-top:14px;height:222px;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;overflow:hidden;padding:12px;font-size:11px;line-height:16px;color:#374151}
+#tm .bx ol{padding-left:16px}#tm li{margin-bottom:6px}
+#tm .cb{display:flex;gap:10px;margin-top:14px;font-size:11.5px;line-height:15px;align-items:flex-start}
+#tm .box{flex:none;width:18px;height:18px;border:2px solid #9ca3af;border-radius:4px;color:#fff;font-size:13px;line-height:14px;text-align:center}
+#tm .row{display:flex;gap:9px;margin-top:16px}
+#tm .row div{height:38px;line-height:38px;border-radius:8px;text-align:center;font-size:13px;font-weight:600;color:#fff}
+#tap{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(80,90,120,.35);border:2px solid rgba(255,255,255,.7);opacity:0}
+</style></head><body>
+<div id="ph">
+ <div id="sb"><span id="clk">11:57 ▮</span><span>▂▄▆ ▂▄▆ ⌔ 87</span></div>
+ <div id="cb"><i style="left:12px">⌂</i><div id="url">undian.sksekolah.my</div><i style="left:262px">+</i><i style="left:310px;font-size:15px;top:12px;border:2px solid #fff;border-radius:5px;width:24px;height:24px;line-height:19px;text-align:center">11</i><i style="left:362px">⋮</i></div>
+ <div id="vp"><div id="doc">
+  <div class="card" id="intro">
+   <div class="logos">
+    <svg width="70" height="26" viewBox="0 0 70 26"><circle cx="11" cy="11" r="9" fill="#d33"/><circle cx="11" cy="11" r="4" fill="#fff"/><text x="24" y="20" font-size="11" font-weight="700" fill="#222" font-family="sans-serif">Pengawas</text></svg>
+    <svg width="42" height="52" viewBox="0 0 42 52"><path d="M3 4h36v26c0 10-9 17-18 20C12 47 3 40 3 30z" fill="#e9b923" stroke="#2c4a9a" stroke-width="3"/><circle cx="21" cy="24" r="9" fill="#2c4a9a"/><path d="M15 24l4 4 8-9" stroke="#fff" stroke-width="2.5" fill="none"/></svg>
+   </div>
+   <h1>UNDIAN PEMILIHAN CALON KETUA PENGAWAS DAN PENOLONG KETUA PENGAWAS SEKOLAH</h1>
+   <div class="y">BAGI SESI 2026</div>
+   <div class="s">SK TAMAN CONTOH JAYA</div>
+   <div class="btn" id="mula">MULA MENGUNDI</div>
+  </div>
+ </div>
+ <div id="lc" class="card" style="opacity:0"><h2>Pelajar Yang Di Undi</h2><label>Cari Nama Pelajar:</label><div id="inp">Taip nama pelajar untuk mencari...</div><div id="lst"><div id="lstin"></div></div></div>
+ <div id="sc" class="card"><h3>Pelajar Dipilih:</h3><div id="pick"><b>AISYA NURSABRINA BINTI MOHD HAKIMI</b><span>5 MELATI</span></div><p>Jawatan Yang Diundi:</p><div class="pb g">Ketua Pengawas Sekolah</div><div class="pb p">Penolong Ketua Pengawas Sekolah</div><div class="tk">Tukar Pelajar</div></div>
+ <div class="ov" id="ovT"></div>
+ <div class="md" id="tm">
+  <h4>Terma &amp; Syarat Pengundian</h4>
+  <div class="bx"><ol>
+   <li>Undian ini hanya untuk pemilihan calon Ketua Pengawas dan Penolong Ketua Pengawas Sekolah sesi 2026.</li>
+   <li>Setiap pengundi dibenarkan mengundi <b>SATU (1)</b> kali sahaja bagi setiap jawatan.</li>
+   <li>Undian adalah rahsia. Pilihan anda tidak akan dikongsi kepada pelajar lain.</li>
+   <li>Data digunakan untuk tujuan pengiraan undian sahaja dan tidak akan didedahkan kepada pihak ketiga.</li>
+   <li>Undian yang telah dihantar tidak boleh diubah atau dibatalkan.</li>
+   <li>Keputusan muktamad ditentukan oleh pihak sekolah.</li>
+  </ol></div>
+  <div class="cb"><div class="box" id="chk"></div><div>Saya telah membaca dan bersetuju dengan terma dan syarat di atas.</div></div>
+  <div class="row"><div style="background:#6b7280;flex:1">Batal</div><div id="stj" style="background:#2563eb;flex:1.6;opacity:.45">Saya Setuju</div></div>
+ </div>
+ <div class="ov" id="ovL"></div><div class="md" id="ld"><div class="spin" id="sp"></div><h4>Menghantar Data...</h4><p>Sila tunggu sebentar</p></div>
+ <div class="ov" id="ovS"></div><div class="md" id="ok"><div class="ck">✓</div><div class="bj">Berjaya!</div><div class="n">AISYA NURSABRINA BINTI MOHD HAKIMI</div><div class="c">5 MELATI</div><div class="j">Jawatan: Ketua Pengawas Sekolah</div><div class="d">Data telah berjaya disimpan.</div><div class="bs"><div style="background:#16a34a">Pengundi Seterusnya</div><div style="background:#6b7280">Tutup</div></div></div>
+ <div id="tap"></div>
+ </div>
+ <div id="nav"><span>■</span><span>◉</span><span>◀</span></div>
+</div>
+<script>
+const N=["ADAM HAIKAL BIN ROSLAN","MUHAMMAD DANISH BIN KAMARUDIN","MUHAMMAD IRFAN BIN SALLEH","NUR AINA BINTI SAHARUDIN","NUR SYAFIQAH BINTI ZULKIFLI","AMIR HAFIZ BIN OTHMAN","SITI HAJAR BINTI MANSOR","FARHAN ZIKRI BIN ABDULLAH","LIYANA SOFEA BINTI RAZALI","HARITH IMRAN BIN YUSOF","DAMIA NATASYA BINTI AZMAN","ARIF DANIAL BIN HASSAN","NUR IZZATI BINTI MOKHTAR","KAVIN A/L SELVAM","PRIYA A/P RAJENDRAN","WAN AZRIEL BIN WAN HUSIN","QISTINA BATRISYIA BINTI NOR","ZAFRAN HAKIM BIN SHAMSUDDIN","SHARIFAH ALYA BINTI SYED AMIN","HAIKAL IRSYAD BIN FAUZI","NUR MEDINA BINTI HAMDAN","MUHAMMAD ZIKRY BIN TAIB","DARSHAN A/L KUMARESAN","NUR ARISSA DHIA BINTI SAMAD","AISYA NURSABRINA BINTI MOHD HAKIMI","HANIS KHALISYA BINTI AHMAD ZAKI","SOFEA ANISA BINTI RIDUAN","AINA BATRISYA BINTI KAMAL"];
+const L=document.getElementById('lstin');
+N.forEach((n,i)=>{const d=document.createElement('div');d.className='it';d.id='i'+i;d.innerHTML=`<b>${n}</b><span>${i<12?'5 CEMPAKA':'5 MELATI'}</span><em>${i+1}</em>`;L.appendChild(d)});
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ramp=(t,a,b)=>{const x=cl((t-a)/(b-a));return x*x*(3-2*x)};
+const lerp=(a,b,k)=>a+(b-a)*k;
+// pixel: item pitch 70. item 24 (idx 23) top=1610. Terpilih = idx 24 (No.25)
+function tap(t,a,x,y){const e=$('tap');const k=(t-a)/0.45;if(k>0&&k<1){e.style.opacity=Math.sin(k*Math.PI);e.style.left=x+'px';e.style.top=y+'px';return true}return false}
+function setT(t){
+ $('clk').textContent=(t>=4?'11:58':'11:57')+' ▮';
+ // 0-4 intro ; 3.6 tap mula
+ const intro=$('intro'); intro.style.display=t<4.1?'block':'none';
+ const lc=$('lc'); lc.style.opacity=t>=4.1?1:0;
+ // terma popup 4.1 - 6.3
+ const tm=$('tm'),ovT=$('ovT');
+ let tmo=ramp(t,4.1,4.4)-ramp(t,6.1,6.4);
+ tm.style.opacity=tmo;ovT.style.opacity=tmo;ovT.style.background='rgba(0,0,0,.5)';
+ const chk=t>5.2;$('chk').style.cssText=chk?'background:#2563eb;border-color:#2563eb':'';$('chk').textContent=chk?'✓':'';
+ $('stj').style.opacity=chk?1:.45;
+ // list scroll (list inner px) 6.3-9.0 : 0 -> 1610-0 ; sedikit overshoot
+ let s=0;
+ s=lerp(0,1610,ramp(t,6.4,8.6));
+ // lepas pilih, scroll item 25 ke atas (10.0-11.2): top idx24=1680
+ s=lerp(s,1610+40,ramp(t,10.2,11.3));
+ $('lstin').style.top=(-s)+'px';
+ $('i24').className='it'+(t>=9.4?' sel':'');
+ // panel dipilih
+ $('sc').style.opacity=ramp(t,9.5,9.9);
+ // page scroll
+ let ps=lerp(0,58,ramp(t,9.9,10.6));ps=lerp(ps,77,ramp(t,11.8,12.4));
+ $('lc').style.top=(12-ps)+'px';$('sc').style.top=(492-ps)+'px';$('doc').style.top=(-ps)+'px';
+ // tap indicators
+ let ts=tap(t,3.55,192,297)||tap(t,5.0,48,450)||tap(t,5.8,253,506)||tap(t,9.25,200,250)||tap(t,14.4,192,603);
+ if(!ts)$('tap').style.opacity=0;
+ // loading 15.0-19.7
+ const ld=(t>=15.0&&t<19.7)?1:0;
+ $('ovL').style.opacity=ld;$('ld').style.opacity=ld;$('sp').style.transform=`rotate(${t*540}deg)`;
+ // success 19.7 - 32.5
+ const ok=t>=19.7?ramp(t,19.7,19.9):0;
+ $('ovS').style.opacity=ok;$('ok').style.opacity=ok;
+}
+setT(0);
+</script></body></html>

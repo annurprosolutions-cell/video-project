@@ -5,6 +5,7 @@ Koleksi video explainer. Setiap video ada folder sendiri: fail MP4 siap, source 
 | Video | Tempoh | Format |
 |---|---|---|
 | [claude-modes-explainer](claude-modes-explainer/) — beza Chat, Cowork, Artifact, Design, Claude Code, Schedule | 60s | 1080x1920 (Reels/TikTok) |
+| [undian-pengawas](undian-pengawas/) — recreate video undian calon pengawas (dummy), data dummy + popup terma | 32.5s | 768x1728 (portrait) |
 
 ## Render semula
 
