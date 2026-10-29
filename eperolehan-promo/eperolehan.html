@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<title>E-Perolehan Promo</title>
+<link href="fonts/fonts.css" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#0b1f3a;font-family:'Plus Jakarta Sans',DejaVu Sans,sans-serif}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;background:#0b1f3a}
+
+/* ===== APP REPLICA (1440x810 logical, scaled to 1920x1080) ===== */
+#appwrap{position:absolute;inset:0;opacity:0;visibility:hidden;transform-origin:50% 50%}
+.app{position:absolute;left:0;top:0;width:1440px;height:810px;transform-origin:0 0;transform:scale(1.33333);overflow:hidden;
+  --bg:#f3f2f1;--card:#fff;--tx:#1f2937;--mute:#6b7280;--line:#e5e7eb;--th:#f3f4f6;--stripe:rgba(249,250,251,.9);--input:#fff;--il:#d1d5db;--hover:#f9fafb;
+  background:var(--bg);color:var(--tx);font-size:14px;line-height:1.4}
+.app.dark{--bg:#111;--card:#252423;--tx:#f3f4f6;--mute:#9ca3af;--line:#374151;--th:#1f2937;--stripe:rgba(31,41,55,.45);--input:#1f2937;--il:#4b5563;--hover:#2d2c2b}
+.card{background:var(--card);border-radius:2px;box-shadow:0 1.2px 3.6px rgba(0,0,0,.1),0 6.4px 14.4px rgba(0,0,0,.13)}
+.side{position:absolute;left:0;top:0;bottom:0;width:232px;background:var(--card);border-right:1px solid var(--line);box-shadow:0 1.2px 3.6px rgba(0,0,0,.1),0 6.4px 14.4px rgba(0,0,0,.13);z-index:5}
+.brand{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--line)}
+.brand .l{display:flex;align-items:center;gap:12px}
+.logo{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#118dff,#7cc0ff);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex:none}
+.brand h1{font-size:20px;font-weight:800;background:linear-gradient(90deg,#118dff,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav{padding:16px;display:flex;flex-direction:column;gap:8px}
+.it{display:flex;align-items:center;gap:12px;padding:10px 12px;font-weight:600;color:var(--mute);border-left:4px solid transparent;border-radius:2px}
+.it.act{background:rgba(17,141,255,.1);color:#118dff;border-left-color:#118dff}
+.dm{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;color:var(--mute);font-weight:600}
+.main{position:absolute;left:232px;top:0;right:0;bottom:0}
+.hdr{position:absolute;left:32px;right:32px;top:24px;height:56px;display:flex;justify-content:space-between;align-items:center}
+.hdr small{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--mute)}
+.hdr h1{font-size:26px;font-weight:800;line-height:1.2}
+.hdr .u{display:flex;align-items:center;gap:12px;text-align:right}
+.hdr .u b{display:block;font-size:14px}.hdr .u span{font-size:12px;color:var(--mute)}
+.av{width:40px;height:40px;border-radius:50%;border:2px solid var(--il);display:flex;align-items:center;justify-content:center;background:var(--card);overflow:hidden}
+.views{position:absolute;left:32px;right:32px;top:100px;bottom:0}
+.view{position:absolute;inset:0;opacity:0;visibility:hidden}
+.vt{display:flex;justify-content:space-between;align-items:center;height:40px;margin-bottom:14px}
+.vt h2{font-size:24px;font-weight:700}
+.btn{display:inline-block;padding:8px 16px;border-radius:2px;font-size:14px;font-weight:600;white-space:nowrap}
+.btn.pri{background:#118dff;color:#fff}.btn.out{border:1px solid var(--il);color:var(--tx)}.btn.red{background:#dc2626;color:#fff}.btn.dk{background:#1f2937;color:#fff;padding:5px 12px;font-size:13px}
+.fb{display:flex;gap:16px;padding:12px 16px;margin-bottom:14px;border:1px solid var(--line)}
+.fb>div{flex:1}
+.fb label{display:block;font-size:11px;font-weight:700;color:var(--mute);text-transform:uppercase;margin-bottom:4px}
+.box{height:34px;border:1px solid var(--il);border-radius:2px;padding:0 10px;display:flex;align-items:center;background:var(--input);font-size:14px;color:var(--tx)}
+.box.sel:after{content:'';margin-left:auto;width:7px;height:7px;border:solid var(--mute);border-width:0 2px 2px 0;transform:rotate(45deg) translateY(-2px);flex:none}
+.box.focus{border-color:#118dff;box-shadow:0 0 0 1px #118dff}
+.box .ph{color:var(--mute)}
+.box.ta{height:84px;align-items:flex-start;padding-top:8px;white-space:pre-wrap;line-height:1.45}
+.box.big{height:36px}
+.caret{display:inline-block;width:1.5px;height:17px;background:#118dff;vertical-align:-3px;margin-left:1px}
+.tw{overflow:hidden;max-height:392px}
+table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap}
+thead{background:var(--th)}
+th{padding:10px 12px;font-weight:700;border-bottom:1px solid var(--line)}
+td{padding:9px 12px;border-bottom:1px solid var(--line)}
+tr.alt{background:var(--stripe)}
+.pl{font-family:'JetBrains Mono',DejaVu Sans Mono,monospace;font-weight:500;font-size:13px}
+.q{color:#118dff;font-weight:700}
+.lk{color:#118dff;font-weight:600}
+.lk.r{color:#dc2626;margin-left:16px}
+.bd{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+.g{background:#dcfce7;color:#166534}.r{background:#fee2e2;color:#991b1b}.y{background:#fef9c3;color:#854d0e}.b{background:#dbeafe;color:#1e40af}.n{background:#e5e7eb;color:#374151}
+.bd.out{animation:none}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.kpi{padding:14px 16px;border-left:4px solid}
+.kpi p{font-size:13px;color:var(--mute)}.kpi h3{font-size:25px;font-weight:800;margin-top:2px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.chart{height:330px;padding:14px 16px;display:flex;flex-direction:column}
+.chart h4{text-align:center;font-size:14px;font-weight:700;margin-bottom:6px}
+.legend{display:flex;justify-content:center;gap:18px;font-size:12px;color:var(--mute);margin-top:2px}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+.tabs{display:flex;gap:4px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.tab{padding:9px 16px;font-weight:600;color:var(--mute);border-bottom:2px solid transparent;white-space:nowrap}
+.tab.act{color:#118dff;border-bottom-color:#118dff}
+.tab span{margin-left:6px;padding:1px 7px;border-radius:999px;font-size:11px;background:var(--th)}
+.tab.act span{background:rgba(17,141,255,.12)}
+/* modal */
+.ov{position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding-bottom:64px;opacity:0;visibility:hidden;z-index:50}
+.mod{background:var(--card);width:672px;border-radius:2px;box-shadow:0 1.2px 3.6px rgba(0,0,0,.1),0 6.4px 14.4px rgba(0,0,0,.13);position:relative}
+.mh{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);font-size:18px;font-weight:700}
+.mb{padding:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.fg{margin-bottom:12px;position:relative}.fg.full{grid-column:1/3}
+.fg label{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;margin-bottom:4px;color:var(--tx)}
+.fg label em{color:#ef4444;font-style:normal;margin-left:3px}
+.fg label .mini{font-size:11px;padding:2px 8px;background:#118dff;color:#fff;border-radius:2px;font-weight:600}
+.rel{position:relative}
+.dd{position:absolute;left:0;right:0;top:100%;margin-top:2px;background:var(--card);border:1px solid var(--il);box-shadow:0 10px 28px rgba(0,0,0,.3);z-index:9;opacity:0;visibility:hidden}
+.opt{padding:8px 10px;font-size:14px}
+.opt.hv{background:#118dff;color:#fff}
+.mf{display:flex;justify-content:flex-end;gap:12px;margin-top:10px}
+.banner{display:flex;justify-content:space-between;align-items:center;background:#eff6ff;border:1px solid #dbeafe;padding:12px 16px;margin-bottom:14px;border-radius:2px}
+.app.dark .banner{background:rgba(30,64,175,.25);border-color:#1e3a8a}
+.dr{display:flex;justify-content:space-between;gap:16px;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+.dr span:first-child{color:var(--mute)}.dr span:last-child{font-weight:600;text-align:right}
+.dh{font-size:13px;font-weight:800;text-transform:uppercase;color:#118dff;margin:0 0 4px}
+.dbody{overflow:hidden;max-height:500px;padding:16px}
+.press{transform:scale(.94)}
+
+/* ===== overlays ===== */
+#cursor{position:absolute;left:0;top:0;width:36px;height:36px;z-index:40;opacity:0;pointer-events:none;filter:drop-shadow(0 3px 5px rgba(0,0,0,.35))}
+.rip{position:absolute;border-radius:50%;border:4px solid #118dff;z-index:39;opacity:0;pointer-events:none;width:20px;height:20px;margin:-10px 0 0 -10px}
+#cap{position:absolute;left:50%;bottom:44px;transform:translateX(-50%);z-index:45;display:flex;align-items:center;gap:20px;background:rgba(9,24,48,.94);color:#fff;border-radius:22px;padding:16px 32px 16px 18px;max-width:1520px;box-shadow:0 12px 40px rgba(0,0,0,.35);opacity:0}
+#cap .n{width:48px;height:48px;border-radius:50%;background:#118dff;font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center;flex:none}
+#cap b{font-size:30px;font-weight:800;display:block;line-height:1.15}
+#cap span{font-size:26px;font-weight:500;color:#cfe3ff;display:block;line-height:1.3;margin-top:2px}
+#tag{position:absolute;right:26px;bottom:26px;z-index:46;background:rgba(255,255,255,.92);color:#334155;font-weight:700;font-size:17px;padding:8px 16px;border-radius:999px;opacity:0;border:1px solid #cbd5e1}
+
+/* scenes */
+.scn{position:absolute;inset:0;opacity:0;visibility:hidden;z-index:30;overflow:hidden}
+.dark-bg{background:linear-gradient(135deg,#0b1f3a 0%,#0a4fa8 62%,#118dff 100%);color:#fff}
+.blob{position:absolute;border-radius:50%;filter:blur(110px);opacity:.5}
+.lg{display:flex;align-items:center;gap:22px}
+.lg .logo{width:84px;height:84px;font-size:44px}
+.lg h1{font-size:64px;font-weight:800;letter-spacing:-1px;color:#fff;background:none;-webkit-text-fill-color:#fff}
+.kick{font-size:28px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#9fd0ff}
+.h1{font-size:92px;line-height:1.08;font-weight:800;letter-spacing:-1.5px}
+.sub{font-size:38px;line-height:1.4;color:#cfe3ff;font-weight:500}
+.flow{display:flex;align-items:center;gap:0}
+.fchip{display:flex;align-items:center;gap:16px;padding:20px 30px;border-radius:999px;font-size:32px;font-weight:700;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.25);color:#dbeafe;white-space:nowrap}
+.fchip i{font-style:normal;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800}
+.fchip.on{background:#fff;color:#0a4fa8;border-color:#fff}.fchip.on i{background:#118dff;color:#fff}
+.fline{width:54px;height:4px;background:rgba(255,255,255,.3);border-radius:2px;flex:none}
+.pcard{position:absolute;width:520px;height:380px;border-radius:32px;background:#fff;box-shadow:0 24px 60px rgba(10,30,60,.14);padding:44px 42px;border:2px solid #e5e7eb}
+.pcard .ic{width:96px;height:96px;border-radius:28px;display:flex;align-items:center;justify-content:center;margin-bottom:28px}
+.pcard .ic svg{width:54px;height:54px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.pcard b{display:block;font-size:42px;font-weight:800;color:#1f2937;margin-bottom:10px}
+.pcard span{display:block;font-size:30px;line-height:1.35;color:#6b7280;font-weight:500}
+.fchips{display:flex;flex-wrap:wrap;gap:18px}
+.feat{padding:16px 26px;border-radius:999px;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.3);font-size:30px;font-weight:700;color:#fff}
+.cta{display:inline-block;padding:26px 54px;border-radius:999px;background:#fff;color:#0a4fa8;font-size:42px;font-weight:800;box-shadow:0 14px 40px rgba(0,0,0,.3)}
+</style></head>
+<body>
+<div id="stage">
+
+  <div id="appwrap"><div class="app" id="app"></div></div>
+
+  <!-- INTRO -->
+  <div class="scn dark-bg" id="intro">
+    <div class="blob" style="width:900px;height:900px;background:#118dff;left:-250px;top:-300px"></div>
+    <div class="blob" style="width:800px;height:800px;background:#7c3aed;right:-300px;bottom:-350px;opacity:.35"></div>
+    <div id="i-logo" class="lg" style="position:absolute;left:160px;top:130px"><div class="logo">E</div><h1>E-Perolehan</h1></div>
+    <div id="i-kick" class="kick" style="position:absolute;left:160px;top:300px">Sistem tracking kerja</div>
+    <div id="i-h1" class="h1" style="position:absolute;left:160px;top:360px;width:1500px">Jejak setiap kerja, dari sebutharga sampai bayaran masuk.</div>
+    <div id="i-sub" class="sub" style="position:absolute;left:160px;top:650px;width:1600px">Sistem monitoring job untuk bengkel, kontraktor dan pembekal perkhidmatan.</div>
+    <div id="i-flow" class="flow" style="position:absolute;left:160px;top:840px">
+      <div class="fchip"><i>1</i>Job Intake</div><div class="fline"></div>
+      <div class="fchip"><i>2</i>Operation</div><div class="fline"></div>
+      <div class="fchip"><i>3</i>Report &amp; Claim</div><div class="fline"></div>
+      <div class="fchip"><i>4</i>Bayaran Diterima</div>
+    </div>
+  </div>
+
+  <!-- PAIN -->
+  <div class="scn" id="pain" style="background:#f3f2f1">
+    <div id="p-title" style="position:absolute;left:0;right:0;top:120px;text-align:center;font-size:72px;font-weight:800;color:#1f2937;letter-spacing:-1px">Masih urus kerja guna WhatsApp dan Excel?</div>
+    <div class="pcard" id="pc1" style="left:150px;top:350px"><div class="ic" style="background:#f2994a"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><b>Kerja tercicir</b><span>Sebutharga dan arahan kerja bertimbun dalam chat.</span></div>
+    <div class="pcard" id="pc2" style="left:700px;top:350px"><div class="ic" style="background:#e044a7"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div><b>Invois lewat</b><span>Tak ingat job mana yang belum diinvois.</span></div>
+    <div class="pcard" id="pc3" style="left:1250px;top:350px"><div class="ic" style="background:#dc2626"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><b>Bayaran tak dikesan</b><span>Susah nak tahu siapa belum bayar dan dah berapa hari.</span></div>
+    <div id="p-ans" style="position:absolute;left:0;right:0;top:360px;text-align:center;opacity:0">
+      <div style="font-size:110px;font-weight:800;letter-spacing:-2px;background:linear-gradient(90deg,#118dff,#0a4fa8);-webkit-background-clip:text;background-clip:text;color:transparent">E-Perolehan satukan semuanya.</div>
+      <div style="font-size:48px;font-weight:600;color:#6b7280;margin-top:26px">Satu sistem. Setiap status jelas.</div>
+    </div>
+  </div>
+
+  <!-- OUTRO -->
+  <div class="scn dark-bg" id="outro">
+    <div class="blob" style="width:900px;height:900px;background:#118dff;right:-250px;top:-300px"></div>
+    <div class="blob" style="width:800px;height:800px;background:#7c3aed;left:-300px;bottom:-350px;opacity:.35"></div>
+    <div id="o-logo" class="lg" style="position:absolute;left:160px;top:120px"><div class="logo">E</div><h1>E-Perolehan</h1></div>
+    <div id="o-h1" class="h1" style="position:absolute;left:160px;top:290px;width:1500px;font-size:104px">Semua kerja, satu sistem.</div>
+    <div id="o-sub" class="sub" style="position:absolute;left:160px;top:440px;width:1400px">Dari sebutharga sampai bayaran masuk, setiap status jelas dan mudah dijejak.</div>
+    <div id="o-feat" class="fchips" style="position:absolute;left:160px;top:620px;width:1700px">
+      <div class="feat">Dashboard masa nyata</div><div class="feat">Status claim automatik</div><div class="feat">Pelbagai cawangan</div><div class="feat">Sesuai di telefon</div><div class="feat">Mod gelap</div>
+    </div>
+    <div id="o-cta" style="position:absolute;left:160px;top:860px"><span class="cta">Dapatkan demo percuma</span></div>
+    <div id="o-note" style="position:absolute;right:60px;bottom:40px;font-size:22px;color:#9fd0ff;font-weight:600">Semua data dalam video ini ialah data contoh.</div>
+  </div>
+
+  <div id="cap"><div class="n"></div><div><b></b><span></span></div></div>
+  <div id="tag">Data contoh (dummy)</div>
+  <div id="cursor"><svg width="36" height="36" viewBox="0 0 24 24"><path d="M5 3l14 8-6 2 4 7-3 1-4-7-5 4z" fill="#111" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+</div>
+
+<script>
+/* ---------- utils ---------- */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const prog=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const win=(t,a,b,fi=.25,fo=.2)=>clamp((t-a)/fi)*clamp((b-t)/fo);
+const show=(el,o)=>{el.style.opacity=o;el.style.visibility=o>.001?'visible':'hidden'};
+const money=n=>'RM '+Number(n).toLocaleString('en-US');
+const fmt=iso=>{if(!iso)return '';const [y,m,d]=iso.split('-');return d+'/'+m+'/'+y};
+const REF='2026-10-29';
+
+/* ---------- dummy data ---------- */
+const CO={A:'Seri Maju Logistik Sdn Bhd',B:'Bina Jaya Enterprise Sdn Bhd',C:'Perbadanan Maju Negeri',D:'Lembaga Pembangunan Contoh',E:'Koperasi Transit Harmoni'};
+const SH={A:'Seri Maju',B:'Bina Jaya',C:'Maju Negeri',D:'LP Contoh',E:'Transit Harmoni'};
+const ONL='Online (Portal E-Perolehan)';
+const DELIV=[ONL,'Hand Delivery','Pos/Kurier','By Online MBSP SPI','Whatsapp PDF'];
+const BR=['Shah Alam','Johor Bahru','Kuantan','Kuching'];
+const J=(q,co,br,pl,di,jt,act,amt,is,o={})=>({q,co,br,pl,di,jt,act,amt,is,fm:'',st:'',fi:'',os:'',orm:'',inv:'',dl:'',cs:'Pending',ac:'',crm:'',...o});
+const JOBS=[
+ J('QTN-1036','C','Johor Bahru','WAK 1902','2026-09-25','Job Order','Proceed',5400,'Proceed',{fm:'Encik Kumar',st:'2026-09-26',fi:'2026-09-29',os:'Completed',orm:'Servis berkala siap',inv:'2026-10-01',dl:'Hand Delivery',cs:'Payment Received',ac:5400,crm:'Bayaran penuh diterima'}),
+ J('QTN-1037','D','Shah Alam','BLW 4850','2026-09-28','Verbal','Proceed',7300,'Proceed',{fm:'Encik Azman',st:'2026-09-29',fi:'2026-10-03',os:'Completed',inv:'2026-10-05',dl:'Pos/Kurier'}),
+ J('QTN-1038','A','Shah Alam','WXY 1234','2026-10-01','Job Order','Proceed',8500,'Proceed',{fm:'Encik Roslan',st:'2026-10-02',fi:'2026-10-06',os:'Completed',inv:'2026-10-08',dl:ONL}),
+ J('QTN-1039','B','Johor Bahru','VAB 5521','2026-10-03','Job Order','Proceed',12400,'Proceed',{fm:'Encik Kumar',st:'2026-10-04',fi:'2026-10-24',os:'Completed',inv:'2026-10-26',dl:ONL}),
+ J('QTN-1040','C','Kuantan','QKL 8890','2026-10-05','Job Order','Proceed',6200,'Proceed',{fm:'Encik Hafiz',st:'2026-10-20',os:'In Progress'}),
+ J('QTN-1041','D','Kuching','JTR 4412','2026-10-07','Verbal','Inspection',4800,'Pending'),
+ J('QTN-1042','E','Shah Alam','PKR 3308','2026-10-08','Job Order','Proceed',9300,'Proceed',{fm:'Encik Azman',st:'2026-10-09',fi:'2026-10-14',os:'Completed'}),
+ J('QTN-1043','A','Johor Bahru','WDD 2201','2026-10-10','Job Order','Proceed',15000,'Proceed',{fm:'Encik Roslan',st:'2026-10-11',fi:'2026-10-13',os:'Completed',orm:'Siap dan diuji, unit sedia serah',inv:'2026-10-14',dl:ONL,cs:'Payment Received',ac:15000,crm:'Bayaran penuh diterima'}),
+ J('QTN-1044','B','Kuantan','BMK 9087','2026-10-12','Verbal','Inspection',3900,'Not Proceed'),
+ J('QTN-1045','C','Shah Alam','VCC 6420','2026-10-14','Job Order','Proceed',7750,'Proceed',{os:'Pending'}),
+ J('QTN-1046','E','Kuching','SKB 1175','2026-10-16','Job Order','Proceed',5600,'Proceed',{fm:'Encik Hafiz',st:'2026-10-27',os:'In Progress'}),
+ J('QTN-1047','D','Johor Bahru','WRA 3099','2026-10-18','Job Order','Proceed',11200,'Proceed',{fm:'Encik Kumar',st:'2026-10-19',fi:'2026-10-23',os:'Completed',inv:'2026-10-24',dl:'Whatsapp PDF'}),
+ J('QTN-1048','A','Kuantan','PNA 5543','2026-10-20','Verbal','Inspection',6800,'Pending'),
+ J('QTN-1049','B','Shah Alam','VDE 7712','2026-10-22','Job Order','Proceed',9900,'Proceed',{fm:'Encik Azman',st:'2026-10-23',fi:'2026-10-27',os:'Completed',inv:'2026-10-28',dl:ONL}),
+];
+const NEW=J('QTN-1050','B','Johor Bahru','VFT 6081','2026-10-29','Job Order','Proceed',7800,'Proceed',{os:'Pending',later:true});
+const ALL=[NEW,...JOBS];
+const CL=[
+ ['Seri Maju Logistik Sdn Bhd','Shah Alam','Encik Faizal Hamid','011-2345 6701'],
+ ['Bina Jaya Enterprise Sdn Bhd','Johor Bahru','Puan Siti Norhayati','012-7788 1020'],
+ ['Perbadanan Maju Negeri','Kuantan','Encik Khairul Anuar','013-4402 9988'],
+ ['Lembaga Pembangunan Contoh','Kuching','Puan Jessica Ling','016-3300 4512'],
+ ['Koperasi Transit Harmoni','Shah Alam','Encik Ravi Chandran','017-6609 3321'],
+];
+const cs=j=>{if(j.cs==='Payment Received')return 'Payment Received';if(!j.inv)return 'Pending Invoice';const d=Math.ceil((new Date(REF)-new Date(j.inv))/864e5);return d>7?'Outstanding':'Pending Payment'};
+const stage=j=>{if(j.is==='Not Proceed')return 'Not Proceed';if(j.is!=='Proceed')return 'Pending Intake';if(j.os==='Completed')return cs(j);return 'Operation: '+(j.os||'Pending')};
+const bcls=s=>s==='Payment Received'?'g':s==='Outstanding'?'r':s==='Not Proceed'?'n':s.startsWith('Operation')?'b':'y';
+const badge=(s,c,id='',extra='')=>`<span class="bd ${c}" ${id?`id="${id}"`:''}${extra}>${s}</span>`;
+
+/* ---------- build app ---------- */
+const IC={
+ dash:'<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>',
+ users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+ intake:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" x2="12" y1="18" y2="12"/><line x1="9" x2="15" y1="15" y2="15"/>',
+ op:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+ claim:'<path d="M2 12h4l2-9 5 18 3-10h6"/>',
+ list:'<line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/>',
+ menu:'<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>',
+ moon:'<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+ sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+ x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+};
+const svg=(k,s=20)=>`<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
+const TABS=[['dash','Dashboard','dash'],['ref','Client References','users'],['intake','Job Intake','intake'],['op','Operation','op'],['claim','Report & Claim','claim'],['hist','Senarai Job','list']];
+
+const fld=(id,label,o={})=>{
+  const cls=['box',o.sel?'sel':'',o.ta?'ta':'',o.big?'big':''].join(' ');
+  const dd=o.opts?`<div class="dd" id="dd-${id}">${o.opts.map(x=>`<div class="opt">${x}</div>`).join('')}</div>`:'';
+  return `<div class="fg ${o.full?'full':''}"><label><span>${label}${o.req?'<em>*</em>':''}</span>${o.mini||''}</label><div class="rel"><div class="${cls}" id="${id}"><span class="v"></span></div>${dd}</div></div>`;
+};
+const filterBar=(a,b)=>`<div class="fb card"><div><label>Tapis Syarikat / Agensi</label><div class="box sel">Semua Syarikat</div></div>${b?`<div><label>${b}</label><div class="box sel">Semua Status</div></div>`:''}</div>`;
+const th=a=>`<thead><tr>${a.map(x=>`<th>${x}</th>`).join('')}</tr></thead>`;
+
+function buildApp(){
+  const app=$('#app');
+  /* sidebar + header */
+  let h=`<aside class="side"><div class="brand"><div class="l"><div class="logo">E</div><h1>E-Perolehan</h1></div><span style="color:var(--mute)">${svg('menu')}</span></div><nav class="nav">${TABS.map(([id,l,ic])=>`<div class="it" id="nav-${id}">${svg(ic)}<span>${l}</span></div>`).join('')}</nav><div class="dm" id="dark-toggle"><span id="dm-ic"></span><span id="dm-tx"></span></div></aside>`;
+  h+=`<div class="main"><div class="hdr"><div><small>Workspace</small><h1 id="ptitle">Dashboard</h1></div><div class="u"><div><b>Admin Portal</b><span>Bengkel Maju Auto</span></div><div class="av"><div class="logo" style="width:100%;height:100%;border-radius:0">B</div></div></div></div><div class="views">`;
+
+  /* DASHBOARD */
+  const D=JOBS;
+  const tot=D.reduce((s,j)=>j.cs==='Payment Received'?s+Number(j.ac||0):s,0);
+  const outAmt=D.reduce((s,j)=>cs(j)==='Outstanding'?s+j.amt:s,0);
+  const act=D.filter(j=>j.is==='Proceed'&&j.os!=='Completed').length;
+  const done=D.filter(j=>j.os==='Completed').length;
+  const pend=D.filter(j=>j.is==='Pending').length;
+  window.DASH={tot,outAmt,act,done,pend};
+  h+=`<div class="view" id="v-dash"><div class="vt" style="margin-bottom:12px"><h2>Executive Dashboard</h2></div>
+   <div class="kpis">
+    <div class="kpi card" id="kpi-1" style="border-color:#12a89d"><p>Total Kutipan Diterima</p><h3 id="k1">RM 0</h3></div>
+    <div class="kpi card" id="kpi-2" style="border-color:#e044a7"><p>Outstanding (&gt; 7 Hari)</p><h3 id="k2">RM 0</h3></div>
+    <div class="kpi card" id="kpi-3" style="border-color:#118dff"><p>Job Dalam Proses (Operation)</p><h3 id="k3">0</h3></div>
+    <div class="kpi card" id="kpi-4" style="border-color:#f2c80f"><p>Job Selesai (Menunggu Bayaran)</p><h3 id="k4">0</h3></div>
+   </div>
+   <div class="charts">
+    <div class="chart card" id="donut"><h4>Status Job Keseluruhan</h4><svg id="dsvg" width="100%" height="230" viewBox="0 0 480 190"></svg><div class="legend"><span><i style="background:#f2c80f"></i>Pending Intake</span><span><i style="background:#118dff"></i>In Progress</span><span><i style="background:#12a89d"></i>Completed/Claim</span></div></div>
+    <div class="chart card" id="bars"><h4>Nilai Quotation Mengikut Agensi</h4><svg id="bsvg" width="100%" height="262" viewBox="0 0 540 220"></svg></div>
+   </div></div>`;
+
+  /* CLIENT REFERENCES */
+  const crow=(c,i,id='')=>`<tr ${id?`id="${id}"`:''} data-r><td class="q">${c[0]}</td><td>${c[1]}</td><td>${c[2]}</td><td>${c[3]}</td><td><span class="lk">Lihat &amp; Kemaskini</span></td></tr>`;
+  h+=`<div class="view" id="v-ref"><div class="vt"><h2>Client References</h2><span class="btn pri" id="btn-addclient">+ Tambah Klien</span></div>${filterBar()}
+   <div class="card tw"><table id="t-ref">${th(['Syarikat / Agensi','Cawangan','PIC Name','No. Telefon','Tindakan'])}<tbody>${crow(['Mega Saujana Logistik Sdn Bhd','Shah Alam','Puan Aisyah Rahman','012-345 6789'],0,'cl-new')}${CL.map((c,i)=>crow(c,i)).join('')}</tbody></table></div></div>`;
+
+  /* JOB INTAKE */
+  const order={Pending:1,Proceed:2,'Not Proceed':3};
+  const intake=[...ALL].sort((a,b)=>order[a.is]-order[b.is]);
+  const ibadge=s=>badge(s,s==='Proceed'?'g':s==='Pending'?'y':'r');
+  h+=`<div class="view" id="v-intake"><div class="vt"><h2>Job Intake</h2><span class="btn pri" id="btn-addjob">+ Tambah Job Baru</span></div>${filterBar(0,'Tapis Status')}
+   <div class="card tw"><table id="t-intake">${th(['No. Sebutharga','Syarikat / Agensi','No. Plat','Tarikh Intake','Status Intake','Tindakan'])}<tbody>${intake.map(j=>`<tr data-r id="in-${j.q}"><td class="q">${j.q}</td><td>${CO[j.co]}</td><td class="pl">${j.pl}</td><td>${fmt(j.di)}</td><td>${ibadge(j.is)}</td><td><span class="lk" id="inact-${j.q}">Kemaskini</span><span class="lk r">Padam</span></td></tr>`).join('')}</tbody></table></div></div>`;
+
+  /* OPERATION */
+  const proc=ALL.filter(j=>j.is==='Proceed');
+  const oo={Pending:1,'In Progress':2,Completed:3};
+  const ops=[...proc].sort((a,b)=>(oo[a.os||'Pending'])-(oo[b.os||'Pending']));
+  const cnt=b=>b==='Semua'?proc.length:proc.filter(j=>j.br===b).length;
+  const obd=j=>j.q==='QTN-1050'?'':badge(j.os||'Pending',j.os==='Completed'?'g':j.os==='In Progress'?'b':'n');
+  h+=`<div class="view" id="v-op"><div class="vt" style="height:34px;margin-bottom:10px"><h2>Operation Department</h2></div>
+   <div class="tabs">${['Semua',...BR].map(b=>`<div class="tab" id="tb-${b.replace(/ /g,'')}" data-b="${b}">${b}<span>${cnt(b)}</span></div>`).join('')}</div>${filterBar(0,'Tapis Status')}
+   <div class="card tw" style="max-height:330px"><table id="t-op">${th(['No. Sebutharga','No. Plat','PIC Foreman','Mula','Tamat','Status Operasi','Tindakan'])}<tbody>${ops.map(j=>{
+     const n=j.q==='QTN-1050';
+     return `<tr data-r data-br="${j.br}" id="op-${j.q}"><td class="q">${j.q}</td><td class="pl" style="font-weight:700">${j.pl}</td><td id="${n?'op1050-f':''}">${n?'-':(j.fm||'-')}</td><td id="${n?'op1050-s':''}">${n?'-':(fmt(j.st)||'-')}</td><td id="${n?'op1050-e':''}">${n?'-':(fmt(j.fi)||'-')}</td><td>${n?'<span class="bd n" id="op1050-b">Pending</span>':obd(j)}</td><td><span class="lk" id="${n?'op1050-act':''}">Update Kerja</span></td></tr>`}).join('')}</tbody></table></div></div>`;
+
+  /* CLAIM */
+  const comp=ALL.filter(j=>j.os==='Completed'||j.q==='QTN-1050');
+  const co2={Outstanding:1,'Pending Invoice':2,'Pending Payment':2,'Payment Received':3};
+  const claims=[...comp].sort((a,b)=>co2[cs(a)]-co2[cs(b)]);
+  let oi=0;
+  h+=`<div class="view" id="v-claim"><div class="vt"><h2>Report &amp; Claim</h2></div>${filterBar(0,'Tapis Status')}
+   <div class="card tw"><table id="t-claim">${th(['No. Sebutharga','Agensi','Tarikh Invois','Status Kutipan','Jumlah (RM)','Tindakan'])}<tbody>${claims.map(j=>{
+     const n=j.q==='QTN-1050',s=cs(j),c=s==='Payment Received'?'g':s==='Outstanding'?'r':'y';
+     const bid=s==='Outstanding'?`cl-out${++oi}`:(n?'cl1050-b':'');
+     return `<tr data-r id="cl-${j.q}"><td class="q">${j.q}</td><td>${CO[j.co]}</td><td id="${n?'cl1050-d':''}">${j.inv?`<span style="color:#16a34a">${fmt(j.inv)}</span>`:'<span style="color:#9ca3af">Pending</span>'}</td><td>${badge(s,c,bid,' style="font-weight:700"')}</td><td>${j.ac?money(j.ac):'-'}</td><td><span class="lk" ${n?'id="cl1050-act"':''}>Urus Claim</span></td></tr>`}).join('')}</tbody></table></div></div>`;
+
+  /* HISTORY */
+  const hist=[...ALL].sort((a,b)=>b.di.localeCompare(a.di));
+  h+=`<div class="view" id="v-hist"><div class="vt"><h2>Senarai Keseluruhan Job <span id="h-cnt" style="font-size:16px;font-weight:500;color:var(--mute)"></span></h2></div>
+   <div class="fb card"><div><label>Cari</label><div class="box" id="h-search"><span class="v"></span></div></div><div><label>Tapis Syarikat / Agensi</label><div class="box sel">Semua Syarikat</div></div><div><label>Tapis Peringkat</label><div class="box sel">Semua Peringkat</div></div></div>
+   <div class="card tw"><table id="t-hist">${th(['No. Sebutharga','Syarikat / Agensi','Cawangan','No. Plat','Tarikh Intake','Peringkat'])}<tbody>${hist.map(j=>{const s=j.q==='QTN-1050'?'Pending Payment':stage(j);return `<tr data-r id="hrow-${j.q.slice(4)}" data-s="${(j.q+CO[j.co]+j.pl+j.br).toLowerCase()}"><td class="q">${j.q}</td><td>${CO[j.co]}</td><td>${j.br}</td><td class="pl">${j.pl}</td><td>${fmt(j.di)}</td><td>${badge(s,bcls(s))}</td></tr>`}).join('')}</tbody></table></div></div>`;
+  h+=`</div></div>`;
+
+  /* MODALS */
+  const ov=(id,title,body,xid='')=>`<div class="ov" id="${id}"><div class="mod"><div class="mh"><span>${title}</span><span style="color:var(--mute)" ${xid?`id="${xid}"`:''}>${svg('x',24)}</span></div>${body}</div></div>`;
+  h+=ov('m-client','Tambah Klien Baharu',`<div class="mb"><div class="grid2">
+    ${fld('f-cc','Nama Syarikat / Agensi',{req:1,full:1,big:1})}${fld('f-caddr','Alamat Penuh',{full:1,ta:1}).replace('height:84px','')}
+    ${fld('f-cbr','Cawangan / Lokasi',{big:1})}${fld('f-cpic','Nama PIC (Person In Charge)',{big:1})}
+    ${fld('f-ctel1','No. Tel (Pejabat)',{big:1})}${fld('f-ctel2','No. Tel (Bimbit / Mobile)',{big:1})}
+    ${fld('f-cmail','Alamat Emel',{big:1})}${fld('f-cportal','Portal',{big:1})}
+    ${fld('f-cuser','Nama Pengguna (Username)',{big:1})}${fld('f-cpass','Kata Laluan (Password)',{big:1})}
+   </div><div class="mf" style="margin-top:0"><span class="btn out">Batal</span><span class="btn pri" id="btn-saveclient">Simpan Klien</span></div></div>`);
+
+  h+=ov('m-intake','Borang Job Intake',`<div class="mb"><div class="grid2">
+    ${fld('f-qn','No. Sebutharga',{req:1,big:1})}
+    ${fld('f-co','Company / Agency',{req:1,sel:1,big:1,opts:Object.values(CO),mini:'<span class="mini">+ Klien Baru</span>'})}
+    ${fld('f-plate','Vehicle (No Plat)',{req:1,big:1})}
+    ${fld('f-branch','Branch / Cawangan',{req:1,sel:1,big:1,opts:BR})}
+    ${fld('f-idate','Tarikh Intake',{req:1,big:1})}
+    ${fld('f-jtype','Job Order / Verbal',{req:1,sel:1,big:1})}
+    ${fld('f-action','Proceed atau Inspection',{req:1,sel:1,big:1})}
+    ${fld('f-amt','Quotation Amount (RM)',{req:1,big:1})}
+    ${fld('f-istat','Status Intake',{req:1,sel:1,big:1,opts:['Pending','Proceed','Not Proceed']})}
+   </div><div class="mf"><span class="btn out">Batal</span><span class="btn pri" id="btn-saveintake">Simpan Intake</span></div></div>`);
+
+  h+=ov('m-op','Update Operasi: QTN-1050',`<div class="mb"><div class="grid2">
+    ${fld('f-fore','PIC Foreman',{req:1,big:1})}
+    ${fld('f-ostat','Status Operation Job',{req:1,sel:1,big:1,opts:['Pending','In Progress','Completed']})}
+    ${fld('f-start','Start Operate',{big:1})}${fld('f-finish','Finish Operate',{big:1})}
+    ${fld('f-oremark','Remark (Jika perlu)',{full:1,ta:1})}
+   </div><div class="mf" style="margin-top:0"><span class="btn out">Batal</span><span class="btn pri" id="btn-saveop">Simpan Operasi</span></div></div>`);
+
+  h+=ov('m-claim','Urus Claim &amp; Invois: QTN-1050',`<div class="mb"><div class="banner"><span>Tarikh Upload: <strong id="up-txt"></strong></span><span class="btn dk" id="btn-upload">Simulasi Upload Invois</span></div><div class="grid2">
+    ${fld('f-deliv','Cara Penghantaran Invois',{sel:1,big:1,opts:DELIV})}
+    ${fld('f-ckstat','Status Kutipan Koleksi',{sel:1,big:1})}
+    ${fld('f-camt','Amount Collection Diterima (RM)',{big:1})}<div></div>
+    ${fld('f-cremark','Remark Claim',{full:1,ta:1})}
+   </div><div class="mf" style="margin-top:0"><span class="btn out">Batal</span><span class="btn pri" id="btn-saveclaim">Simpan Maklumat Claim</span></div></div>`);
+
+  const d=JOBS.find(j=>j.q==='QTN-1043');
+  const dr=(l,v)=>`<div class="dr"><span>${l}</span><span>${v||'-'}</span></div>`;
+  h+=ov('m-detail','Maklumat Penuh: QTN-1043',`<div class="dbody"><div id="d-in"><div style="margin-bottom:12px">${badge('Payment Received','g',' ','style="font-weight:700"')}</div>
+   <div class="dh">1. Job Intake</div><div style="margin-bottom:16px">${dr('No. Sebutharga',d.q)}${dr('Syarikat / Agensi',CO[d.co])}${dr('Cawangan',d.br)}${dr('No. Plat',d.pl)}${dr('Tarikh Intake',fmt(d.di))}${dr('Job Order / Verbal',d.jt)}${dr('Proceed / Inspection',d.act)}${dr('Quotation Amount',money(d.amt))}${dr('Status Intake',d.is)}</div>
+   <div class="dh">2. Operation</div><div style="margin-bottom:16px">${dr('PIC Foreman',d.fm)}${dr('Start Operate',fmt(d.st))}${dr('Finish Operate',fmt(d.fi))}${dr('Status Operasi',d.os)}${dr('Remark',d.orm)}</div>
+   <div class="dh">3. Report &amp; Claim</div><div style="margin-bottom:10px">${dr('Tarikh Invois',fmt(d.inv))}${dr('Cara Penghantaran Invois',d.dl)}${dr('Status Kutipan','Payment Received')}${dr('Amount Collection Diterima',money(d.ac))}${dr('Remark Claim',d.crm)}</div>
+   <div style="display:flex;justify-content:space-between;margin-top:20px"><span class="btn red">Padam Job</span><span class="btn out">Tutup</span></div></div></div>`,'h-close');
+  app.innerHTML=h;
+}
+
+/* ---------- field state ---------- */
+const FS={
+ 'f-cc':{init:'',ev:[{k:'type',a:28.6,b:29.9,text:'Mega Saujana Logistik Sdn Bhd'}]},
+ 'f-caddr':{init:'',ev:[{k:'type',a:30.0,b:30.8,text:'No. 8, Jalan Contoh 1/2, Shah Alam'}]},
+ 'f-cbr':{init:'',ev:[{k:'type',a:30.85,b:31.2,text:'Shah Alam'}]},
+ 'f-cpic':{init:'',ev:[{k:'type',a:31.25,b:31.9,text:'Puan Aisyah Rahman'}]},
+ 'f-ctel1':{init:'',ev:[{k:'set',t:32.0,text:'03-5544 1200'}]},
+ 'f-ctel2':{init:'',ev:[{k:'type',a:32.05,b:32.5,text:'012-345 6789'}]},
+ 'f-cmail':{init:'',ev:[{k:'set',t:32.6,text:'aisyah@contoh.my'}]},
+ 'f-cportal':{init:'(pilihan)',ph:1,ev:[]},
+ 'f-cuser':{init:'',ev:[{k:'set',t:32.75,text:'admin_contoh'}]},
+ 'f-cpass':{init:'',ev:[{k:'set',t:32.85,text:'••••••••'}]},
+
+ 'f-qn':{init:'QTN-1050',keep:1,ev:[]},
+ 'f-co':{init:'-- Sila Pilih --',ph:1,ev:[{k:'set',t:38.9,text:CO.B}]},
+ 'f-plate':{init:'',ev:[{k:'type',a:39.3,b:40.1,text:'VFT 6081'}]},
+ 'f-branch':{init:'-- Sila Pilih --',ph:1,ev:[{k:'set',t:41.1,text:'Johor Bahru'}]},
+ 'f-idate':{init:'29/10/2026',keep:1,ev:[]},
+ 'f-jtype':{init:'-- Sila Pilih --',ph:1,ev:[{k:'set',t:41.5,text:'Job Order'}]},
+ 'f-action':{init:'-- Sila Pilih --',ph:1,ev:[{k:'set',t:41.9,text:'Proceed'}]},
+ 'f-amt':{init:'',ev:[{k:'type',a:42.25,b:42.85,text:'7800'}]},
+ 'f-istat':{init:'Pending',keep:1,ev:[{k:'set',t:43.75,text:'Proceed'}]},
+
+ 'f-fore':{init:'',ev:[{k:'type',a:51.85,b:52.65,text:'Encik Azman'}]},
+ 'f-ostat':{init:'Pending',keep:1,ev:[{k:'set',t:53.9,text:'Completed'}]},
+ 'f-start':{init:'',ev:[{k:'set',t:54.3,text:'27/10/2026'}]},
+ 'f-finish':{init:'',ev:[{k:'set',t:54.8,text:'29/10/2026'}]},
+ 'f-oremark':{init:'',ev:[{k:'type',a:55.2,b:56.5,text:'Servis penuh siap, unit sedia serah.'}]},
+
+ 'f-deliv':{init:'-- Sila Pilih --',ph:1,ev:[{k:'set',t:66.6,text:ONL}]},
+ 'f-ckstat':{init:'Pending',keep:1,ev:[]},
+ 'f-camt':{init:'',ev:[]},
+ 'f-cremark':{init:'',ev:[{k:'type',a:67.2,b:68.4,text:'Invois dihantar melalui portal.'}]},
+
+ 'h-search':{init:'Nama syarikat, no. sebutharga, plat...',ph:1,ev:[{k:'type',a:73.0,b:73.9,text:'Seri Maju',ph0:1}]},
+};
+const DD=[['f-co',37.9,38.95,1],['f-branch',40.3,41.1,1],['f-istat',43.05,43.75,1],['f-ostat',53.0,53.9,2],['f-deliv',65.65,66.6,0]];
+const MOD=[['m-client',28.1,33.7],['m-intake',37.1,44.6],['m-op',51.3,57.3],['m-claim',63.6,69.2],['m-detail',75.1,79.6]];
+const TABAT=[[0,'dash'],[25.6,'ref'],[35.6,'intake'],[47.6,'op'],[59.6,'claim'],[71.6,'hist']];
+const CLICKS=[25.6,28.0,33.6,35.6,37.0,37.9,38.9,40.3,41.1,41.5,41.9,43.05,43.75,44.5,47.6,49.5,51.2,53.0,53.9,54.3,54.8,57.2,59.6,63.5,64.6,65.65,66.6,69.1,71.6,72.8,75.0,79.55,80.6];
+
+function fieldRender(id,t){
+  const f=FS[id], box=document.getElementById(id), v=box.querySelector('.v');
+  let txt=f.init, ph=!!f.ph, focus=false, caret=false;
+  for(const e of f.ev){
+    if(e.k==='set'){ if(t>=e.t){txt=e.text;ph=false;if(t<e.t+.7)focus=true;} }
+    else if(t>=e.a){
+      const p=prog(t,e.a,e.b); txt=e.text.slice(0,Math.round(e.text.length*p)); ph=txt===''&&!!f.init&&e.ph0;
+      if(e.ph0&&txt==='') {txt=f.init;ph=true}
+      else ph=false;
+      if(t<e.b+.35){focus=true;caret=true}
+    }
+  }
+  for(const [fid,a,b] of DD) if(fid===id&&t>=a&&t<b) focus=true;
+  caret=caret&&(Math.floor(t*3.5)%2===0||t<0.01);
+  v.innerHTML=(ph?`<span class="ph">${txt}</span>`:txt)+(caret?'<i class="caret"></i>':'');
+  box.classList.toggle('focus',focus);
+}
+
+/* ---------- charts ---------- */
+function drawDonut(s){
+  const R=62,C=2*Math.PI*R,cx=240,cy=92;
+  const vals=[DASH.pend,DASH.act,DASH.done],cols=['#f2c80f','#118dff','#12a89d'],tot=vals.reduce((a,b)=>a+b,0);
+  let out=`<g transform="rotate(-90 ${cx} ${cy})">`,acc=0;
+  vals.forEach((v,i)=>{const L=v/tot*C,start=acc;acc+=L;const vis=clamp(s*C-start,0,L);const len=Math.max(0,vis-3);
+    out+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${cols[i]}" stroke-width="26" stroke-dasharray="${len} ${C}" stroke-dashoffset="${-start}"/>`});
+  out+='</g>';
+  acc=0;
+  vals.forEach((v,i)=>{const mid=(acc+v/2)/tot*2*Math.PI-Math.PI/2;acc+=v;const rr=R+34;const x=cx+Math.cos(mid)*rr,y=cy+Math.sin(mid)*rr+5;
+    out+=`<text x="${x}" y="${y}" text-anchor="middle" font-size="15" font-weight="700" fill="${cols[i]}" opacity="${clamp((s-.85)/.15)}">${v}</text>`});
+  $('#dsvg').innerHTML=out;
+}
+function drawBars(t){
+  const data=Object.keys(CO).map(k=>[SH[k],JOBS.filter(j=>j.co===k).reduce((s,j)=>s+j.amt,0)]);
+  const max=40000,x0=64,y0=186,H=150,pw=470;
+  let o='';
+  for(let i=0;i<=4;i++){const y=y0-H*i/4;o+=`<line x1="${x0}" x2="${x0+pw}" y1="${y}" y2="${y}" stroke="currentColor" stroke-dasharray="3 3" opacity=".2"/><text x="${x0-8}" y="${y+4}" text-anchor="end" font-size="12" fill="currentColor" opacity=".7">${i*10000/1000}k</text>`}
+  data.forEach(([n,v],i)=>{const cxx=x0+pw/5*(i+.5);const p=eo(prog(t,15.2+i*.18,16.2+i*.18));const h=v/max*H*p;
+    o+=`<rect x="${cxx-27}" y="${y0-h}" width="54" height="${h}" fill="#118dff" rx="2"/><text x="${cxx}" y="${y0+18}" text-anchor="middle" font-size="12" fill="currentColor" opacity=".8">${n}</text><text x="${cxx}" y="${y0-h-6}" text-anchor="middle" font-size="12" font-weight="700" fill="#118dff" opacity="${p>.95?1:0}">${(v/1000).toFixed(1)}k</text>`});
+  $('#bsvg').innerHTML=o;
+}
+
+/* ---------- captions ---------- */
+const CAPS=[
+ [13.6,19.6,1,'Dashboard','Satu skrin untuk semua: kutipan diterima, tunggakan, kerja sedang jalan dan kerja siap.'],
+ [19.7,25.3,1,'Dashboard','Carta status dan nilai sebutharga ikut agensi. Tunggakan lebih 7 hari dikira automatik.'],
+ [25.9,28.0,2,'Client References','Simpan maklumat klien dan PIC di satu tempat.'],
+ [28.2,35.3,2,'Client References','Klien baharu boleh ditambah dalam beberapa saat.'],
+ [35.9,37.0,3,'Job Intake','Setiap sebutharga direkod di sini sebelum kerja bermula.'],
+ [37.2,44.5,3,'Job Intake','Isi syarikat, no. plat, cawangan dan nilai. Status: Pending, Proceed atau Not Proceed.'],
+ [44.8,47.4,3,'Job Intake','Status Proceed terus masuk ke senarai Operation.'],
+ [47.9,51.2,4,'Operation','Setiap cawangan ada tab sendiri. Senang nampak kerja yang belum bermula.'],
+ [51.4,57.3,4,'Operation','Tetapkan foreman, tarikh mula dan siap, kemudian tukar status kerja.'],
+ [57.6,59.4,4,'Operation','Kerja yang siap automatik masuk ke Report & Claim.'],
+ [59.9,63.4,5,'Report & Claim','Merah berkelip bermaksud Outstanding: lebih 7 hari selepas invois dan belum bayar.'],
+ [63.7,69.2,5,'Report & Claim','Rekod tarikh invois, cara hantar dan status bayaran.'],
+ [69.5,71.4,5,'Report & Claim','Invois direkod, kiraan hari tunggakan bermula.'],
+ [71.9,75.0,6,'Senarai Job','Cari ikut no. sebutharga, plat atau syarikat.'],
+ [75.3,79.6,6,'Senarai Job','Klik satu job untuk lihat perjalanan penuhnya: Intake, Operation dan Claim.'],
+ [80.0,82.3,6,'Senarai Job','Ada mod gelap untuk kerja waktu malam.'],
+];
+
+/* ---------- cursor keyframes (arrival time, target) ---------- */
+const KF=[
+ {t:14.2,x:1160,y:430},
+ {t:16.0,sel:'#kpi-1',dx:60,dy:30},{t:18.0,sel:'#donut',dx:0,dy:0},{t:20.2,sel:'#bars',dx:90,dy:-20},{t:22.2,sel:'#kpi-2',dx:70,dy:36},
+ {t:25.45,sel:'#nav-ref'},
+ {t:27.6,sel:'#btn-addclient'},
+ {t:28.45,sel:'#f-cc'},{t:29.95,sel:'#f-caddr'},{t:30.8,sel:'#f-cbr'},{t:31.2,sel:'#f-cpic'},{t:31.95,sel:'#f-ctel2'},{t:33.3,sel:'#btn-saveclient'},
+ {t:34.6,sel:'#cl-new',dx:-200},
+ {t:35.45,sel:'#nav-intake'},
+ {t:36.8,sel:'#btn-addjob'},
+ {t:37.85,sel:'#f-co'},{t:38.85,sel:'#dd-f-co .opt:nth-child(2)'},
+ {t:39.2,sel:'#f-plate'},
+ {t:40.25,sel:'#f-branch'},{t:41.05,sel:'#dd-f-branch .opt:nth-child(2)'},
+ {t:41.45,sel:'#f-jtype'},{t:41.85,sel:'#f-action'},
+ {t:42.15,sel:'#f-amt'},
+ {t:43.0,sel:'#f-istat'},{t:43.7,sel:'#dd-f-istat .opt:nth-child(2)'},
+ {t:44.35,sel:'#btn-saveintake'},
+ {t:46.1,sel:'#inact-QTN-1050'},
+ {t:47.45,sel:'#nav-op'},
+ {t:49.35,sel:'#tb-JohorBahru'},
+ {t:51.05,sel:'#op1050-act'},
+ {t:51.75,sel:'#f-fore'},
+ {t:52.95,sel:'#f-ostat'},{t:53.85,sel:'#dd-f-ostat .opt:nth-child(3)'},
+ {t:54.25,sel:'#f-start'},{t:54.75,sel:'#f-finish'},
+ {t:55.1,sel:'#f-oremark'},
+ {t:57.1,sel:'#btn-saveop'},
+ {t:58.3,sel:'#op1050-b'},
+ {t:59.45,sel:'#nav-claim'},
+ {t:60.9,sel:'#cl-out1'},{t:62.6,sel:'#cl-out2'},
+ {t:63.35,sel:'#cl1050-act'},
+ {t:64.5,sel:'#btn-upload'},
+ {t:65.6,sel:'#f-deliv'},{t:66.55,sel:'#dd-f-deliv .opt:nth-child(1)'},
+ {t:67.1,sel:'#f-cremark'},
+ {t:68.95,sel:'#btn-saveclaim'},
+ {t:70.2,sel:'#cl1050-b'},
+ {t:71.45,sel:'#nav-hist'},
+ {t:72.7,sel:'#h-search'},
+ {t:74.8,sel:'#hrow-1043',dx:-120},
+ {t:79.4,sel:'#h-close'},
+ {t:80.45,sel:'#dark-toggle',dx:-60},
+ {t:81.5,x:1250,y:520},
+];
+
+/* ---------- main render ---------- */
+let KFR=null;
+function render(t,noCursor){
+  const app=$('#app'),wrap=$('#appwrap');
+  /* scenes */
+  show($('#intro'),win(t,-1,7.2,.01,.5));
+  const ip=n=>({o:clamp((t-n)/.5),y:(1-eo(clamp((t-n)/.6)))*30});
+  [['i-logo',.2],['i-kick',.7],['i-h1',1.0],['i-sub',2.1]].forEach(([id,n])=>{const e=$('#'+id),p=ip(n);e.style.opacity=p.o;e.style.transform=`translateY(${p.y}px)`});
+  $('#i-flow').style.opacity=clamp((t-3.2)/.5);
+  $$('#i-flow .fchip').forEach((c,i)=>c.classList.toggle('on',t>=3.8+i*.65));
+  /* pain */
+  show($('#pain'),win(t,6.8,13.2,.5,.5));
+  $('#p-title').style.opacity=clamp((t-7.1)/.5)*(1-clamp((t-10.9)/.4));
+  [['pc1',7.9],['pc2',8.7],['pc3',9.5]].forEach(([id,n],i)=>{const e=$('#'+id),p=eo(clamp((t-n)/.6)),q=clamp((t-10.8)/.5);
+    e.style.opacity=p*(1-q);e.style.transform=`translateY(${(1-p)*50+q*-30}px) scale(${1-q*.08}) rotate(${(i-1)*(1-p)*3}deg)`});
+  $('#p-ans').style.opacity=clamp((t-11.3)/.5)*(1-clamp((t-12.6)/.5));
+  $('#p-ans').style.transform=`translateY(${(1-eo(clamp((t-11.3)/.7)))*30}px)`;
+  /* outro */
+  show($('#outro'),win(t,82.4,99,.6,.1));
+  const op=(id,n)=>{const e=$('#'+id),p=eo(clamp((t-n)/.6));e.style.opacity=p;e.style.transform=`translateY(${(1-p)*30}px)`};
+  op('o-logo',82.8);op('o-h1',83.1);op('o-sub',83.7);op('o-cta',85.5);op('o-note',85.5);
+  $$('#o-feat .feat').forEach((f,i)=>{const p=eo(clamp((t-(84.2+i*.2))/.5));f.style.opacity=p;f.style.transform=`translateY(${(1-p)*24}px)`});
+
+  /* app */
+  const aOn=win(t,12.8,82.7,.6,.01);
+  show(wrap,aOn);
+  const sc=1+(1-eo(clamp((t-12.8)/.8)))*.05; wrap.style.transform=`scale(${sc})`;
+  app.classList.toggle('dark',t>=80.6);
+  $('#dm-ic').innerHTML=svg(t>=80.6?'sun':'moon');$('#dm-tx').textContent=t>=80.6?'Mod Terang':'Mod Gelap';
+  let tab='dash';for(const [a,id] of TABAT) if(t>=a) tab=id;
+  TABS.forEach(([id,l])=>{$('#nav-'+id).classList.toggle('act',id===tab)});
+  $('#ptitle').textContent=TABS.find(x=>x[0]===tab)[1];
+  TABAT.forEach(([a,id],i)=>{const b=i<TABAT.length-1?TABAT[i+1][0]:999;const o=clamp((t-a-(i?0:-9))/.25)*clamp((b+.15-t)/.15);show($('#v-'+id),i===0?clamp((t-13.0)/.4)*clamp((b+.15-t)/.15):o)});
+
+  /* dashboard */
+  const kc=eo(prog(t,13.8,15.9));
+  $('#k1').textContent=money(Math.round(DASH.tot*kc));$('#k2').textContent=money(Math.round(DASH.outAmt*kc));
+  $('#k3').textContent=Math.round(DASH.act*kc);$('#k4').textContent=Math.round(DASH.done*kc);
+  const pulse=win(t,21.6,24.9,.3,.3)*(.6+.4*Math.sin(t*8));
+  $('#kpi-2').style.boxShadow=pulse>0.01?`0 0 0 ${3*pulse}px rgba(224,68,167,${.7*pulse}),0 6.4px 14.4px rgba(0,0,0,.13)`:'';
+  drawDonut(eo(prog(t,15.0,17.2)));drawBars(t);
+
+  /* fields / dropdowns */
+  Object.keys(FS).forEach(id=>fieldRender(id,t));
+  DD.forEach(([id,a,b,hv])=>{const d=$('#dd-'+id);const o=win(t,a,b,.12,.05);show(d,o);
+    d.querySelectorAll('.opt').forEach((e,i)=>e.classList.toggle('hv',t>=a+.35&&i===hv))});
+  MOD.forEach(([id,a,b])=>{const o=win(t,a,b,.22,.18);const el=$('#'+id);show(el,o);const m=el.firstChild;const p=eo(clamp((t-a)/.3));m.style.transform=`translateY(${(1-p)*14}px) scale(${.97+.03*p})`});
+
+  /* new rows */
+  const flash=(el,at)=>{const f=clamp(1-(t-at)/2.2);el.style.background=f>0&&t>=at?`rgba(17,141,255,${.22*f})`:''};
+  const cn=$('#cl-new');cn.style.display=t>=33.8?'':'none';flash(cn,33.8);
+  const inn=$('#in-QTN-1050');inn.style.display=t>=44.7?'':'none';flash(inn,44.7);
+  /* operation */
+  const brF=t>=49.5?'Johor Bahru':'Semua';
+  $$('#t-op tbody tr').forEach(r=>r.style.display=(brF==='Semua'||r.dataset.br===brF)?'':'none');
+  $$('.tab').forEach(e=>e.classList.toggle('act',e.dataset.b===brF));
+  const od=t>=57.3, ob=$('#op1050-b');
+  $('#op1050-f').textContent=od?'Encik Azman':'-';$('#op1050-s').textContent=od?'27/10/2026':'-';$('#op1050-e').textContent=od?'29/10/2026':'-';
+  ob.textContent=od?'Completed':'Pending';ob.className='bd '+(od?'g':'n');
+  flash($('#op-QTN-1050'),57.3);
+  /* claim */
+  const cd=t>=69.2,cb=$('#cl1050-b');
+  cb.textContent=cd?'Pending Payment':'Pending Invoice';cb.className='bd y';
+  $('#cl1050-d').innerHTML=cd?'<span style="color:#16a34a">29/10/2026</span>':'<span style="color:#9ca3af">Pending</span>';
+  flash($('#cl-QTN-1050'),69.2);
+  const outs=$$('#t-claim .bd.r');outs.forEach(e=>{e.style.opacity=.55+.45*(.5+.5*Math.sin(t*7))});
+  const up=t>=64.6;$('#up-txt').innerHTML=up?'<span style="color:#16a34a">29/10/2026 (Completed)</span>':'<span style="color:#ef4444">Pending</span>';
+  $('#btn-upload').style.display=up?'none':'';
+  /* history filter */
+  const q=($('#h-search .v').textContent||'').trim().toLowerCase();
+  const typed=FS['h-search'].ev[0];const live=t>=typed.a?typed.text.slice(0,Math.round(typed.text.length*prog(t,typed.a,typed.b))).toLowerCase():'';
+  let n=0;$$('#t-hist tbody tr').forEach(r=>{const ok=!live||r.dataset.s.includes(live);r.style.display=ok?'':'none';if(ok)n++});
+  $('#h-cnt').textContent=`(${n} / ${ALL.length})`;
+  /* stripes */
+  $$('#app table').forEach(tb=>{let k=0;tb.querySelectorAll('tbody tr').forEach(r=>{if(r.style.display==='none')return;r.classList.toggle('alt',k%2===1);k++})});
+  /* detail scroll */
+  const db=$('#m-detail .dbody'),di=$('#d-in');const mx=Math.max(0,di.scrollHeight-(db.clientHeight-32));
+  di.style.transform=`translateY(${-mx*eio(prog(t,76.0,78.9))}px)`;
+
+  /* captions */
+  let cp=null;for(const c of CAPS) if(t>=c[0]&&t<c[1]) cp=c;
+  const cap=$('#cap');
+  if(cp){const o=clamp((t-cp[0])/.25)*clamp((cp[1]-t)/.2);cap.style.opacity=o;cap.style.transform=`translateX(-50%) translateY(${(1-o)*14}px)`;
+    cap.querySelector('.n').textContent=cp[2];cap.querySelector('b').textContent=cp[3];cap.querySelector('span').textContent=cp[4]}
+  else cap.style.opacity=0;
+  $('#tag').style.opacity=win(t,13.4,82.3,.5,.3);
+
+  /* cursor */
+  if(noCursor) return;
+  const cur=$('#cursor');
+  if(!KFR){cur.style.opacity=0;return}
+  const first=KFR[0],last=KFR[KFR.length-1];
+  let pos={x:first.x,y:first.y};
+  if(t>=first.t){
+    for(let i=0;i<KFR.length;i++){
+      const k=KFR[i];
+      if(t>=k.t){pos={x:k.x,y:k.y};continue}
+      const prev=KFR[i-1];const dur=Math.min(.95,k.t-prev.t);const s=k.t-dur;
+      if(t>s){const p=eio((t-s)/dur);pos={x:prev.x+(k.x-prev.x)*p,y:prev.y+(k.y-prev.y)*p-Math.sin(p*Math.PI)*18}}
+      else pos={x:prev.x,y:prev.y};
+      break;
+    }
+  }
+  const vis=win(t,first.t-.4,81.8,.4,.4);
+  cur.style.opacity=vis;
+  let pressed=CLICKS.some(c=>t>=c&&t<c+.16);
+  cur.style.transform=`translate(${pos.x-7}px,${pos.y-4}px) scale(${pressed?.88:1})`;
+  /* ripples */
+  $$('.rip').forEach(e=>e.remove());
+  for(const c of CLICKS){const age=t-c;if(age>=0&&age<.55){
+    // ripple at cursor position at click time
+    const kp=posAt(c);const r=document.createElement('div');r.className='rip';const p=age/.55;
+    r.style.left=kp.x+'px';r.style.top=kp.y+'px';r.style.opacity=(1-p)*.8;r.style.transform=`scale(${1+p*3})`;$('#stage').appendChild(r)}}
+}
+function posAt(t){
+  let pos={x:KFR[0].x,y:KFR[0].y};
+  for(let i=0;i<KFR.length;i++){const k=KFR[i];if(t>=k.t){pos={x:k.x,y:k.y};continue}
+    const prev=KFR[i-1];const dur=Math.min(.95,k.t-prev.t);const s=k.t-dur;
+    if(t>s){const p=eio((t-s)/dur);pos={x:prev.x+(k.x-prev.x)*p,y:prev.y+(k.y-prev.y)*p}}else pos={x:prev.x,y:prev.y};break}
+  return pos;
+}
+
+/* ---------- init ---------- */
+function resolve(){
+  KFR=null;
+  KF.forEach(k=>{
+    if(k.sel){render(k.t,true);const el=document.querySelector(k.sel);if(!el)throw new Error('missing '+k.sel);
+      const r=el.getBoundingClientRect();k.x=r.left+r.width/2+(k.dx||0);k.y=r.top+r.height/2+(k.dy||0);
+      if(r.width===0)throw new Error('zero rect '+k.sel+' @'+k.t)}
+  });
+  KFR=KF;
+}
+buildApp();
+window.ready=document.fonts.ready.then(()=>{resolve();render(0)});
+window.setT=t=>{render(t)};
+</script>
+</body></html>
