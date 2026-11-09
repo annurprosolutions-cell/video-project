@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<title>Cyber Attack Explainer</title>
+<style>
+:root{--bg:#070B16;--panel:#0F1830;--panel2:#142046;--line:#24346A;--ink:#F4F7FF;--mute:#8E9BC0;
+--green:#2CFFB0;--red:#FF4D5E;--amber:#FFC24B;--cyan:#4DB8FF;--violet:#9B7BFF}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--bg);font-family:'Inter','DejaVu Sans',sans-serif;color:var(--ink)}
+#fx{position:absolute;inset:0}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(77,184,255,.07) 2px,transparent 2px),linear-gradient(90deg,rgba(77,184,255,.07) 2px,transparent 2px);background-size:90px 90px;animation:gridmove 12s linear infinite}
+@keyframes gridmove{to{background-position:0 90px,90px 0}}
+.glow{position:absolute;border-radius:50%;opacity:.35}
+.g1{width:900px;height:900px;left:-300px;top:-200px;background:radial-gradient(circle,rgba(77,184,255,.55),transparent 65%);animation:drift 15s ease-in-out infinite alternate}
+.g2{width:900px;height:900px;right:-350px;bottom:-100px;background:radial-gradient(circle,rgba(155,123,255,.5),transparent 65%);animation:drift2 18s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(260px,300px)}}
+@keyframes drift2{to{transform:translate(-240px,-320px)}}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55));pointer-events:none}
+.flash{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 35%,rgba(255,77,94,.55));opacity:0;pointer-events:none}
+.scene{position:absolute;left:0;right:0;top:0;height:1290px;padding:175px 70px 0;display:flex;flex-direction:column;justify-content:center;align-items:stretch;opacity:0}
+h1{font-size:112px;line-height:1.02;font-weight:900;letter-spacing:-2px}
+h2{font-size:88px;line-height:1.05;font-weight:900;letter-spacing:-1.5px}
+h3{font-size:56px;line-height:1.1;font-weight:800}
+.c{text-align:center}
+.green{color:var(--green)}.red{color:var(--red)}.amber{color:var(--amber)}.cyan{color:var(--cyan)}.mute{color:var(--mute)}
+.chip{display:inline-block;align-self:center;border-radius:999px;padding:16px 34px;font-size:34px;font-weight:800;letter-spacing:3px;margin-bottom:26px}
+.chip.r{background:rgba(255,77,94,.16);color:var(--red);border:2px solid var(--red)}
+.chip.g{background:rgba(44,255,176,.14);color:var(--green);border:2px solid var(--green)}
+.chip.a{background:rgba(255,194,75,.14);color:var(--amber);border:2px solid var(--amber)}
+.chip.m{background:rgba(142,155,192,.14);color:var(--mute);border:2px solid var(--mute)}
+.chip.c2{background:rgba(77,184,255,.14);color:var(--cyan);border:2px solid var(--cyan)}
+.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:2px solid var(--line);border-radius:36px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+svg.i{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+/* feed posts */
+.post{padding:30px 34px;margin-top:20px;border-radius:30px;background:#fff;color:#16203C}
+.post .ph{display:flex;gap:18px;align-items:center}
+.av{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#6EA8FF,#9B7BFF);flex:none}
+.post b{font-size:30px;display:block}.post small{font-size:24px;color:#6B7699}
+.post p{font-size:44px;font-weight:900;line-height:1.12;margin-top:14px;color:#D4202F}
+.post .rx{font-size:26px;color:#6B7699;margin-top:12px;font-weight:600}
+/* headline cards */
+.hl{padding:42px 44px;border-radius:30px;border:4px solid var(--red);background:#1A0C16;margin-top:26px;position:relative}
+.hl .tag{position:absolute;top:-26px;left:34px;background:var(--red);color:#fff;font-size:26px;font-weight:900;padding:8px 20px;border-radius:10px;letter-spacing:2px}
+.hl p{font-size:64px;font-weight:900;line-height:1.08}
+.stamp{position:absolute;right:30px;bottom:-30px;border:5px solid var(--amber);color:var(--amber);font-size:34px;font-weight:900;padding:6px 18px;border-radius:12px;transform:rotate(-6deg);background:#14110A;letter-spacing:2px}
+/* stop */
+.stop{width:520px;height:520px;align-self:center;background:var(--red);clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);display:flex;align-items:center;justify-content:center;font-size:120px;font-weight:900;letter-spacing:2px;box-shadow:inset 0 0 0 20px rgba(255,255,255,.18)}
+/* game */
+.game{height:330px;border-radius:30px;background:linear-gradient(180deg,#1B2A12,#0B1208);border:3px solid #3A5A1E;position:relative;overflow:hidden;font-family:'DejaVu Sans Mono',monospace}
+.kill{position:absolute;right:24px;font-size:28px;font-weight:700;background:rgba(0,0,0,.55);padding:6px 14px;border-radius:6px;color:#E8FFC9}
+.hpb{position:absolute;left:26px;bottom:24px;width:340px;height:26px;border:3px solid #E8FFC9;border-radius:6px}
+.hpb i{display:block;height:100%;width:78%;background:#7BFF5A}
+.cross{position:absolute;left:50%;top:50%;width:140px;height:140px;margin:-70px 0 0 -70px;color:#E8FFC9}
+.bigx{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:360px;filter:drop-shadow(0 0 40px rgba(255,77,94,.8))}
+.bigx svg.i{stroke-width:2.6}
+.net{height:360px;border-radius:30px;position:relative;overflow:hidden}
+.pk{position:absolute;width:22px;height:22px;border-radius:50%;background:var(--red);box-shadow:0 0 18px var(--red)}
+@keyframes fly{0%{transform:translate(0,0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translate(var(--dx),var(--dy));opacity:0}}
+@keyframes blink{50%{opacity:.25}}
+/* days */
+.days{display:flex;gap:14px;justify-content:center}
+.day{width:118px;height:118px;border-radius:30px;border:3px solid var(--line);background:var(--panel);display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;color:var(--mute)}
+@keyframes dayon{to{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 0 30px rgba(255,77,94,.7)}}
+.globe{width:520px;height:520px;align-self:center;position:relative}
+/* timeline */
+.tl{position:relative;height:300px}
+.tl .ax{position:absolute;left:0;right:0;top:170px;height:8px;background:var(--line);border-radius:4px}
+.dot{position:absolute;top:158px;width:30px;height:30px;border-radius:50%;background:var(--red);box-shadow:0 0 16px var(--red)}
+.mark{position:absolute;top:70px;height:200px;width:6px;background:var(--cyan);left:612px;border-radius:3px}
+/* list rows */
+.row{display:flex;align-items:center;gap:22px;padding:12px 26px;margin-top:12px;border-radius:28px}
+.row .ic{width:64px;height:64px;border-radius:18px;background:rgba(44,255,176,.14);color:var(--green);font-size:38px;display:flex;align-items:center;justify-content:center;flex:none}
+.row b{font-size:36px;font-weight:800;flex:1;line-height:1.1}
+.row .ck{font-size:46px;color:var(--green)}
+.pathd{stroke-dasharray:1;stroke-dashoffset:1}
+@keyframes draw{to{stroke-dashoffset:0}}
+.lane{padding:34px 40px;margin-top:22px}
+.lane .hd{display:flex;align-items:center;gap:20px;font-size:44px;font-weight:900;letter-spacing:2px}
+.pbar{height:34px;border-radius:17px;background:#0A1226;border:2px solid var(--line);margin-top:22px;overflow:hidden}
+.pbar i{display:block;height:100%;width:100%;transform-origin:left;transform:scaleX(0);border-radius:17px}
+.tg{display:inline-flex;align-items:center;gap:12px;padding:12px 24px;border-radius:999px;font-size:34px;font-weight:700;margin:16px 12px 0 0}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes up{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.5)}70%{transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes slam{0%{opacity:0;transform:scale(3) rotate(-8deg)}60%{opacity:1;transform:scale(.94) rotate(0)}100%{opacity:1;transform:scale(1)}}
+@keyframes left{from{opacity:0;transform:translateX(-120px)}to{opacity:1;transform:none}}
+@keyframes right{from{opacity:0;transform:translateX(120px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes growy{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes dim{to{opacity:.3;filter:grayscale(1)}}
+@keyframes fin{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes fout{from{opacity:1}to{opacity:0;transform:translateY(-34px)}}
+@keyframes shake{0%,100%{transform:translate(0,0)}15%{transform:translate(-14px,8px)}30%{transform:translate(12px,-10px)}45%{transform:translate(-10px,-6px)}60%{transform:translate(9px,9px)}75%{transform:translate(-6px,4px)}}
+@keyframes punch{0%{transform:scale(1)}30%{transform:scale(1.07)}100%{transform:scale(1)}}
+@keyframes flashp{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes wd{to{color:#fff}}
+@keyframes wdz{0%{color:var(--dimc);transform:scale(1)}50%{transform:scale(1.14)}100%{color:var(--onc);transform:scale(1)}}
+/* captions */
+.cap{position:absolute;left:55px;width:880px;top:1300px;height:230px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:62px;line-height:1.14;font-weight:900;opacity:0;
+ -webkit-text-stroke:12px #050813;paint-order:stroke fill;letter-spacing:-.5px}
+.cap span{display:inline-block;color:rgba(255,255,255,.42);margin:0 .17em;white-space:pre}
+.cap span.on{color:#fff}
+.bar{position:absolute;left:0;top:0;height:10px;background:linear-gradient(90deg,var(--cyan),var(--green));transform-origin:left;width:100%}
+.brand{position:absolute;left:70px;top:112px;font-size:26px;font-weight:800;letter-spacing:4px;color:var(--mute);opacity:.9}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 2.5l8 3v6.2c0 5-3.4 8.4-8 9.8-4.6-1.4-8-4.8-8-9.8V5.5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5L19.5 7"/></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></symbol>
+<symbol id="bolt" viewBox="0 0 24 24"><path d="M13 2L5 14h6l-1 8 8-12h-6z"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="server" viewBox="0 0 24 24"><rect x="3" y="3.5" width="18" height="7" rx="2"/><rect x="3" y="13.5" width="18" height="7" rx="2"/><path d="M7 7h.01M7 17h.01"/></symbol>
+<symbol id="net" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="19" r="2.2"/><circle cx="19" cy="19" r="2.2"/><path d="M12 7.2v4.3M12 11.5l-6 6M12 11.5l6 6"/></symbol>
+<symbol id="gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.5M12 18.5V22M2 12h3.5M18.5 12H22M4.9 4.9l2.5 2.5M16.6 16.6l2.5 2.5M4.9 19.1l2.5-2.5M16.6 7.4l2.5-2.5"/></symbol>
+<symbol id="chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M9.5 2v4M14.5 2v4M9.5 18v4M14.5 18v4M2 9.5h4M2 14.5h4M18 9.5h4M18 14.5h4"/></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><path d="M12 3.2l10 17.6H2z"/><path d="M12 10v5M12 17.8h.01"/></symbol>
+<symbol id="share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4M8.6 13.4l6.8 4"/></symbol>
+<symbol id="hood" viewBox="0 0 24 24"><path d="M12 2.5c-4.4 0-7.5 3.2-7.5 7.6V21.5h15V10.1c0-4.4-3.1-7.6-7.5-7.6z"/><path d="M8 11.5c0-2 1.8-3.4 4-3.4s4 1.4 4 3.4v2.5c0 2-1.8 3.5-4 3.5s-4-1.5-4-3.5z"/><path d="M10 12.2h.01M14 12.2h.01"/></symbol>
+<symbol id="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 119.5 4a6.5 6.5 0 0010.5 10.5z"/></symbol>
+<symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></symbol>
+<symbol id="laptop" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M2 19.5h20"/></symbol>
+<symbol id="cross" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 1.5v6M12 16.5v6M1.5 12h6M16.5 12h6"/></symbol>
+<symbol id="star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.4 3.2 3.4 14.8 0 18M12 3c-3.4 3.2-3.4 14.8 0 18"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/></symbol>
+</defs></svg>
+
+<div id="fx">
+<div class="grid"></div><div class="glow g1"></div><div class="glow g2"></div>
+<div class="brand">CYBER SECURITY · FAKTA</div>
+
+<!-- 1 HOOK 0 - 5.1 -->
+<section class="scene" data-s="0" data-d="5.1">
+ <div class="chip r" data-a="pop @0.15 .4">● VIRAL DI MEDIA SOSIAL</div>
+ <h1 class="c" data-a="up @0.25">Cyber attack<br><span class="red" data-a="pop @2.7 .5" style="display:inline-block">di Malaysia?</span></h1>
+ <div style="margin-top:34px">
+  <div class="post" data-a="up @1.0"><div class="ph"><i class="av"></i><div><b>Page Berita Tular</b><small>2 minit lalu</small></div></div><p>MALAYSIA DISERANG HACKERS!!!</p><div class="rx">12K reaksi · 3.4K kongsi</div></div>
+  <div class="post" data-a="up @1.7"><div class="ph"><i class="av" style="background:linear-gradient(135deg,#FF9E6E,#FF4D5E)"></i><div><b>Info Semasa 24 Jam</b><small>5 minit lalu</small></div></div><p>SERANGAN SIBER MAKIN TERUK!</p><div class="rx">8.9K reaksi · 2.1K kongsi</div></div>
+ </div>
+</section>
+
+<!-- 2 CLAIMS 5.1 - 12.4 -->
+<section class="scene" data-s="5.1" data-d="7.3">
+ <div class="chip a" data-a="pop @5.2 .4">DAKWAAN VIRAL</div>
+ <div class="hl" data-a="left @5.3"><div class="tag">TERKINI</div><p>Malaysia sedang <span class="red">diserang</span> hackers</p><div class="stamp" data-a="slam @7.6 .4">?</div></div>
+ <div class="hl" data-a="right @8.6" style="margin-top:56px"><div class="tag">VIRAL</div><p>Hackers Malaysia buat <span class="red">serangan balas</span></p><div class="stamp" data-a="slam @10.6 .4">?</div></div>
+ <div style="display:flex;gap:18px;justify-content:center;margin-top:56px">
+  <div class="chip m" style="margin:0;font-size:30px" data-a="pop @11.1 .3">dan</div>
+  <div class="chip m" style="margin:0;font-size:30px" data-a="pop @11.45 .3">macam-macam</div>
+  <div class="chip m" style="margin:0;font-size:30px" data-a="pop @11.8 .3">lagi...</div>
+ </div>
+</section>
+
+<!-- 3 KEJAP 12.4 - 17.0 -->
+<section class="scene" data-s="12.4" data-d="4.7">
+ <div class="stop" data-a="slam @12.6 .5">KEJAP</div>
+ <div class="card c" style="margin-top:56px;padding:40px" data-a="up @14.15">
+  <div class="chip g" style="margin-bottom:14px">SATU PERKARA</div>
+  <h2>Kita kena <span class="green">faham</span> dulu</h2>
+ </div>
+</section>
+
+<!-- 4 NOT A GAME 17.0 - 26.1 -->
+<section class="scene" data-s="17.0" data-d="9.1" style="padding-top:150px">
+ <div class="chip m" style="margin-bottom:16px" data-a="pop @17.1 .4">DALAM GAME</div>
+ <div class="game" data-a="up @17.2" id="gm">
+  <svg class="i cross" data-a="pop @17.3 .4"><use href="#cross"/></svg>
+  <div class="kill" style="top:20px" data-a="right @17.6 .35">Hacker_MY ▸ Hacker_XX</div>
+  <div class="kill" style="top:70px" data-a="right @18.5 .35">Hacker_MY ▸ Hacker_YY</div>
+  <div class="hpb"><i></i></div>
+  <div style="position:absolute;right:26px;bottom:20px;font-size:34px;font-weight:800;color:#E8FFC9">K/D 12/3</div>
+  <div class="bigx" data-a="slam @20.8 .35"><svg class="i"><use href="#x"/></svg></div>
+ </div>
+ <div class="chip g" style="margin:30px 0 16px" data-a="pop @21.9 .4">REALITI</div>
+ <div class="net card" data-a="up @22.0">
+  <svg viewBox="0 0 960 360" width="100%" height="360">
+   <g stroke="#24346A" stroke-width="4"><path d="M130 70L480 180M130 290L480 180M830 60L480 180M830 300L480 180"/></g>
+   <g fill="#142046" stroke="#8E9BC0" stroke-width="4"><circle cx="130" cy="70" r="30"/><circle cx="130" cy="290" r="30"/><circle cx="830" cy="60" r="30"/><circle cx="830" cy="300" r="30"/></g>
+   <g fill="#2CFFB0" fill-opacity=".14" stroke="#2CFFB0" stroke-width="5"><circle cx="480" cy="180" r="76"/></g>
+   <svg x="436" y="136" width="88" height="88" class="i" style="color:#2CFFB0"><use href="#shield"/></svg>
+  </svg>
+  <i class="pk" style="left:130px;top:70px;--dx:340px;--dy:100px;animation:fly 1.7s linear infinite"></i>
+  <i class="pk" style="left:130px;top:290px;--dx:340px;--dy:-100px;animation:fly 1.7s linear .5s infinite"></i>
+  <i class="pk" style="left:820px;top:56px;--dx:-340px;--dy:116px;animation:fly 1.7s linear .9s infinite"></i>
+  <i class="pk" style="left:820px;top:300px;--dx:-340px;--dy:-116px;animation:fly 1.7s linear .2s infinite"></i>
+ </div>
+</section>
+
+<!-- 5a SETIAP HARI 26.1 - 31.4 -->
+<section class="scene" data-s="26.1" data-d="5.3">
+ <div class="chip r" data-a="pop @26.3 .4">HAKIKATNYA</div>
+ <div class="days" id="days"></div>
+ <h1 class="c red" data-a="slam @29.0 .45" style="margin-top:46px;font-size:132px">SETIAP HARI</h1>
+ <div class="globe" data-a="pop @29.9 .6" style="margin-top:10px;height:440px;width:440px">
+  <svg viewBox="0 0 440 440" width="440" height="440">
+   <circle cx="220" cy="220" r="190" fill="#0F1830" stroke="#4DB8FF" stroke-width="4"/>
+   <g fill="none" stroke="#24346A" stroke-width="3"><ellipse cx="220" cy="220" rx="80" ry="190"/><ellipse cx="220" cy="220" rx="160" ry="190"/><path d="M30 220h380M60 120h320M60 320h320"/></g>
+   <g fill="none" stroke="#FF4D5E" stroke-width="5" stroke-linecap="round" stroke-dasharray="14 14"><path d="M90 150Q220 20 350 130" style="animation:dash 1.6s linear infinite"/><path d="M110 300Q230 400 340 290" style="animation:dash 1.6s linear infinite .4s"/><path d="M80 230Q220 130 360 240" style="animation:dash 1.6s linear infinite .8s"/></g>
+   <g fill="#FF4D5E"><circle cx="90" cy="150" r="9"/><circle cx="350" cy="130" r="9"/><circle cx="110" cy="300" r="9"/><circle cx="340" cy="290" r="9"/><circle cx="80" cy="230" r="9"/><circle cx="360" cy="240" r="9"/></g>
+  </svg>
+ </div>
+</section>
+
+<!-- 5b TIMELINE 31.4 - 34.9 -->
+<section class="scene" data-s="31.4" data-d="3.5">
+ <div class="chip m" data-a="pop @31.5 .4">BUKAN BARU</div>
+ <div class="tl" id="tl">
+  <div class="ax"></div>
+  <div class="mark" data-a="growy @33.0 .4"></div>
+  <div class="chip c2" style="position:absolute;left:520px;top:4px;margin:0;font-size:30px" data-a="pop @33.1 .4">ChatGPT / AI</div>
+  <div style="position:absolute;left:0;top:0;font-size:36px;font-weight:800;color:var(--mute)" data-a="fade @31.6 .4">Dah lama wujud</div>
+ </div>
+ <h2 class="c" style="margin-top:30px" data-a="up @34.0">Bukan sebab AI <span class="red">baru muncul</span></h2>
+</section>
+
+<!-- 6 ATTENTION 34.9 - 38.4 -->
+<section class="scene" data-s="34.9" data-d="3.5">
+ <div class="card" style="padding:36px 30px 30px" data-a="up @35.0">
+  <svg viewBox="0 0 900 520" width="100%">
+   <g stroke="#24346A" stroke-width="3"><path d="M30 470H880M30 470V30"/></g>
+   <path class="pathd" pathLength="1" d="M30 330C120 320 180 340 260 325S400 335 480 320 640 330 720 322 820 328 870 324" fill="none" stroke="#FF4D5E" stroke-width="9" stroke-linecap="round" style="animation:draw 1.3s ease-out 35.2s both"/>
+   <path class="pathd" pathLength="1" d="M30 440C150 435 280 440 400 430S600 425 680 380 780 90 870 60" fill="none" stroke="#FFC24B" stroke-width="9" stroke-linecap="round" style="animation:draw 1.8s ease-in 36.0s both"/>
+   <circle cx="870" cy="60" r="14" fill="#FFC24B" style="animation:pop .4s ease-out 37.7s both"/>
+  </svg>
+  <div style="display:flex;gap:20px;justify-content:center;margin-top:6px">
+   <span class="tg" style="background:rgba(255,77,94,.16);color:var(--red);margin:0" data-a="pop @35.4 .3">Serangan siber</span>
+   <span class="tg" style="background:rgba(255,194,75,.16);color:var(--amber);margin:0" data-a="pop @36.2 .3">Perhatian</span>
+  </div>
+ </div>
+ <h2 class="c" style="margin-top:40px" data-a="up @36.9">Cuma <span class="amber">perhatian</span> naik</h2>
+</section>
+
+<!-- 7 HACKER != WIRA 38.4 - 44.6 -->
+<section class="scene" data-s="38.4" data-d="6.2">
+ <div class="chip a" data-a="pop @38.55 .4">SATU LAGI</div>
+ <div style="display:flex;align-items:center;justify-content:center;gap:30px">
+  <div class="c" data-a="left @39.0">
+   <div style="width:330px;height:330px;border-radius:50%;background:rgba(255,77,94,.14);border:5px solid var(--red);display:flex;align-items:center;justify-content:center;font-size:210px;color:var(--red)"><svg class="i"><use href="#hood"/></svg></div>
+   <h3 style="margin-top:20px;color:var(--red)" data-a="fade @41.4 .3">Hackers</h3>
+  </div>
+  <h1 style="font-size:130px;color:var(--mute)" data-a="pop @42.0 .4">≠</h1>
+  <div class="c" data-a="right @42.0" style="position:relative">
+   <div style="width:330px;height:330px;border-radius:50%;background:rgba(255,194,75,.14);border:5px solid var(--amber);display:flex;align-items:center;justify-content:center;font-size:210px;color:var(--amber)"><svg class="i"><use href="#star"/></svg></div>
+   <h3 style="margin-top:20px;color:var(--amber)" data-a="fade @42.1 .3">Wira</h3>
+   <div style="position:absolute;inset:0;height:330px;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:330px;filter:drop-shadow(0 0 30px rgba(255,77,94,.8))" data-a="slam @42.8 .35"><svg class="i" style="stroke-width:2.2"><use href="#x"/></svg></div>
+  </div>
+ </div>
+ <h2 class="c" style="margin-top:56px" data-a="up @43.3">Jangan <span class="red">terlalu cepat</span> anggap</h2>
+</section>
+
+<!-- 8 REAL HEROES 44.6 - 61.0 -->
+<section class="scene" data-s="44.6" data-d="16.4" style="padding-top:185px;justify-content:flex-start">
+ <div style="display:flex;align-items:center;gap:30px">
+  <div style="width:150px;height:150px;border-radius:50%;background:rgba(44,255,176,.14);border:5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:96px;color:var(--green);flex:none;animation:pulse 2.4s ease-in-out infinite" data-a="pop @44.7 .5"><svg class="i"><use href="#shield"/></svg></div>
+  <div><div class="chip g" style="margin-bottom:8px;font-size:28px" data-a="pop @44.8 .3">WIRA SEBENAR</div><h2 data-a="up @45.2" style="font-size:64px">Melindungi<br>sistem kita</h2></div>
+ </div>
+ <div style="display:flex;gap:20px;margin-top:22px">
+  <div class="card c" style="flex:1;padding:14px 14px" data-a="pop @48.2 .4"><div style="font-size:52px;color:var(--cyan)"><svg class="i"><use href="#laptop"/></svg></div><h3 style="font-size:38px;margin-top:4px">Geng IT</h3></div>
+  <div class="card c" style="flex:1;padding:14px 14px" data-a="pop @49.9 .4"><div style="font-size:52px;color:var(--green)"><svg class="i"><use href="#lock"/></svg></div><h3 style="font-size:38px;margin-top:4px">Pakar Cyber Security</h3></div>
+ </div>
+ <div style="display:flex;gap:16px;justify-content:center;align-items:center;margin-top:16px;font-size:32px;font-weight:800;color:var(--amber)" data-a="pop @52.2 .4"><svg class="i" style="font-size:46px"><use href="#sun"/></svg>SIANG MALAM<svg class="i" style="font-size:46px"><use href="#moon"/></svg></div>
+ <div style="margin-top:10px">
+  <div class="card row" data-a="left @53.0 .4"><div class="ic"><svg class="i"><use href="#server"/></svg></div><b>Baiki server</b><svg class="i ck pathd2" data-a="pop @53.5 .3"><use href="#check"/></svg></div>
+  <div class="card row" data-a="left @54.15 .4"><div class="ic"><svg class="i"><use href="#lock"/></svg></div><b>Tutup kelemahan sistem</b><svg class="i ck" data-a="pop @55.3 .3"><use href="#check"/></svg></div>
+  <div class="card row" data-a="left @55.85 .4"><div class="ic"><svg class="i"><use href="#net"/></svg></div><b>Periksa keselamatan rangkaian</b><svg class="i ck" data-a="pop @57.0 .3"><use href="#check"/></svg></div>
+  <div class="card row" data-a="left @57.3 .4"><div class="ic"><svg class="i"><use href="#globe"/></svg></div><b>Pastikan servis digital terus jalan</b><svg class="i ck" data-a="pop @59.7 .3"><use href="#check"/></svg></div>
+ </div>
+</section>
+
+<!-- 9 WHY STRONGER 61.0 - 65.5 -->
+<section class="scene" data-s="61.0" data-d="4.5">
+ <h1 class="c" data-a="up @61.3" style="font-size:96px">Kenapa serangan nampak <span class="red">semakin hebat?</span></h1>
+ <div style="display:flex;align-items:flex-end;justify-content:center;gap:22px;height:360px;margin-top:50px">
+  <i style="width:90px;height:60px;background:var(--cyan);border-radius:14px 14px 0 0;transform-origin:bottom" data-a="growy @62.7 .4"></i>
+  <i style="width:90px;height:110px;background:var(--cyan);border-radius:14px 14px 0 0;transform-origin:bottom" data-a="growy @63.0 .4"></i>
+  <i style="width:90px;height:170px;background:var(--amber);border-radius:14px 14px 0 0;transform-origin:bottom" data-a="growy @63.3 .4"></i>
+  <i style="width:90px;height:240px;background:var(--amber);border-radius:14px 14px 0 0;transform-origin:bottom" data-a="growy @63.6 .4"></i>
+  <i style="width:90px;height:330px;background:var(--red);border-radius:14px 14px 0 0;transform-origin:bottom" data-a="growy @64.0 .4"></i>
+ </div>
+</section>
+
+<!-- 10 AI 65.5 - 68.3 -->
+<section class="scene" data-s="65.5" data-d="2.8">
+ <div class="chip c2" data-a="pop @65.6 .4">SALAH SATU FAKTOR</div>
+ <div style="align-self:center;width:440px;height:440px;border-radius:70px;background:linear-gradient(135deg,#1A2B66,#3B2A8F);border:5px solid var(--cyan);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 0 90px rgba(77,184,255,.5);animation:pulse 1.6s ease-in-out infinite" data-a="slam @66.9 .5">
+  <svg class="i" style="position:absolute;inset:-5px;width:450px;height:450px;color:rgba(77,184,255,.35);stroke-width:.6"><use href="#chip"/></svg>
+  <span style="font-size:230px;font-weight:900;letter-spacing:-6px">AI</span>
+ </div>
+</section>
+
+<!-- 11 DULU vs SEKARANG 68.3 - 81.3 -->
+<section class="scene" data-s="68.3" data-d="13.0" style="padding-top:150px">
+ <div class="card lane" data-a="left @68.4 .4">
+  <div class="hd" style="color:var(--mute)"><svg class="i" style="font-size:56px"><use href="#clock"/></svg>DULU</div>
+  <div class="pbar"><i style="background:var(--mute);animation:grow 4.5s linear 68.6s both"></i></div>
+  <div><span class="tg" style="background:rgba(142,155,192,.16);color:#C5CFEA" data-a="pop @69.3 .3">Cari kelemahan</span><span class="tg" style="background:rgba(255,77,94,.16);color:var(--red)" data-a="pop @71.1 .3">Banyak masa</span><span class="tg" style="background:rgba(255,194,75,.16);color:var(--amber)" data-a="pop @72.2 .3">Perlu kepakaran</span></div>
+ </div>
+ <div class="card lane" style="border-color:var(--green);margin-top:34px" data-a="right @73.3 .4">
+  <div class="hd" style="color:var(--green)"><svg class="i" style="font-size:56px"><use href="#bolt"/></svg>SEKARANG + AI</div>
+  <div class="pbar"><i style="background:linear-gradient(90deg,var(--cyan),var(--green));animation:grow 1.7s cubic-bezier(.2,.8,.3,1) 75.6s both"></i></div>
+  <div><span class="tg" style="background:rgba(44,255,176,.14);color:var(--green)" data-a="pop @75.7 .3">Kenal pasti kelemahan</span><span class="tg" style="background:rgba(77,184,255,.16);color:var(--cyan)" data-a="pop @77.2 .3">Lebih pantas</span></div>
+  <div style="display:flex;align-items:center;gap:20px;margin-top:22px;font-size:46px;font-weight:900;color:var(--red)" data-a="pop @78.6 .4"><svg class="i" style="font-size:64px;animation:spin 3s linear infinite"><use href="#gear"/></svg>Automasi serangan</div>
+ </div>
+</section>
+
+<!-- 12a JANGAN SALAH FAHAM 81.3 - 83.8 -->
+<section class="scene" data-s="81.3" data-d="2.5">
+ <div style="align-self:center;font-size:300px;color:var(--amber);animation:pulse 1s ease-in-out infinite" data-a="pop @81.4 .45"><svg class="i" style="stroke-width:1.5"><use href="#alert"/></svg></div>
+ <h1 class="c" data-a="slam @82.4 .45" style="margin-top:16px">Jangan salah <span class="amber">faham</span></h1>
+</section>
+
+<!-- 12b AI NOT CAUSE 83.8 - 90.3 -->
+<section class="scene" data-s="83.8" data-d="6.5" style="padding-top:160px">
+ <div style="display:flex;align-items:center;justify-content:center;gap:26px">
+  <div style="position:relative;width:200px;height:200px;border-radius:44px;background:linear-gradient(135deg,#1A2B66,#3B2A8F);border:4px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:110px;font-weight:900" data-a="pop @84.0 .4">AI
+   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:230px;filter:drop-shadow(0 0 24px rgba(255,77,94,.9))" data-a="slam @85.7 .35"><svg class="i" style="stroke-width:2.4"><use href="#x"/></svg></div></div>
+  <div><div class="chip r" style="margin:0 0 8px;font-size:26px" data-a="fade @84.6 .3">BUKAN</div><h2 style="font-size:70px" data-a="up @84.7">Punca asal</h2></div>
+ </div>
+ <div class="card" style="margin-top:46px;padding:40px" data-a="up @86.5">
+  <div style="font-size:36px;font-weight:800;color:var(--mute);letter-spacing:2px">KEUPAYAAN PENYERANG</div>
+  <div style="display:flex;align-items:center;gap:24px;margin-top:22px">
+   <svg class="i" style="font-size:90px;color:var(--red)"><use href="#hood"/></svg>
+   <div class="pbar" style="flex:1;height:50px;margin:0;border-radius:25px"><i style="background:linear-gradient(90deg,var(--red),var(--amber));border-radius:25px;animation:grow 2.2s cubic-bezier(.3,.1,.2,1) 87.0s both;transform-origin:left"></i></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;margin-top:24px"><span class="tg" style="margin:0;background:rgba(142,155,192,.16);color:#C5CFEA" data-a="fade @86.8 .3">Sebelum</span><span class="tg" style="margin:0;background:rgba(77,184,255,.16);color:var(--cyan)" data-a="pop @88.2 .3">+ AI = lebih besar</span></div>
+ </div>
+</section>
+
+<!-- 13a SHARE 90.3 - 94.8 -->
+<section class="scene" data-s="90.3" data-d="4.5">
+ <div style="align-self:center;width:330px;height:330px;border-radius:50%;background:rgba(77,184,255,.14);border:5px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:190px;color:var(--cyan)" data-a="pop @90.4 .5"><svg class="i"><use href="#share"/></svg></div>
+ <h2 class="c" style="margin-top:36px" data-a="up @91.5">Nak kongsi isu<br>keselamatan siber?</h2>
+ <div style="align-self:center;margin-top:30px" data-a="slam @93.8 .4"><span class="chip g" style="font-size:52px;padding:18px 54px;margin:0"><svg class="i" style="vertical-align:-8px;margin-right:10px"><use href="#check"/></svg>SILAKAN</span></div>
+</section>
+
+<!-- 13b SENSASI 94.8 - 99.7 -->
+<section class="scene" data-s="94.8" data-d="4.9">
+ <div class="chip a" data-a="pop @94.9 .4">TAPI TOLONGLAH...</div>
+ <div class="hl" style="position:relative" data-a="up @95.2"><div class="tag">SENSASI!!!</div><p>HACKERS SERANG<br>SEMUA SISTEM!!!</p>
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--red);font-size:340px;filter:drop-shadow(0 0 30px rgba(255,77,94,.9))" data-a="slam @96.6 .4"><svg class="i" style="stroke-width:2"><use href="#x"/></svg></div></div>
+ <h2 class="c" style="margin-top:56px" data-a="up @97.4" id="faham">Yang kita sendiri <span class="red">tak faham</span></h2>
+</section>
+
+<!-- 14 OUTRO 99.7 - 105.6 -->
+<section class="scene" data-s="99.7" data-d="5.9">
+ <div class="chip c2" data-a="pop @99.9 .4">DALAM DUNIA CYBER SECURITY</div>
+ <div class="card c" style="padding:46px 30px;border-color:var(--green);box-shadow:0 0 80px rgba(44,255,176,.25)" data-a="slam @102.2 .5">
+  <div style="font-size:150px;font-weight:900;letter-spacing:-3px;color:var(--green);line-height:1">FAKTA</div>
+ </div>
+ <div class="c" style="font-size:110px;font-weight:900;color:var(--mute);margin:10px 0" data-a="pop @103.5 .4">&gt;</div>
+ <div class="card c" style="padding:30px;opacity:.85" data-a="fin @104.3 .4"><div style="font-size:84px;font-weight:900;color:var(--mute);letter-spacing:-1px">engagement</div></div>
+</section>
+
+<div id="caps"></div>
+<div class="flash" id="flash"></div>
+<div class="vig"></div>
+<div class="bar" style="animation:grow 105.6s linear 0s both"></div>
+</div>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s);
+/* scenes */
+document.querySelectorAll('.scene').forEach(s=>{
+ const st=+s.dataset.s,du=+s.dataset.d;
+ s.style.animation=`fin .35s ease-out ${st}s both, fout .35s ease-in ${st+du-.35}s forwards`;
+ s.querySelectorAll('[data-a]').forEach(el=>{
+  const [n,o,d]=el.dataset.a.split(' ');
+  const t=o[0]==='@'?+o.slice(1):st+ +o;
+  const prev=el.style.animation?el.style.animation+',':'';
+  el.style.animation=prev+`${n} ${d||.6}s cubic-bezier(.2,.9,.25,1) ${t}s both`;
+ });
+});
+/* dash keyframes */
+const sty=document.createElement('style');sty.textContent='@keyframes dash{to{stroke-dashoffset:-56}}';document.head.appendChild(sty);
+/* days strip */
+const dn=['Isn','Sel','Rab','Kha','Jum','Sab','Ahd'],dw=$('#days');
+dn.forEach((d,i)=>{const e=document.createElement('div');e.className='day';e.textContent=d;e.style.animation=`pop .4s ease-out ${26.5+i*.08}s both, dayon .25s ease-out ${28.0+i*.22}s forwards`;dw.appendChild(e)});
+/* timeline dots */
+const tl=$('#tl');
+[20,70,125,175,230,285,340,395,450,505,560].forEach((x,i)=>{const e=document.createElement('i');e.className='dot';e.style.left=x+'px';e.style.animation=`pop .3s ease-out ${31.7+i*.1}s both`;tl.appendChild(e)});
+[650,705,760,815,870,925].forEach((x,i)=>{const e=document.createElement('i');e.className='dot';e.style.left=x+'px';e.style.animation=`pop .3s ease-out ${33.3+i*.12}s both`;tl.appendChild(e)});
+/* captions: [start,end,text]  {e:} emphasis  {s:} serious  {f:} frustrated */
+const C=[
+[0.0,1.1,'Korang perasan tak?'],
+[1.14,2.7,'Sekarang ni banyak page Facebook'],
+[2.7,4.7,'dok cerita pasal {s:cyber attack dekat Malaysia?}'],
+[5.18,6.5,'Ada yang sampai tulis,'],
+[6.6,8.2,'Malaysia sedang diserang hackers,'],
+[8.6,10.7,'hackers Malaysia sedang buat serangan balas'],
+[11.06,12.0,'dan macam-macam lagi.'],
+[12.76,13.7,'Okay, kejap.'],
+[14.16,16.0,'{s:Kita kena faham satu perkara.}'],
+[17.18,20.1,'{e:Cyber attack ni bukan macam main Counter Strike!}'],
+[20.8,22.9,'{f:Tak ada istilah hackers kita serang balik}'],
+[22.94,25.4,'{f:hackers negara lain macam tengah berperang dalam game.}'],
+[26.24,28.5,'Hakikatnya, serangan siber ni'],
+[28.62,29.9,'berlaku {e:SETIAP HARI,}'],
+[29.92,31.2,'di seluruh dunia.'],
+[31.5,33.0,'Bukan baru berlaku sejak munculnya'],
+[33.06,34.6,'ChatGPT atau AI.'],
+[34.96,36.0,'Cuma sekarang,'],
+[36.1,37.9,'isu ni lebih mendapat perhatian.'],
+[38.52,39.6,'Satu lagi,'],
+[39.9,42.0,'jangan terlalu cepat anggap hackers sebagai'],
+[42.06,44.1,'wira yang sedang menjaga Malaysia.'],
+[44.74,47.8,'{s:Wira sebenar} yang bertungkus-lumus melindungi sistem kita'],
+[47.86,50.8,'ialah geng IT dan pakar Cyber Security.'],
+[50.86,53.0,'Merekalah yang siang malam'],
+[53.04,54.1,'membaiki server,'],
+[54.2,55.8,'menutup kelemahan sistem,'],
+[55.92,57.3,'memeriksa keselamatan rangkaian'],
+[57.34,58.7,'dan memastikan perkhidmatan'],
+[58.78,60.2,'digital terus berjalan.'],
+[61.32,62.5,'Sekarang,'],
+[62.64,64.9,'kenapa serangan siber nampak semakin hebat?'],
+[65.66,67.5,'Salah satu faktornya ialah AI.'],
+[68.42,70.6,'Dulu, mencari kelemahan dalam sistem'],
+[70.66,72.9,'memerlukan banyak masa dan kepakaran.'],
+[73.26,74.7,'Sekarang, AI boleh'],
+[74.74,77.7,'membantu penyerang mengenal pasti kelemahan dengan lebih pantas,'],
+[77.76,81.0,'malah membantu mengautomasikan serangan.'],
+[81.4,83.6,'{s:Tapi jangan salah faham.}'],
+[83.92,86.4,'AI bukan punca asal cyber attack.'],
+[86.54,90.0,'Ia cuma menjadikan keupayaan penyerang semakin besar.'],
+[90.36,93.7,'Jadi, kalau nak berkongsi isu keselamatan siber,'],
+[93.86,94.6,'silakan.'],
+[94.86,96.0,'Tapi tolonglah...'],
+[96.16,99.5,'{f:jangan sensasikan sesuatu yang kita sendiri tak faham.}'],
+[99.88,102.1,'Sebab dalam dunia Cyber Security,'],
+[102.22,105.4,'{e:fakta jauh lebih penting daripada engagement!}']
+];
+const caps=$('#caps');
+C.forEach((c,i)=>{
+ const [st,en0,txt]=c;
+ const nx=i<C.length-1?C[i+1][0]:999;
+ const en=Math.min(nx-.04,en0+.45);
+ // parse words
+ const words=[];const re=/\{([esf]):([^}]*)\}|([^{]+)/g;let m;
+ while((m=re.exec(txt))){
+  if(m[1]){m[2].split(/\s+/).filter(Boolean).forEach(w=>words.push([w,m[1]]));}
+  else m[3].split(/\s+/).filter(Boolean).forEach(w=>words.push([w,'']));
+ }
+ const tot=words.reduce((a,w)=>a+w[0].length+1,0);
+ let acc=0;const dur=Math.max(.3,en0-st-.08);
+ const d=document.createElement('div');d.className='cap';
+ const inner=document.createElement('div');
+ words.forEach(([w,k])=>{
+  const sp=document.createElement('span');sp.textContent=w;
+  const t=st+dur*acc/tot;acc+=w.length+1;
+  if(k==='e'){sp.style.setProperty('--dimc','rgba(255,194,75,.45)');sp.style.setProperty('--onc','#FFC24B');sp.style.animation=`wdz .22s ease-out ${t}s both`;}
+  else if(k==='s'){sp.style.setProperty('--dimc','rgba(255,77,94,.45)');sp.style.setProperty('--onc','#FF6B78');sp.style.animation=`wdz .22s ease-out ${t}s both`;}
+  else if(k==='f'){sp.style.setProperty('--dimc','rgba(255,150,70,.45)');sp.style.setProperty('--onc','#FF9A4A');sp.style.animation=`wdz .22s ease-out ${t}s both`;}
+  else sp.style.animation=`wd .05s linear ${t}s both`;
+  inner.appendChild(sp);
+ });
+ d.appendChild(inner);
+ d.style.animation=`fin .12s ease-out ${st-.04}s both, fout .1s ease-in ${en}s forwards`;
+ caps.appendChild(d);
+});
+/* emotion fx: shake (frustrated), serious flash, emphasis punch */
+const fx=$('#fx'),fl=$('#flash');
+const shakes=[[20.8,.5],[23.0,.5],[96.2,.5]],punch=[[17.2],[29.0],[102.2]],flashes=[[2.7],[14.16],[44.74],[81.4]];
+const anims=[];
+shakes.forEach(([t,d])=>anims.push(`shake ${d}s linear ${t}s`));
+punch.forEach(([t])=>anims.push(`punch .45s ease-out ${t}s`));
+fx.style.animation=anims.join(',');
+fl.style.animation=flashes.map(([t])=>`flashp .7s ease-out ${t}s`).join(',');
+window.setT=t=>{document.getAnimations().forEach(a=>{a.pause();a.currentTime=t*1000});};
+</script>
+</body></html>
