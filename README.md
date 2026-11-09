@@ -4,6 +4,7 @@ Koleksi video explainer. Setiap video ada folder sendiri: fail MP4 siap, source 
 
 | Video | Tempoh | Format |
 |---|---|---|
+| [cybersecurity-explainer](cybersecurity-explainer/) — isu cyber attack Malaysia: fakta vs sensasi (audio + caption sync) | 105s | 1080x1920 (TikTok) |
 | [claude-modes-explainer](claude-modes-explainer/) — beza Chat, Cowork, Artifact, Design, Claude Code, Schedule | 60s | 1080x1920 (Reels/TikTok) |
 
 ## Render semula
